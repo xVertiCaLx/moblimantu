@@ -23,14 +23,15 @@ public class CheckBookingsPage {
         return INSTANCE;
     }
     
-    public void captureInformation(Scanner sc) {
+    public void captureInformation() {
+        Scanner sc = References.getInputStream();        
         System.out.println("Please enter your information below");
         System.out.print("Email address: ");
-        email = sc.next();
+        email = sc.nextLine();
         System.out.println("Mobile number: ");
-        handPhone = sc.next();
+        handPhone = sc.nextLine();
         System.out.println("Booking references: ");
-        bookingRef = sc.next();        
+        bookingRef = sc.nextLine();        
     }
     
     public void launch() {
@@ -42,9 +43,9 @@ public class CheckBookingsPage {
             System.out.println("2. Check booking status");
             System.out.println("3. Back to main page");
             System.out.print("Please choose your options: ");
-            choice = sc.nextInt();
+            choice = Integer.parseInt(sc.nextLine());
             if (choice == 3) break;
-            captureInformation(sc);
+            captureInformation();
             LinkedList<Booking> result = null;
             switch(choice) {
                 case 1: result = BookingDB.getBookingHistory(email, handPhone, bookingRef);

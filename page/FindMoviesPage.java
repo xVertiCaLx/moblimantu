@@ -28,7 +28,7 @@ public class FindMoviesPage {
             System.out.println("3. Search movie by title");
             System.out.println("4. Back to main page");
             System.out.print("Please choose your options: ");
-            choice = sc.nextInt();
+            choice = Integer.parseInt(sc.nextLine());
             if (1 <= choice && choice <= 3) QueryMoviesPage.getInstance().launch(choice);
         } while (choice != 4);
     }
