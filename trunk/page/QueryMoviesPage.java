@@ -30,7 +30,7 @@ public class QueryMoviesPage {
             case 2: result = MovieDB.getMoviesByStatus("coming_soon", "preview");
                     break;
             case 3: System.out.print("Please enter the title of movie: ");
-                    String title = sc.next();
+                    String title = sc.nextLine();
                     result = MovieDB.getMoviesByTitle(title);
         }
         int choice = 0;
@@ -40,13 +40,13 @@ public class QueryMoviesPage {
         do {
             if (result == null || result.size() == 0) {
                 System.out.print("No movie match... Enter 0 to go back to Find Movies Page: ");
-                choice = sc.nextInt();
+                choice = Integer.parseInt(sc.nextLine());
             } else {
                 for (int index = 1; index <= result.size(); index++) {
                     System.out.println(index + ". " + result.get(index - 1).getName());
                 }
                 System.out.print("Enter one the the above movie or 0 to go back to Find Movies Page: ");
-                choice = sc.nextInt();
+                choice = Integer.parseInt(sc.nextLine());
                 if (1 <= choice && choice <= result.size()) {
                     System.out.println("We have not implemented this feature yet. Poor you :))");
                 }

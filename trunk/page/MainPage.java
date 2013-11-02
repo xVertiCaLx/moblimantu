@@ -27,7 +27,7 @@ public class MainPage {
             System.out.println("3. Management (for staff only)");
             System.out.println("4. Exit");            
             System.out.print("Please choose your option: ");
-            choice = sc.nextInt();
+            choice = Integer.parseInt(sc.nextLine());
             switch(choice) {
                 case 1: FindMoviesPage.getInstance().launch();
                         break;

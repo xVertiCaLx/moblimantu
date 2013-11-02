@@ -16,7 +16,10 @@ import entity.Cineplex;
 import entity.Movie;
 import entity.Showtime;
 import entity.Staff;
+import java.util.Scanner;
+import page.MainPage;
 import utils.Constant;
+import utils.References;
 /**
  *
  * @author Vu
@@ -95,8 +98,8 @@ public class MOBLIMA {
         // TODO code application logic here
       //  unitTestDB();
         initDB();
-        //Scanner scanner = new Scanner(System.in);
-       // References.setInputStream(scanner);
-       // MainPage.getInstance().launch();
+        Scanner scanner = new Scanner(System.in);
+        References.setInputStream(scanner);
+        MainPage.getInstance().launch();
     }
 }
