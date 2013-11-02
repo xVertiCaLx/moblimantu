@@ -32,6 +32,7 @@ public class MOBLIMA {
             System.out.println(m.getName());
             System.out.println(m.getStatus());
             System.out.println(m.getType());
+            System.out.println(m.getRating());
         }
         
         System.out.println("UNIT TEST FOR CINEMA DB");
@@ -72,7 +73,6 @@ public class MOBLIMA {
             System.out.println(b.getSeatNumbers());
             System.out.println(b.getPrice());
         }
-        
     }
     public static void initDB() {
         MovieDB.loadDB(Constant.database_path + Constant.movie_database);
@@ -83,7 +83,7 @@ public class MOBLIMA {
     }
     public static void main(String[] args) {
         // TODO code application logic here
-       // unitTestDB();
+        //unitTestDB();
         initDB();
         //Scanner scanner = new Scanner(System.in);
        // References.setInputStream(scanner);
