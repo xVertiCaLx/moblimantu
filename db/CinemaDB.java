@@ -14,16 +14,22 @@ import utils.Constant;
 public class CinemaDB {
     
     public static LinkedList<Cinema> list;
+    /* Add a Cinema to the database & database */
+    public static void addCinema(String cinemaClass, String cinemaName, int cineplexId, String cinemaCode ){
+        Cinema c = new Cinema(list.size()+1, cinemaClass, cinemaName, cineplexId, cinemaCode);
+        list.add(c);
+        commit();
+    }
     
     /* commit the changes to the database */
     public static void commit() {
         try {
             PrintWriter pw = new PrintWriter(new File(Constant.DATABASE_PATH + Constant.CINEMA_DATABASE));
             for(Cinema c : list) {
-                pw.write(c.getId()); pw.write("|");
+                pw.write(new Integer(c.getId()).toString()); pw.write("|");
                 pw.write(c.getCinemaClass()); pw.write("|");
                 pw.write(c.getName()); pw.write("|");
-                pw.write(c.getCineplexId()); pw.write("|");
+                pw.write(new Integer(c.getCineplexId()).toString()); pw.write("|");
                 pw.write(c.getCinemaCode()); pw.write("\n");
             }
             pw.close();
@@ -31,6 +37,7 @@ public class CinemaDB {
             System.out.println("IOException in commit CinemaDB " + e.getMessage());
         }
     }
+    
     /* Load the Cinema database into list */
     public static void loadDB(String filename) {
         try {

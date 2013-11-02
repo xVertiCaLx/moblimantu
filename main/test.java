@@ -18,6 +18,7 @@ public class test {
           Date now = new Date();
           SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
           System.out.println(dateFormatter.format(now));
+          System.out.println(now.toString());
           now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2013-11-05 02:03:04");
           System.out.println(dateFormatter.format(now));          
     }

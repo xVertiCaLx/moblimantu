@@ -1,20 +1,58 @@
 package db;
+import static db.CineplexDB.commit;
 import entity.Showtime;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import utils.Constant;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /* Loading database for Cineplex */
 public class ShowtimeDB {
     
     public static LinkedList<Showtime> list;
+   /* Add a Showtime  to the database & database */
+    public static void addShowtime(Date showtimeTime, int showtimeMovieId, int showtimeCinemaId){
+        Showtime s = new Showtime(list.size()+1, showtimeTime, showtimeMovieId, showtimeCinemaId);
+        list.add(s);
+        commit();
+    }
     
+    /* Add a Showtime to the database & database */
+    public static void addShowtime(String showtimeTimeStringFormat, int showtimeMovieId, int showtimeCinemaId){
+        try {
+            Date showtimeTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(showtimeTimeStringFormat);                
+            Showtime s = new Showtime(list.size()+1, showtimeTime, showtimeMovieId, showtimeCinemaId);
+            list.add(s);
+            commit();
+        } catch (ParseException ex) {
+            System.out.println("Parse Exception at addShowtime" + ex.getMessage());
+            Logger.getLogger(ShowtimeDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /* commit the changes to the database */
+    public static void commit() {
+        try {
+            PrintWriter pw = new PrintWriter(new File(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE));
+            for(Showtime s : list) {
+                pw.write(new Integer(s.getId()).toString()); pw.write("|");
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                pw.write(dateFormatter.format(s.getTime())); pw.write("|");
+                pw.write(new Integer(s.getMovieId()).toString()); pw.write("|");
+                pw.write(new Integer(s.getCinemaId()).toString()); pw.write("\r\n");
+            }
+            pw.close();
+        } catch (IOException e) {
+            System.out.println("IOException in commit CineplexDB " + e.getMessage());
+        }
+    }
     /* Load the Showtime database into list */
     public static void loadDB(String filename) {
         try {
@@ -81,6 +119,10 @@ public class ShowtimeDB {
             }
         }
         return result;
-        
+    }
+    public static void main(String[] args) {
+        loadDB(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE);
+        Date x = new Date();
+        addShowtime("2013-12-28 12:12:12",2,3);
     }
 }
