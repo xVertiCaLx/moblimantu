@@ -10,6 +10,8 @@ import java.util.StringTokenizer;
 public class CineplexDB {
     
     public static LinkedList<Cineplex> list;
+    
+    /* Load the cineplex database to list */
     public static void loadDB(String filename) {
         try {
             list = new LinkedList<Cineplex>();
@@ -28,5 +30,13 @@ public class CineplexDB {
         } catch (IOException e) {
             System.out.println("IOException at cineplexID " + e.getMessage());
         }
+    }
+    
+    /* Get a specific Cineplex with given Id */
+    public static Cineplex getCineplexById(int Id) {
+        for(Cineplex c : list) {
+            if (c.getId() == Id)  return c;
+        }
+        return null;
     }
 }

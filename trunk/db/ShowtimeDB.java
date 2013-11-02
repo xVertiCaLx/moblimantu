@@ -10,6 +10,8 @@ import java.util.StringTokenizer;
 public class ShowtimeDB {
     
     public static LinkedList<Showtime> list;
+    
+    /* Load the Showtime database into list */
     public static void loadDB(String filename) {
         try {
             list = new LinkedList<Showtime>();
@@ -28,7 +30,15 @@ public class ShowtimeDB {
                 list.add(new Showtime(showtimeId, showtimeTimestamp, showtimeMovieId, showtimeCinemaId));
             }
         } catch (IOException e) {
-            System.out.println("IOException at cineplexID " + e.getMessage());
+            System.out.println("IOException at Showtime " + e.getMessage());
         }
+    }
+
+    /* Return a specific showtime with given id */
+    public static Showtime getShowtimeById(int id) {
+        for(Showtime s : list) {
+            if (s.getId() == id) return s;
+        }
+        return null;
     }
 }
