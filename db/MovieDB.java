@@ -11,6 +11,8 @@ import java.util.StringTokenizer;
 public class MovieDB {
     
     public static LinkedList<Movie> list;
+    
+    /* Load the movie database into list */
     public static void loadDB(String filename) {
         try {
             list = new LinkedList<Movie>();
@@ -34,6 +36,9 @@ public class MovieDB {
             System.out.println("IOException at movieDB " + e.getMessage());
         }
     }
+    /* 
+     * Return a set of Movie which has the same title as args 
+     */
     public static LinkedList<Movie> getMoviesByStatus(String ...args) {
         LinkedList<Movie> Result = new LinkedList<Movie>();
         for(Movie m : list) {
@@ -46,6 +51,9 @@ public class MovieDB {
         }
         return Result;
     }
+    /* 
+     * Return a set of Movie which has the same title as title 
+     */
     public static LinkedList<Movie> getMoviesByTitle(String title) {
         LinkedList<Movie> Result = new LinkedList<Movie>();
         for(Movie m : list) {
@@ -54,5 +62,15 @@ public class MovieDB {
             }
         }
         return Result;
+    }
+    
+    /*
+     * Return a specific movie with given Id
+     */
+    public static Movie getMovieById(int Id) {
+        for(Movie m : list) {
+            if (m.getId() == Id) return m;
+        }
+        return null;
     }
 }

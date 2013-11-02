@@ -9,6 +9,8 @@ import java.util.StringTokenizer;
 public class CinemaDB {
     
     public static LinkedList<Cinema> list;
+    
+    /* Load the Cinema database into list */
     public static void loadDB(String filename) {
         try {
             list = new LinkedList<Cinema>();
@@ -30,5 +32,13 @@ public class CinemaDB {
         } catch (IOException e) {
             System.out.println("IOException at cinemaDB " + e.getMessage());
         }
+    }
+    
+    /* Return a specific Cinema with given Id */
+    public static Cinema getCinemaById(int Id) {
+        for(Cinema c : list) {
+            if (c.getId() == Id) return c;
+        }
+        return null;
     }
 }
