@@ -9,10 +9,11 @@ package utils;
  * @author Vu
  */
 public class Constant {
-    public static String database_path = "src\\data\\";
-    public static String movie_database = "movie.txt";
-    public static String cinema_database = "cinema.txt";
-    public static String cineplex_database = "cineplex.txt";
-    public static String showtime_database = "showtime.txt";
-    public static String booking_database = "booking.txt";
+    public static String DATABASE_PATH = "src\\data\\";
+    public static String MOVIE_DATABASE = "movie.txt";
+    public static String CINEMA_DATABASE = "cinema.txt";
+    public static String CINEPLEX_DATABASE = "cineplex.txt";
+    public static String SHOWTIME_DATABASE = "showtime.txt";
+    public static String BOOKING_DATABASE = "booking.txt";
+    public static String STAFF_DATABASE = "staff.txt";
 }
