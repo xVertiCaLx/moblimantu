@@ -36,6 +36,6 @@ public class MainPage {
                 case 3: ManagementPage.getInstance().launch();
                         break;
             }
-        } while (1 <= choice && choice <= 3);
+        } while (choice != 4);
     }        
 }

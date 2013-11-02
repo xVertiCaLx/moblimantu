@@ -4,6 +4,9 @@
  */
 package page;
 
+import java.util.Scanner;
+import utils.References;
+
 /**
  *
  * @author Khach
@@ -14,7 +17,19 @@ public class FindMoviesPage {
     public static FindMoviesPage getInstance() {
         return INSTANCE;
     }
+    
     public void launch() {
-        
+        Scanner sc = References.getInputStream();
+        int choice = 0;
+        do {
+            System.out.println("Finding movies ...");                    
+            System.out.println("1. Now showing");
+            System.out.println("2. Coming soon and Preview");
+            System.out.println("3. Search movie by title");
+            System.out.println("4. Back to main page");
+            System.out.print("Please choose your options: ");
+            choice = sc.nextInt();
+            if (1 <= choice && choice <= 3) QueryMoviesPage.getInstance().launch(choice);
+        } while (choice != 3);
     }
 }
