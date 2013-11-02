@@ -118,5 +118,4 @@ public class Booking {
     public void setPrice(double price) {
         this.price = price;
     }
-    
 }
