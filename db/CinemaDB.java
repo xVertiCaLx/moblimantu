@@ -20,12 +20,12 @@ public class CinemaDB {
                  * Cinema input format
                  * id|class|name|CineplexID|code
                  */
-                int cinemaID = Integer.parseInt(s.nextToken());
+                int cinemaId = Integer.parseInt(s.nextToken());
                 String cinemaClass = s.nextToken();
                 String cinemaName = s.nextToken();
-                int cinemaCineplexID = Integer.parseInt(s.nextToken());
+                int cinemaCineplexId = Integer.parseInt(s.nextToken());
                 String cinemaCode = s.nextToken();
-                list.add(new Cinema(cinemaID, cinemaClass, cinemaName, cinemaCineplexID, cinemaCode));
+                list.add(new Cinema(cinemaId, cinemaClass, cinemaName, cinemaCineplexId, cinemaCode));
             }
         } catch (IOException e) {
             System.out.println("IOException at cinemaDB " + e.getMessage());

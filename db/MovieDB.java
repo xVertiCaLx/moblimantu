@@ -22,11 +22,11 @@ public class MovieDB {
                  * movie input format 
                  * id|type|name|status
                  */
-                int movieID = Integer.parseInt(s.nextToken());
+                int movieId = Integer.parseInt(s.nextToken());
                 String movieType = s.nextToken();
                 String movieName = s.nextToken();
                 String movieStatus = s.nextToken();
-                list.add(new Movie(movieID, movieType, movieName, movieStatus));
+                list.add(new Movie(movieId, movieType, movieName, movieStatus));
             }
         } catch (IOException e) {
             System.out.println("IOException at movieDB " + e.getMessage());
