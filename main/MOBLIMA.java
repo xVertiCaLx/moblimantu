@@ -13,7 +13,7 @@ public class MOBLIMA {
     /**
      * @param args the command line arguments
      */
-    public void initDB() {
+    public static void initDB() {
         
     }
     public static void main(String[] args) {
