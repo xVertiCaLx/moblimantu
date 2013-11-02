@@ -9,11 +9,13 @@ import db.MovieDB;
 import db.CinemaDB;
 import db.CineplexDB;
 import db.ShowtimeDB;
+import db.StaffDB;
 import entity.Booking;
 import entity.Cinema;
 import entity.Cineplex;
 import entity.Movie;
 import entity.Showtime;
+import entity.Staff;
 import utils.Constant;
 /**
  *
@@ -26,7 +28,7 @@ public class MOBLIMA {
      */
     public static void unitTestDB() {
         System.out.println("UNIT TEST FOR MOVIEDB");
-        MovieDB.loadDB(Constant.database_path + Constant.movie_database);
+        MovieDB.loadDB(Constant.DATABASE_PATH + Constant.MOVIE_DATABASE);
         for(Movie m : MovieDB.list) {
             System.out.println(m.getId());
             System.out.println(m.getName());
@@ -36,7 +38,7 @@ public class MOBLIMA {
         }
         
         System.out.println("UNIT TEST FOR CINEMA DB");
-        CinemaDB.loadDB(Constant.database_path + Constant.cinema_database);
+        CinemaDB.loadDB(Constant.DATABASE_PATH + Constant.CINEMA_DATABASE);
         for(Cinema c : CinemaDB.list) {
             System.out.println(c.getId());
             System.out.println(c.getCinemaClass());
@@ -46,13 +48,13 @@ public class MOBLIMA {
         }
         
         System.out.println("UNIT TEST FOR CINEPLEX DB");
-        CineplexDB.loadDB(Constant.database_path + Constant.cineplex_database);
+        CineplexDB.loadDB(Constant.DATABASE_PATH + Constant.CINEPLEX_DATABASE);
         for(Cineplex c : CineplexDB.list) {
             System.out.println(c.getId());
             System.out.println(c.getName());
         }
         System.out.println("UNIT TEST FOR SHOWTIME DB");
-        ShowtimeDB.loadDB(Constant.database_path + Constant.showtime_database);
+        ShowtimeDB.loadDB(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE);
         for(Showtime s : ShowtimeDB.list) {
             System.out.println(s.getId());
             System.out.println(s.getTime());
@@ -60,7 +62,7 @@ public class MOBLIMA {
             System.out.println(s.getCinemaId());
         }
         System.out.println("UNIT TEST FOR BOOKING DB");
-        BookingDB.loadDB(Constant.database_path + Constant.booking_database);
+        BookingDB.loadDB(Constant.DATABASE_PATH + Constant.BOOKING_DATABASE);
         for(Booking b : BookingDB.list) {
             System.out.println(b.getId());
             System.out.println(b.getTransactionId());
@@ -73,17 +75,25 @@ public class MOBLIMA {
             System.out.println(b.getSeatNumbers());
             System.out.println(b.getPrice());
         }
+        System.out.println("UNIT TEST FOR STAFF DB");
+        StaffDB.loadDB(Constant.DATABASE_PATH + Constant.STAFF_DATABASE);
+        for(Staff s : StaffDB.list) {
+            System.out.println(s.getUsername());
+            System.out.println(s.getPassword());
+            System.out.println(StaffDB.authenticate(s.getUsername(),"password"));
+        }
     }
     public static void initDB() {
-        MovieDB.loadDB(Constant.database_path + Constant.movie_database);
-        CinemaDB.loadDB(Constant.database_path + Constant.cinema_database);
-        CineplexDB.loadDB(Constant.database_path + Constant.cineplex_database);
-        ShowtimeDB.loadDB(Constant.database_path + Constant.showtime_database);
-        BookingDB.loadDB(Constant.database_path + Constant.booking_database);
+        MovieDB.loadDB(Constant.DATABASE_PATH + Constant.MOVIE_DATABASE);
+        CinemaDB.loadDB(Constant.DATABASE_PATH + Constant.CINEMA_DATABASE);
+        CineplexDB.loadDB(Constant.DATABASE_PATH + Constant.CINEPLEX_DATABASE);
+        ShowtimeDB.loadDB(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE);
+        BookingDB.loadDB(Constant.DATABASE_PATH + Constant.BOOKING_DATABASE);
+        StaffDB.loadDB(Constant.DATABASE_PATH + Constant.STAFF_DATABASE);
     }
     public static void main(String[] args) {
         // TODO code application logic here
-        //unitTestDB();
+      //  unitTestDB();
         initDB();
         //Scanner scanner = new Scanner(System.in);
        // References.setInputStream(scanner);

@@ -61,7 +61,7 @@ public class ShowtimeDB {
         }
         return result;
     }
-    
+ 
     /* Return list of Showtimes with given cinemaId and movie Id */
     public static LinkedList<Showtime> getShowtimesByCinemaAndMovie(int movieId, int cinemaId) {
         LinkedList<Showtime> result = new LinkedList<Showtime>();
