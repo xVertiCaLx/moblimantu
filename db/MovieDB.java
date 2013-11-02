@@ -21,11 +21,11 @@ public class MovieDB {
         {
             PrintWriter pw = new PrintWriter(new File(Constant.DATABASE_PATH + Constant.MOVIE_DATABASE));
             for(Movie m : list) {
-                pw.write(m.getId()); pw.write("|");
+                pw.write(new Integer(m.getId()).toString()); pw.write("|");
                 pw.write(m.getType()); pw.write("|");
                 pw.write(m.getName()); pw.write("|");
                 pw.write(m.getStatus()); pw.write("|");
-                pw.write(new Double(m.getRating()).toString()); pw.write("\n");
+                pw.write(new Double(m.getRating()).toString()); pw.write("\r\n");
             }
             pw.close();
         } catch (IOException e) {
@@ -117,5 +117,12 @@ public class MovieDB {
         Movie newMovie = new Movie(list.size()+1, movieType, movieName, movieStatus, rating);
         list.add(newMovie);
         commit();
+    }
+    
+    public static void main(String[] args) {
+        loadDB(Constant.DATABASE_PATH + Constant.MOVIE_DATABASE);
+        System.out.println("UNIT TEST MOVIE DB");
+        addMovie("hihi","hehe","huhu",1.0);
+        
     }
 }
