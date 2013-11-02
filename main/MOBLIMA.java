@@ -4,6 +4,8 @@
  */
 package main;
 
+import db.MovieDB;
+
 /**
  *
  * @author Vu
@@ -14,6 +16,7 @@ public class MOBLIMA {
      * @param args the command line arguments
      */
     public static void initDB() {
+        MovieDB.loadDB("src\\data\\movie.txt");
         
     }
     public static void main(String[] args) {
