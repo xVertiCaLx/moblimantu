@@ -62,4 +62,10 @@ public class BookingDB {
         }
         return null;
     }
+    public static LinkedList<Booking> getBookingHistory(String email, String handPhone, String bookingRef) {
+        return null;
+    }
+    public static LinkedList<Booking> getBookingStatus(String email, String handPhone, String bookingRef) {
+        return null;
+    }    
 }
