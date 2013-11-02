@@ -10,10 +10,10 @@ import java.util.StringTokenizer;
 /* Loading database for Movie */
 public class MovieDB {
     
-    public static LinkedList<Movie> movieList;
+    public static LinkedList<Movie> list;
     public static void loadDB(String filename) {
         try {
-            movieList = new LinkedList<Movie>();
+            list = new LinkedList<Movie>();
             Scanner sc = new Scanner(new File(filename));
             while (sc.hasNext()) {
                 
@@ -26,7 +26,7 @@ public class MovieDB {
                 String movieType = s.nextToken();
                 String movieName = s.nextToken();
                 String movieStatus = s.nextToken();
-                movieList.add(new Movie(movieID, movieType, movieName, movieStatus));
+                list.add(new Movie(movieID, movieType, movieName, movieStatus));
             }
         } catch (IOException e) {
             System.out.println("IOException at movieDB " + e.getMessage());
