@@ -13,15 +13,17 @@ public class Movie {
     private String type;
     private String name;
     private String status;
-
+    private double rating;
+    
     public Movie() {
     }
 
-    public Movie(int id, String type, String name, String status) {
+    public Movie(int id, String type, String name, String status, double rating) {
         this.id = id;
         this.type = type;
         this.name = name;
         this.status = status;
+        this.rating = rating;
     }
 
     public int getId() {
