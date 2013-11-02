@@ -41,4 +41,36 @@ public class ShowtimeDB {
         }
         return null;
     }
+    
+    /* Return list of Showtimes with given movie_id*/
+    public static LinkedList<Showtime> getShowtimesByMovie(int movieId) {
+        LinkedList<Showtime> result = new LinkedList<Showtime>();
+        for(Showtime s : list) {
+            if (s.getMovieId() == movieId) result.add(s);
+        }
+        return result;
+    }
+    
+    /* Return list of Showtimes with given cinema_id */
+    public static LinkedList<Showtime> getShowtimesByCinema(int cinemaId) {
+        LinkedList<Showtime> result = new LinkedList<Showtime>();
+        for(Showtime s : list) {
+            if (s.getCinemaId() == cinemaId) {
+                result.add(s);
+            }
+        }
+        return result;
+    }
+    
+    /* Return list of Showtimes with given cinemaId and movie Id */
+    public static LinkedList<Showtime> getShowtimesByCinemaAndMovie(int movieId, int cinemaId) {
+        LinkedList<Showtime> result = new LinkedList<Showtime>();
+        for(Showtime s : list) {
+            if (s.getCinemaId() == cinemaId && s.getMovieId() == movieId) {
+                result.add(s);
+            }
+        }
+        return result;
+        
+    }
 }

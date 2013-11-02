@@ -1,5 +1,7 @@
 package db;
 import entity.Cinema;
+import entity.Movie;
+import entity.Showtime;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -40,5 +42,31 @@ public class CinemaDB {
             if (c.getId() == Id) return c;
         }
         return null;
+    }
+    
+    /* Return list of cinemas with given cineplex Id */
+    public static LinkedList<Cinema> getCinemasByCineplexId(int Id) {
+        LinkedList<Cinema> result = new LinkedList<Cinema>();
+        for(Cinema c : list) {
+            if (c.getCineplexId() == Id) result.add(c);
+        }
+        return result;
+    }
+    
+    /* Return list of cinemas with given movie_id */
+    public static LinkedList<Cinema> getCinemasByMovie(int movieId) {
+        LinkedList<Showtime> st = ShowtimeDB.getShowtimesByMovie(movieId);
+        LinkedList<Cinema> result = new LinkedList<Cinema>();
+        for(Cinema c : list) {
+            boolean isValid = false;
+            for(Showtime s : st) {
+                if (c.getId() == s.getCinemaId()) {
+                    isValid = true;
+                    break;
+                }
+            }
+            result.add(c);
+        }
+        return result;
     }
 }
