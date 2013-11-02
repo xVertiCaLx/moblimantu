@@ -1,17 +1,36 @@
 package db;
+import static db.MovieDB.list;
 import entity.Cinema;
 import entity.Movie;
 import entity.Showtime;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import utils.Constant;
 /* Loading database for Cinema */
 public class CinemaDB {
     
     public static LinkedList<Cinema> list;
     
+    /* commit the changes to the database */
+    public static void commit() {
+        try {
+            PrintWriter pw = new PrintWriter(new File(Constant.DATABASE_PATH + Constant.CINEMA_DATABASE));
+            for(Cinema c : list) {
+                pw.write(c.getId()); pw.write("|");
+                pw.write(c.getCinemaClass()); pw.write("|");
+                pw.write(c.getName()); pw.write("|");
+                pw.write(c.getCineplexId()); pw.write("|");
+                pw.write(c.getCinemaCode()); pw.write("\n");
+            }
+            pw.close();
+        } catch (IOException e) {
+            System.out.println("IOException in commit CinemaDB " + e.getMessage());
+        }
+    }
     /* Load the Cinema database into list */
     public static void loadDB(String filename) {
         try {
