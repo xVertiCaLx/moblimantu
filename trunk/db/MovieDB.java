@@ -32,4 +32,10 @@ public class MovieDB {
             System.out.println("IOException at movieDB " + e.getMessage());
         }
     }
+    public static LinkedList getMoviesByStatus(String ...args) {
+        return null;
+    }
+    public static LinkedList getMoviesByTitle(String title) {
+        return null;
+    }
 }
