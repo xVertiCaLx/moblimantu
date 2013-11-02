@@ -7,7 +7,7 @@ package entity;
 import db.CinemaDB;
 import db.MovieDB;
 import db.ShowtimeDB;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.LinkedList;
 
 /**
@@ -22,14 +22,14 @@ public class Booking {
     private String customerHP;
     private String customerEmail;
     private int customerAge;
-    private Timestamp time;
+    private Date time;
     private LinkedList<Integer> seatNumbers;
     private double price;
 
     public Booking() {
     }
 
-    public Booking(int id, String transactionId, int showtimeId, String customerName, String customerHP, String customerEmail, int customerAge, Timestamp time, LinkedList<Integer> seatNumbers, double price) {
+    public Booking(int id, String transactionId, int showtimeId, String customerName, String customerHP, String customerEmail, int customerAge, Date time, LinkedList<Integer> seatNumbers, double price) {
         this.id = id;
         this.transactionId = transactionId;
         this.showtimeId = showtimeId;
@@ -98,11 +98,11 @@ public class Booking {
         this.customerAge = customerAge;
     }
 
-    public Timestamp getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
