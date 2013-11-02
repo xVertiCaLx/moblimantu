@@ -8,7 +8,9 @@ import db.MovieDB;
 import db.CinemaDB;
 import entity.Cinema;
 import entity.Movie;
-
+import java.util.Scanner;
+import page.MainPage;
+import utils.References;
 /**
  *
  * @author Vu
@@ -38,5 +40,8 @@ public class MOBLIMA {
     public static void main(String[] args) {
         // TODO code application logic here
         initDB();
+        Scanner scanner = new Scanner(System.in);
+        References.setInputStream(scanner);
+        MainPage.getInstance().launch();
     }
 }
