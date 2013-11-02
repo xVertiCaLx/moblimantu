@@ -14,7 +14,14 @@ import utils.Constant;
 public class MovieDB {
     
     public static LinkedList<Movie> list;
-    
+    /*
+     * Add a new Movie to the list & database
+     */
+    public static void addMovie(String movieType, String movieName, String movieStatus, double rating) {
+        Movie newMovie = new Movie(list.size()+1, movieType, movieName, movieStatus, rating);
+        list.add(newMovie);
+        commit();
+    }
     /* Commit the changes to the database */
     public static void commit() {
         try 
@@ -110,14 +117,6 @@ public class MovieDB {
         return result;
     }
     
-    /*
-     * Add a new Movie to the list
-     */
-    public static void addMovie(String movieType, String movieName, String movieStatus, double rating) {
-        Movie newMovie = new Movie(list.size()+1, movieType, movieName, movieStatus, rating);
-        list.add(newMovie);
-        commit();
-    }
     
     public static void main(String[] args) {
         loadDB(Constant.DATABASE_PATH + Constant.MOVIE_DATABASE);
