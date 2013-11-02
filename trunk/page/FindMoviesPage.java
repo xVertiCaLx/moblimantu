@@ -30,6 +30,6 @@ public class FindMoviesPage {
             System.out.print("Please choose your options: ");
             choice = sc.nextInt();
             if (1 <= choice && choice <= 3) QueryMoviesPage.getInstance().launch(choice);
-        } while (choice != 3);
+        } while (choice != 4);
     }
 }
