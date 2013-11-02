@@ -4,7 +4,8 @@
  */
 package entity;
 
-import java.sql.Timestamp;
+import java.util.Date;
+
 
 /**
  *
@@ -12,14 +13,14 @@ import java.sql.Timestamp;
  */
 public class Showtime {
     private int id;
-    private Timestamp time;
+    private Date time;
     private int movieId;
     private int cinemaId;
     
     public Showtime() {
     }
 
-    public Showtime(int id, Timestamp time, int movieId, int cinemaId) {
+    public Showtime(int id, Date time, int movieId, int cinemaId) {
         this.id = id;
         this.time = time;
         this.movieId = movieId;
@@ -34,11 +35,11 @@ public class Showtime {
         this.id = id;
     }
 
-    public Timestamp getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 

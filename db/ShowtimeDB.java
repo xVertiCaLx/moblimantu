@@ -2,10 +2,14 @@ package db;
 import entity.Showtime;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /* Loading database for Cineplex */
 public class ShowtimeDB {
     
@@ -24,10 +28,16 @@ public class ShowtimeDB {
                  * id|time|movie_id|cinema_id
                  */
                 int showtimeId = Integer.parseInt(s.nextToken());
-                Timestamp showtimeTimestamp = Timestamp.valueOf(s.nextToken());
+                Date showtimeTime = null;
+                try {
+                    showtimeTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(s.nextToken());
+                } catch (ParseException ex) {
+                    Logger.getLogger(BookingDB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
                 int showtimeMovieId = Integer.parseInt(s.nextToken());
                 int showtimeCinemaId = Integer.parseInt(s.nextToken());
-                list.add(new Showtime(showtimeId, showtimeTimestamp, showtimeMovieId, showtimeCinemaId));
+                list.add(new Showtime(showtimeId, showtimeTime, showtimeMovieId, showtimeCinemaId));
             }
         } catch (IOException e) {
             System.out.println("IOException at Showtime " + e.getMessage());

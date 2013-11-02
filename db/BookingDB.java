@@ -1,13 +1,17 @@
 package db;
 
 import entity.Booking;
-import entity.Movie;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /* Loading database for Movie */
 public class BookingDB {
@@ -35,7 +39,12 @@ public class BookingDB {
                 String              bookingCustomerHP = s.nextToken();
                 String              bookingCustomerEmail = s.nextToken();
                 int                 bookingCustomerAge = Integer.parseInt(s.nextToken());
-                Timestamp           bookingTime = Timestamp.valueOf(s.nextToken());
+                Date                bookingTime = null;
+                try {
+                    bookingTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(s.nextToken());
+                } catch (ParseException ex) {
+                    Logger.getLogger(BookingDB.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
                 LinkedList<Integer> bookingSeatNumbers = new LinkedList<Integer>();
                 StringTokenizer seatList = new StringTokenizer(s.nextToken(),"*");

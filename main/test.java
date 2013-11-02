@@ -4,17 +4,21 @@
  */
 package main;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  *
  * @author Khach
  */
 public class test {
-    public static void main2(String[] args) {
+    public static void main(String[] args) throws ParseException {
           Date now = new Date();
-          SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE, yyyy-MM-dd HH:mm:ss");
+          SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
           System.out.println(dateFormatter.format(now));
+          now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2013-11-05 02:03:04");
+          System.out.println(dateFormatter.format(now));          
     }
 }
