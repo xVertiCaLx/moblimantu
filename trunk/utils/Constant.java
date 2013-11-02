@@ -14,4 +14,5 @@ public class Constant {
     public static String cinema_database = "cinema.txt";
     public static String cineplex_database = "cineplex.txt";
     public static String showtime_database = "showtime.txt";
+    public static String booking_database = "booking.txt";
 }
