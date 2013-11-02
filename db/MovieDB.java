@@ -4,15 +4,34 @@ import entity.Movie;
 import entity.Showtime;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import utils.Constant;
 
 /* Loading database for Movie */
 public class MovieDB {
     
     public static LinkedList<Movie> list;
     
+    /* Commit the changes to the database */
+    public static void commit() {
+        try 
+        {
+            PrintWriter pw = new PrintWriter(new File(Constant.DATABASE_PATH + Constant.MOVIE_DATABASE));
+            for(Movie m : list) {
+                pw.write(m.getId()); pw.write("|");
+                pw.write(m.getType()); pw.write("|");
+                pw.write(m.getName()); pw.write("|");
+                pw.write(m.getStatus()); pw.write("|");
+                pw.write(new Double(m.getRating()).toString()); pw.write("\n");
+            }
+            pw.close();
+        } catch (IOException e) {
+            System.out.println("IOException in commit MovieDB " + e.getMessage());
+        }
+    }
     /* Load the movie database into list */
     public static void loadDB(String filename) {
         try {
@@ -89,5 +108,14 @@ public class MovieDB {
                 }
         }
         return result;
+    }
+    
+    /*
+     * Add a new Movie to the list
+     */
+    public static void addMovie(String movieType, String movieName, String movieStatus, double rating) {
+        Movie newMovie = new Movie(list.size()+1, movieType, movieName, movieStatus, rating);
+        list.add(newMovie);
+        commit();
     }
 }
