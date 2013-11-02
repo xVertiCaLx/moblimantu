@@ -8,10 +8,10 @@ import java.util.StringTokenizer;
 /* Loading database for Cinema */
 public class CinemaDB {
     
-    public static LinkedList<Cinema> cinemaList;
+    public static LinkedList<Cinema> list;
     public static void loadDB(String filename) {
         try {
-            cinemaList = new LinkedList<Cinema>();
+            list = new LinkedList<Cinema>();
             Scanner sc = new Scanner(new File(filename));
             while (sc.hasNext()) {
                 
@@ -25,7 +25,7 @@ public class CinemaDB {
                 String cinemaName = s.nextToken();
                 int cinemaCineplexID = Integer.parseInt(s.nextToken());
                 String cinemaCode = s.nextToken();
-                cinemaList.add(new Cinema(cinemaID, cinemaClass, cinemaName, cinemaCineplexID, cinemaCode));
+                list.add(new Cinema(cinemaID, cinemaClass, cinemaName, cinemaCineplexID, cinemaCode));
             }
         } catch (IOException e) {
             System.out.println("IOException at cinemaDB " + e.getMessage());

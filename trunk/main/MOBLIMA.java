@@ -20,14 +20,14 @@ public class MOBLIMA {
      */
     public static void initDB() {
         MovieDB.loadDB("src\\data\\movie.txt");
-        for(Movie m : MovieDB.movieList) {
+        for(Movie m : MovieDB.list) {
             System.out.println(m.getId());
             System.out.println(m.getName());
             System.out.println(m.getStatus());
             System.out.println(m.getType());
         }
         CinemaDB.loadDB("src\\data\\cinema.txt");
-        for(Cinema c : CinemaDB.cinemaList) {
+        for(Cinema c : CinemaDB.list) {
             System.out.println(c.getId());
             System.out.println(c.getCinemaClass());
             System.out.println(c.getName());
