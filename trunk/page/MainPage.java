@@ -5,9 +5,6 @@
 package page;
 
 import java.util.Scanner;
-import moblima.CheckBookingsController;
-import moblima.FindMoviesController;
-import moblima.ManagementController;
 import utils.References;
 
 /**
