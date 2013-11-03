@@ -4,7 +4,7 @@
  */
 package page;
 
-import db.BookingDB;
+import controller.BookingController;
 import entity.Booking;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -48,9 +48,9 @@ public class CheckBookingsPage {
             captureInformation();
             LinkedList<Booking> result = null;
             switch(choice) {
-                case 1: result = BookingDB.getBookingHistory(email, handPhone, bookingRef);
+                case 1: result = BookingController.getBookingHistory(email, handPhone, bookingRef);
                         break;
-                case 2: result = BookingDB.getBookingStatus(email, handPhone, bookingRef);
+                case 2: result = BookingController.getBookingStatus(email, handPhone, bookingRef);
                         break;
             }
             for(Booking booking: result) {

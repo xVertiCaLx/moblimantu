@@ -4,9 +4,16 @@
  */
 package page;
 
-import db.MovieDB;
-import db.StaffDB;
+import controller.CinemaController;
+import controller.MovieController;
+import controller.ShowtimeController;
+import controller.StaffController;
+import entity.Movie;
+import factory.MovieFactory;
+import java.util.LinkedList;
 import java.util.Scanner;
+import printer.CinemaPrinter;
+import printer.MoviePrinter;
 import utils.References;
 
 /**
@@ -15,6 +22,7 @@ import utils.References;
  */
 public class ManagementPage {
     private static final ManagementPage INSTANCE = new ManagementPage();
+    private Scanner sc = References.getInputStream();
     private ManagementPage(){}
     public static ManagementPage getInstance() {
         return INSTANCE;
@@ -23,16 +31,14 @@ public class ManagementPage {
     private String userName, password;
     
     private boolean login() {
-        Scanner sc = References.getInputStream();
         System.out.print("User name: ");
         userName = sc.nextLine();
         System.out.print("Password: ");
         password = sc.nextLine();
-        if (StaffDB.authenticate(userName, password)) return true;
+        if (StaffController.authenticate(userName, password)) return true;
         return false;
     }
     public void launch() {
-        Scanner sc = References.getInputStream();
         int choice = 0;
         do {
             System.out.println("Staff Managerment ...");
@@ -51,21 +57,25 @@ public class ManagementPage {
         } while (choice != 2);
     }
     private void startManagement() {
-        Scanner sc = References.getInputStream();        
         int choice = 0;
         do {
             System.out.println("Staff Function ...");
             System.out.println("1. Add movie");
-            System.out.println("2. Go back to Staff Management page");
+            System.out.println("2. Edit movie");
+            System.out.println("3. Add showtime");
+            System.out.println("4. Edit showtime");
+            System.out.println("5. Go back to Staff Management page");
             System.out.print("Please choose your option: ");
             choice = Integer.parseInt(sc.nextLine());
-            if (choice == 1) {
-                addMovie();
+            switch (choice) {
+                case 1: addShowtime();
+                        break;
+                case 2: editShowtime();
+                        break;
             }
-        } while (choice != 2);
+        } while (choice != 5);
     }
     private void addMovie() {
-        Scanner sc = References.getInputStream();
         int choice = 0;
         do {
             System.out.println("Adding movie ...");
@@ -77,11 +87,92 @@ public class ManagementPage {
             String status = sc.nextLine();
             System.out.print("Movie rating: ");
             double rating = Double.parseDouble(sc.nextLine());
-            MovieDB.addMovie(type, name, status, rating);
+            MovieController.addMovie(type, name, status, rating);
             System.out.println("Movie added\n");
             System.out.println("1. Add another movie");
             System.out.println("2. Go back to Staff Function page"); 
+            System.out.print("Please choose your option: ");
             choice = Integer.parseInt(sc.nextLine());
         } while (choice == 1);
+    }
+    
+    private void editMovie() {
+        LinkedList<Movie> list = MovieController.getMovieList();
+        int choice = 0;
+        int movieId = 0;
+        do {
+            System.out.println("List of movie in the system: ");
+            MoviePrinter.getInstance().printList(list);
+            System.out.print("Enter movie Id to edit, enter 0 to go back: ");
+            movieId = Integer.parseInt(sc.nextLine());
+            if (movieId == 0) break;            
+            Movie movie = MovieController.getMovieById(movieId);
+            if (movie == null) continue;
+            MoviePrinter.getInstance().printInstance(movie);
+            Movie newMovie = MovieFactory.clone(movie);
+            System.out.print("Enter field to edit, enter 0 to go back: ");
+            choice = Integer.parseInt(sc.nextLine());
+            switch(choice) {
+                case 1: System.out.print("New movie title: ");
+                        String newTittle = sc.nextLine();
+                        newMovie.setName(newTittle);
+                        MovieController.editMovie(movieId, newMovie);
+                        break;
+                case 2: System.out.print("New movie type: ");
+                        String newType = sc.nextLine();
+                        newMovie.setType(newType);
+                        break;
+                case 3: System.out.print("New movie status: ");
+                        String newStatus = sc.nextLine();
+                        newMovie.setStatus(newStatus);
+                        break;
+                case 4: System.out.print("New movie rating: ");
+                        double newRating = Double.parseDouble(sc.nextLine());
+                        newMovie.setRating(newRating);
+                        break;
+            }
+            if ((1 <= choice && choice <= 4)) {
+                MovieController.editMovie(movieId, newMovie);                
+                System.out.println("Movie editted\n");
+            }
+        } while (movieId != 0);
+    }
+    
+    private void addShowtime() {
+        LinkedList list;
+        int choice = 0;
+        do {
+            System.out.println("Add a showtime ...");
+            /*
+             * get Movie Id
+             */
+            list = MovieController.getMovieList();
+            MoviePrinter.getInstance().printList(list);
+            System.out.print("Enter movie Id to add showtiem, enter 0 to go back: ");
+            int movieId = Integer.parseInt(sc.nextLine());
+            if (movieId == 0) break;
+            if (MovieController.getMovieById(movieId) == null) continue;
+            /*
+             * get cinema Id
+             */
+            list = CinemaController.getCinemaList();
+            CinemaPrinter.getInstance().printList(list);
+            System.out.print("Enter cinema Id to add showtiem, enter 0 to go back: ");            
+            int cinemaId = Integer.parseInt(sc.nextLine());
+            if (cinemaId == 0) break;
+            if (CinemaController.getCinemaById(cinemaId) == null) continue;
+            
+            System.out.print("Enter time to show (with format YYYY-MM-DD hh:mm:ss): ");
+            String time = sc.nextLine();
+            ShowtimeController.addShowtime(time, movieId, cinemaId);
+            System.out.println("Showtime added ...");
+            System.out.println("1. Add another showtime");
+            System.out.println("2. Go back to Staff Function page ...");
+            System.out.println("Please choose your option: ");
+            choice = Integer.parseInt(sc.nextLine());
+        } while (choice != 2);
+    }
+    private void editShowtime() {
+        
     }
 }
