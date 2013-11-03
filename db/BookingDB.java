@@ -1,8 +1,11 @@
 package db;
 
+import static db.CinemaDB.list;
 import entity.Booking;
+import entity.Cinema;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,11 +15,38 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import utils.Constant;
 
 /* Loading database for Movie */
 public class BookingDB {
-    public static LinkedList<Booking> list;
-    
+    private static LinkedList<Booking> list;
+    /* commit the changes to the database */
+    public static void commit() {
+        try {
+            PrintWriter pw = new PrintWriter(new File(Constant.DATABASE_PATH + Constant.BOOKING_DATABASE));
+            for(Booking b : list) {
+                pw.write(new Integer(b.getId()).toString()); pw.write("|");
+                pw.write(b.getTransactionId()); pw.write("|");
+                pw.write(new Integer(b.getShowtimeId()).toString()); pw.write("|");
+                pw.write(b.getCustomerName()); pw.write("|");
+                pw.write(b.getCustomerHP()); pw.write("|");
+                pw.write(b.getCustomerEmail()); pw.write("|");
+                pw.write(new Integer(b.getCustomerAge()).toString()); pw.write("|");
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                pw.write(dateFormatter.format(b.getTime())); pw.write("|");
+                StringBuffer seatList = new StringBuffer();
+                for(Integer i : b.getSeatNumbers()) {
+                    seatList.append(i.toString());
+                    seatList.append("*");
+                }
+                pw.write(seatList.toString()); pw.write("|");
+                pw.write(new Double(b.getPrice()).toString()); pw.write("|");
+            }
+            pw.close();
+        } catch (IOException e) {
+            System.out.println("IOException in commit CinemaDB " + e.getMessage());
+        }
+    }
     /* Load the booking database into list */
     public static void loadDB(String filename) {
         try {
@@ -71,6 +101,11 @@ public class BookingDB {
         }
         return null;
     }
+    
+    public static LinkedList<Booking> getBookingList() {
+        return list;
+    }
+    
     public static LinkedList<Booking> getBookingHistory(String email, String handPhone, String bookingRef) {
         return null;
     }
