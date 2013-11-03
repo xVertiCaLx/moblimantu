@@ -97,6 +97,9 @@ public class ShowtimeController {
         return ShowtimeDB.getShowtimeList();
     }
     
+    public static void deleteShowtime(int showtimeId) {
+        
+    }
     /* Unit Test part */
     public static void main(String[] args) {
         ShowtimeDB.loadDB(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE);
