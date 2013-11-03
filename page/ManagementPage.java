@@ -12,6 +12,7 @@ import controller.StaffController;
 import entity.Movie;
 import entity.Showtime;
 import factory.MovieFactory;
+import factory.ShowtimeFactory;
 import java.util.LinkedList;
 import java.util.Scanner;
 import printer.CinemaPrinter;
@@ -189,11 +190,12 @@ public class ManagementPage {
             int cinemaId = Integer.parseInt(sc.nextLine());
             if (cinemaId == 0) break;
             if (CinemaController.getCinemaById(cinemaId) == null) continue;
-            
+            /*
+             * get showtime list base on cinemaID
+             */
             list = ShowtimeController.getShowtimesByCinema(cinemaId);
             do {
                 ShowtimePrinter.getInstance().printList(list);
-
                 System.out.print("Enter showtime Id to edit showtime, enter 0 to cancel: ");            
 
                 int showtimeId = Integer.parseInt(sc.nextLine());
@@ -202,14 +204,35 @@ public class ManagementPage {
                 Showtime showtime = ShowtimeController.getShowtimeById(showtimeId);
                 if (showtime == null) continue;
 
-                LinkedList bookings = BookingController.getBookingByShowtimeId(showtimeId);
+                LinkedList bookings = BookingController.getBookingByShowtime(showtimeId);
                 if (bookings.size() != 0) {
                     System.out.println("This showtime has some booking already. Can not be edited.");
                     continue;
                 }
-                ShowtimePrinter.getInstance().printInstance(showtimeId);
-                System.out.print("Enter field to edit, enter 0 to cancel: ");
                 
+                ShowtimePrinter.getInstance().printInstance(showtime);
+                Showtime newShowtime = null;
+                System.out.print("Enter field to edit, enter -1 to delete showtime, enter 0 to cancel: ");
+                choice = Integer.parseInt(sc.nextLine());
+                switch (choice) {
+                    case -1:ShowtimeController.deleteShowtime(showtimeId); 
+                            break;
+                    case 1: System.out.print("New time (format YYYY-MM-DD hh:mm:ss): ");
+                            String newTime = sc.nextLine();
+                            newShowtime = ShowtimeFactory.createNewInstance(newTime, showtime.getCinemaId(), showtime.getMovieId());
+                            break;
+                    case 2: System.out.print("New cinema ID: ");
+                            int newCinemaId = Integer.parseInt(sc.nextLine());
+                            newShowtime = ShowtimeFactory.createNewInstance(showtime.getTime(), showtime.getMovieId(), newCinemaId);
+                            break;
+                    case 3: System.out.print("New movie ID: ");
+                            int newMovieId = Integer.parseInt(sc.nextLine());
+                            newShowtime = ShowtimeFactory.createNewInstance(showtime.getTime(), newMovieId, showtime.getCinemaId());
+                            break;
+                }
+                if (1 <= choice && choice <= 3) {
+                    ShowtimeController.editShowtime(showtimeId, newShowtime);
+                }
             } while (true);
         } while (choice != 2);        
     }

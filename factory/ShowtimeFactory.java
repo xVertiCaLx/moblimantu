@@ -5,6 +5,7 @@
 package factory;
 
 import controller.ShowtimeController;
+import entity.Movie;
 import entity.Showtime;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,5 +30,9 @@ public class ShowtimeFactory {
             System.out.println(ex.getMessage());
         }
         return null;
+    }
+    public static Showtime clone(Showtime showtime) {
+        Showtime newShowtime = new Showtime(showtime.getId(), showtime.getTime(), showtime.getMovieId(), showtime.getCinemaId());
+        return newShowtime;
     }
 }
