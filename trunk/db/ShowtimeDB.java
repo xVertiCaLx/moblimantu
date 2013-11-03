@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 /* Loading database for Cineplex */
 public class ShowtimeDB {
     
-    public static LinkedList<Showtime> list;
+    private static LinkedList<Showtime> list;
    /* Add a Showtime  to the database & database */
     public static void addShowtime(Date showtimeTime, int showtimeMovieId, int showtimeCinemaId){
         Showtime s = new Showtime(list.size()+1, showtimeTime, showtimeMovieId, showtimeCinemaId);
@@ -119,6 +119,10 @@ public class ShowtimeDB {
             }
         }
         return result;
+    }
+    
+    public static LinkedList<Showtime> getShowtimeList() {
+        return list;
     }
     public static void main(String[] args) {
         loadDB(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE);

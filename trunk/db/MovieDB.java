@@ -13,7 +13,7 @@ import utils.Constant;
 /* Loading database for Movie */
 public class MovieDB {
     
-    public static LinkedList<Movie> list;
+    private static LinkedList<Movie> list;
     /*
      * Add a new Movie to the list & database
      */
@@ -117,11 +117,13 @@ public class MovieDB {
         return result;
     }
     
+    public static LinkedList<Movie> getMovieList() {
+        return list;
+    }
     
     public static void main(String[] args) {
         loadDB(Constant.DATABASE_PATH + Constant.MOVIE_DATABASE);
         System.out.println("UNIT TEST MOVIE DB");
         addMovie("hihi","hehe","huhu",1.0);
-        
     }
 }

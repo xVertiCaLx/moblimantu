@@ -32,7 +32,7 @@ public class MOBLIMA {
     public static void unitTestDB() {
         System.out.println("UNIT TEST FOR MOVIEDB");
         MovieDB.loadDB(Constant.DATABASE_PATH + Constant.MOVIE_DATABASE);
-        for(Movie m : MovieDB.list) {
+        for(Movie m : MovieDB.getMovieList()) {
             System.out.println(m.getId());
             System.out.println(m.getName());
             System.out.println(m.getStatus());
@@ -42,7 +42,7 @@ public class MOBLIMA {
         
         System.out.println("UNIT TEST FOR CINEMA DB");
         CinemaDB.loadDB(Constant.DATABASE_PATH + Constant.CINEMA_DATABASE);
-        for(Cinema c : CinemaDB.list) {
+        for(Cinema c : CinemaDB.getCinemaList()) {
             System.out.println(c.getId());
             System.out.println(c.getCinemaClass());
             System.out.println(c.getName());
@@ -52,13 +52,13 @@ public class MOBLIMA {
         
         System.out.println("UNIT TEST FOR CINEPLEX DB");
         CineplexDB.loadDB(Constant.DATABASE_PATH + Constant.CINEPLEX_DATABASE);
-        for(Cineplex c : CineplexDB.list) {
+        for(Cineplex c : CineplexDB.getCineplexList()) {
             System.out.println(c.getId());
             System.out.println(c.getName());
         }
         System.out.println("UNIT TEST FOR SHOWTIME DB");
         ShowtimeDB.loadDB(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE);
-        for(Showtime s : ShowtimeDB.list) {
+        for(Showtime s : ShowtimeDB.getShowtimeList()) {
             System.out.println(s.getId());
             System.out.println(s.getTime());
             System.out.println(s.getMovieId());
@@ -66,7 +66,7 @@ public class MOBLIMA {
         }
         System.out.println("UNIT TEST FOR BOOKING DB");
         BookingDB.loadDB(Constant.DATABASE_PATH + Constant.BOOKING_DATABASE);
-        for(Booking b : BookingDB.list) {
+        for(Booking b : BookingDB.getBookingList()) {
             System.out.println(b.getId());
             System.out.println(b.getTransactionId());
             System.out.println(b.getShowtimeId());
@@ -80,7 +80,7 @@ public class MOBLIMA {
         }
         System.out.println("UNIT TEST FOR STAFF DB");
         StaffDB.loadDB(Constant.DATABASE_PATH + Constant.STAFF_DATABASE);
-        for(Staff s : StaffDB.list) {
+        for(Staff s : StaffDB.getStaffList()) {
             System.out.println(s.getUsername());
             System.out.println(s.getPassword());
             System.out.println(StaffDB.authenticate(s.getUsername(),"password"));
@@ -96,10 +96,10 @@ public class MOBLIMA {
     }
     public static void main(String[] args) {
         // TODO code application logic here
-      //  unitTestDB();
-        initDB();
-        Scanner scanner = new Scanner(System.in);
-        References.setInputStream(scanner);
-        MainPage.getInstance().launch();
+        unitTestDB();
+        //initDB();
+    //    Scanner scanner = new Scanner(System.in);
+//        References.setInputStream(scanner);
+  //      MainPage.getInstance().launch();
     }
 }

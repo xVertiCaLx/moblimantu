@@ -14,7 +14,7 @@ import utils.Constant;
 /* Loading database for Cineplex */
 public class CineplexDB {
     
-    public static LinkedList<Cineplex> list;
+    private static LinkedList<Cineplex> list;
     
     /* Add a Cineplex to the database & database */
     public static void addCineplex(String cineplexName){
@@ -64,5 +64,9 @@ public class CineplexDB {
             if (c.getId() == Id)  return c;
         }
         return null;
+    }
+    
+    public static LinkedList<Cineplex> getCineplexList() {
+        return list;
     }
 }

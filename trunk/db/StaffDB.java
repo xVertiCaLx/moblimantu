@@ -18,7 +18,7 @@ import java.util.StringTokenizer;
  * @author Vu
  */
 public class StaffDB {
-    public static LinkedList<Staff> list;
+    private static LinkedList<Staff> list;
     
     /* Load the movie database into list */
     public static void loadDB(String filename) {
@@ -63,5 +63,9 @@ public class StaffDB {
             System.out.println("No MD5 algorithm to authenticate " + e.getMessage());
             return false;
         }
+    }
+    
+    public static LinkedList<Staff> getStaffList() {
+        return list;
     }
 }

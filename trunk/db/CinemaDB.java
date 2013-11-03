@@ -1,5 +1,4 @@
 package db;
-import static db.MovieDB.list;
 import entity.Cinema;
 import entity.Movie;
 import entity.Showtime;
@@ -94,5 +93,9 @@ public class CinemaDB {
             result.add(c);
         }
         return result;
+    }
+    
+    public static LinkedList<Cinema> getCinemaList() {
+        return list;
     }
 }
