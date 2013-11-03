@@ -33,6 +33,7 @@ public class MovieDB {
                 m.setType(newMovie.getType());
             }
         }
+        commit();
     }
     
     /* Commit the changes to the database */
