@@ -46,7 +46,7 @@ public class ShowtimeDB {
                 st.setTime(newShowtime.getTime());
             }
         }
-        
+        commit();
     }
     /* commit the changes to the database */
     public static void commit() {
