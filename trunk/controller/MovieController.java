@@ -5,9 +5,9 @@
 package controller;
 
 import db.MovieDB;
-import db.ShowtimeDB;
 import entity.Movie;
 import entity.Showtime;
+import factory.MovieFactory;
 import java.util.LinkedList;
 import utils.Constant;
 
@@ -21,7 +21,7 @@ public class MovieController {
      */
     public static void addMovie(String movieType, String movieName, String movieStatus, double rating) {
         LinkedList<Movie> list = MovieDB.getMovieList();
-        Movie newMovie = new Movie(list.size()+1, movieType, movieName, movieStatus, rating);
+        Movie newMovie = MovieFactory.createNewMovie(movieType, movieName, movieStatus, rating);
         list.add(newMovie);
         MovieDB.commit();
     }
@@ -95,6 +95,11 @@ public class MovieController {
                 }
         }
         return result;
+    }
+    
+    /* Get the movie list */
+    public static LinkedList<Movie> getMovieList() {
+        return MovieDB.getMovieList();
     }
     
     /* Unit Test part */
