@@ -26,6 +26,7 @@ public class MoviePrinter implements Printer {
     }
     @Override
     public void  printInstance(Object movie) {
+        System.out.println("MovieId: " + ((Movie)movie).getId());
         System.out.println("1. Title: " + ((Movie)movie).getName());
         System.out.println("2. Type: " + ((Movie)movie).getType());
         System.out.println("3. Status: " + ((Movie)movie).getStatus());
