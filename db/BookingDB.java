@@ -1,6 +1,5 @@
 package db;
 
-import static db.CinemaDB.list;
 import entity.Booking;
 import entity.Cinema;
 import java.io.File;
@@ -95,23 +94,9 @@ public class BookingDB {
         }
     }
     
-    /* Return a specific booking with given Id */
-    public static Booking getBookingById(int Id) {
-        for(Booking b : list) {
-            if (b.getId() == Id) return b;
-        }
-        return null;
-    }
-    
     /* Return the Booking list */
     public static LinkedList<Booking> getBookingList() {
         return list;
     }
     
-    public static LinkedList<Booking> getBookingHistory(String email, String handPhone, String bookingRef) {
-        return null;
-    }
-    public static LinkedList<Booking> getBookingStatus(String email, String handPhone, String bookingRef) {
-        return null;
-    }    
 }
