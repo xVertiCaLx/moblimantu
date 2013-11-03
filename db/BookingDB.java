@@ -47,6 +47,7 @@ public class BookingDB {
             System.out.println("IOException in commit CinemaDB " + e.getMessage());
         }
     }
+    
     /* Load the booking database into list */
     public static void loadDB(String filename) {
         try {
@@ -102,6 +103,7 @@ public class BookingDB {
         return null;
     }
     
+    /* Return the Booking list */
     public static LinkedList<Booking> getBookingList() {
         return list;
     }

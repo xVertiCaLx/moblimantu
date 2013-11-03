@@ -37,6 +37,17 @@ public class ShowtimeDB {
         }
     }
     
+    /* Edit a specific Showtime */
+    public static void editShowtime(int showtimeId, Showtime newShowtime) {
+        for(Showtime st : list) {
+            if (st.getId() == showtimeId) {
+                st.setCinemaId(newShowtime.getCinemaId());
+                st.setMovieId(newShowtime.getMovieId());
+                st.setTime(newShowtime.getTime());
+            }
+        }
+        
+    }
     /* commit the changes to the database */
     public static void commit() {
         try {
@@ -121,9 +132,12 @@ public class ShowtimeDB {
         return result;
     }
     
+    /* Get the Showtime list */
     public static LinkedList<Showtime> getShowtimeList() {
         return list;
     }
+    
+    /* Unit Test part */
     public static void main(String[] args) {
         loadDB(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE);
         Date x = new Date();
