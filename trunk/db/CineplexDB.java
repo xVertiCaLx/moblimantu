@@ -1,6 +1,4 @@
 package db;
-import static db.CinemaDB.commit;
-import static db.CinemaDB.list;
 import entity.Cinema;
 import entity.Cineplex;
 import java.io.File;
@@ -15,13 +13,6 @@ import utils.Constant;
 public class CineplexDB {
     
     private static LinkedList<Cineplex> list;
-    
-    /* Add a Cineplex to the database & database */
-    public static void addCineplex(String cineplexName){
-        Cineplex c = new Cineplex(list.size()+1, cineplexName);
-        list.add(c);
-        commit();
-    }
     
     /* commit the changes to the database */
     public static void commit() {
@@ -56,14 +47,6 @@ public class CineplexDB {
         } catch (IOException e) {
             System.out.println("IOException at cineplexID " + e.getMessage());
         }
-    }
-    
-    /* Get a specific Cineplex with given Id */
-    public static Cineplex getCineplexById(int Id) {
-        for(Cineplex c : list) {
-            if (c.getId() == Id)  return c;
-        }
-        return null;
     }
     
     /* Return the Cineplex list */

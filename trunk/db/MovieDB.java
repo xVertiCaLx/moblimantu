@@ -14,27 +14,6 @@ import utils.Constant;
 public class MovieDB {
     
     private static LinkedList<Movie> list;
-    /*
-     * Add a new Movie to the list & database
-     */
-    public static void addMovie(String movieType, String movieName, String movieStatus, double rating) {
-        Movie newMovie = new Movie(list.size()+1, movieType, movieName, movieStatus, rating);
-        list.add(newMovie);
-        commit();
-    }
-    
-    /* Edit a specific movie with given information*/
-    public static void editMovie(int movieId, Movie newMovie) {
-        for(Movie m : list) {
-            if (m.getId() == movieId) {
-                m.setName(newMovie.getName());
-                m.setRating(newMovie.getRating());
-                m.setStatus(newMovie.getStatus());
-                m.setType(newMovie.getType());
-            }
-        }
-        commit();
-    }
     
     /* Commit the changes to the database */
     public static void commit() {
@@ -77,69 +56,9 @@ public class MovieDB {
             System.out.println("IOException at movieDB " + e.getMessage());
         }
     }
-    /* 
-     * Return a set of Movie which has the same title as args 
-     */
-    public static LinkedList<Movie> getMoviesByStatus(String ...args) {
-        LinkedList<Movie> result = new LinkedList<Movie>();
-        for(Movie m : list) {
-            boolean isSelect = false;
-            for(String status : args) 
-            if (m.getStatus().compareTo(status) == 0) {
-                isSelect = true;
-            }
-            if (isSelect) result.add(m);
-        }
-        return result;
-    }
-    /* 
-     * Return a set of Movie which has the same title as title 
-     */
-    public static LinkedList<Movie> getMoviesByTitle(String title) {
-        LinkedList<Movie> result = new LinkedList<Movie>();
-        for(Movie m : list) {
-            if (m.getName().compareTo(title) == 0) {
-                result.add(m);
-            }
-        }
-        return result;
-    }
-    
-    /*
-     * Return a specific movie with given Id
-     */
-    public static Movie getMovieById(int Id) {
-        for(Movie m : list) {
-            if (m.getId() == Id) return m;
-        }
-        return null;
-    }
-    
-    /*
-     * Return list of Movies with given Cinema Id
-     */
-    public static LinkedList<Movie> getMoviesByCinema(int cinemaId) {
-        LinkedList<Movie> result = new LinkedList<Movie>();
-        LinkedList<Showtime> st = ShowtimeDB.getShowtimesByCinema(cinemaId);
-        for(Movie m: list) {
-            for(Showtime s: st) 
-                if (m.getId() == s.getMovieId()) {
-                    result.add(m);
-                    break;
-                }
-        }
-        return result;
-    }
     
     /* Get the movie list */
     public static LinkedList<Movie> getMovieList() {
         return list;
-    }
-    
-    /* Unit test part */
-    public static void main(String[] args) {
-        loadDB(Constant.DATABASE_PATH + Constant.MOVIE_DATABASE);
-        System.out.println("UNIT TEST MOVIE DB");
-        addMovie("hihi","hehe","huhu",1.0);
     }
 }

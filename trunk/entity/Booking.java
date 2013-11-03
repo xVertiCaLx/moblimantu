@@ -4,9 +4,9 @@
  */
 package entity;
 
-import db.CinemaDB;
-import db.MovieDB;
-import db.ShowtimeDB;
+import controller.CinemaController;
+import controller.MovieController;
+import controller.ShowtimeController;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -123,9 +123,9 @@ public class Booking {
     }
     @Override
     public String toString() {
-        Showtime st = ShowtimeDB.getShowtimeById(showtimeId);
-        Movie mv = MovieDB.getMovieById(st.getMovieId());
-        Cinema cin = CinemaDB.getCinemaById(st.getCinemaId());
+        Showtime st = ShowtimeController.getShowtimeById(showtimeId);
+        Movie mv = MovieController.getMovieById(st.getMovieId());
+        Cinema cin = CinemaController.getCinemaById(st.getCinemaId());
         return "Booking References: " + id + "\n"+ 
                 "Customer Name: " + customerName + "\n" +
                 "Movie: " + mv.getName() + "\n" + 

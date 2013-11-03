@@ -17,37 +17,6 @@ import java.util.logging.Logger;
 public class ShowtimeDB {
     
     private static LinkedList<Showtime> list;
-   /* Add a Showtime  to the database & database */
-    public static void addShowtime(Date showtimeTime, int showtimeMovieId, int showtimeCinemaId){
-        Showtime s = new Showtime(list.size()+1, showtimeTime, showtimeMovieId, showtimeCinemaId);
-        list.add(s);
-        commit();
-    }
-    
-    /* Add a Showtime to the database & database */
-    public static void addShowtime(String showtimeTimeStringFormat, int showtimeMovieId, int showtimeCinemaId){
-        try {
-            Date showtimeTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(showtimeTimeStringFormat);                
-            Showtime s = new Showtime(list.size()+1, showtimeTime, showtimeMovieId, showtimeCinemaId);
-            list.add(s);
-            commit();
-        } catch (ParseException ex) {
-            System.out.println("Parse Exception at addShowtime" + ex.getMessage());
-            Logger.getLogger(ShowtimeDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    /* Edit a specific Showtime */
-    public static void editShowtime(int showtimeId, Showtime newShowtime) {
-        for(Showtime st : list) {
-            if (st.getId() == showtimeId) {
-                st.setCinemaId(newShowtime.getCinemaId());
-                st.setMovieId(newShowtime.getMovieId());
-                st.setTime(newShowtime.getTime());
-            }
-        }
-        commit();
-    }
     /* commit the changes to the database */
     public static void commit() {
         try {
@@ -93,54 +62,8 @@ public class ShowtimeDB {
         }
     }
 
-    /* Return a specific showtime with given id */
-    public static Showtime getShowtimeById(int id) {
-        for(Showtime s : list) {
-            if (s.getId() == id) return s;
-        }
-        return null;
-    }
-    
-    /* Return list of Showtimes with given movie_id*/
-    public static LinkedList<Showtime> getShowtimesByMovie(int movieId) {
-        LinkedList<Showtime> result = new LinkedList<Showtime>();
-        for(Showtime s : list) {
-            if (s.getMovieId() == movieId) result.add(s);
-        }
-        return result;
-    }
-    
-    /* Return list of Showtimes with given cinema_id */
-    public static LinkedList<Showtime> getShowtimesByCinema(int cinemaId) {
-        LinkedList<Showtime> result = new LinkedList<Showtime>();
-        for(Showtime s : list) {
-            if (s.getCinemaId() == cinemaId) {
-                result.add(s);
-            }
-        }
-        return result;
-    }
- 
-    /* Return list of Showtimes with given cinemaId and movie Id */
-    public static LinkedList<Showtime> getShowtimesByCinemaAndMovie(int movieId, int cinemaId) {
-        LinkedList<Showtime> result = new LinkedList<Showtime>();
-        for(Showtime s : list) {
-            if (s.getCinemaId() == cinemaId && s.getMovieId() == movieId) {
-                result.add(s);
-            }
-        }
-        return result;
-    }
-    
     /* Get the Showtime list */
     public static LinkedList<Showtime> getShowtimeList() {
         return list;
-    }
-    
-    /* Unit Test part */
-    public static void main(String[] args) {
-        loadDB(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE);
-        Date x = new Date();
-        addShowtime("2013-12-28 12:12:12",2,3);
     }
 }
