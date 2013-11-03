@@ -21,7 +21,7 @@ public class MovieController {
      */
     public static void addMovie(String movieType, String movieName, String movieStatus, double rating) {
         LinkedList<Movie> list = MovieDB.getMovieList();
-        Movie newMovie = MovieFactory.createNewMovie(movieType, movieName, movieStatus, rating);
+        Movie newMovie = MovieFactory.createNewInstance(movieType, movieName, movieStatus, rating);
         list.add(newMovie);
         MovieDB.commit();
     }
