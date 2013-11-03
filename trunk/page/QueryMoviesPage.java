@@ -4,7 +4,7 @@
  */
 package page;
 
-import db.MovieDB;
+import controller.MovieController;
 import entity.Movie;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -25,13 +25,13 @@ public class QueryMoviesPage {
         LinkedList<Movie> result = null;
         Scanner sc = References.getInputStream();        
         switch(option) {
-            case 1: result = MovieDB.getMoviesByStatus("now_showing");
+            case 1: result = MovieController.getMoviesByStatus("now_showing");
                     break;
-            case 2: result = MovieDB.getMoviesByStatus("coming_soon", "preview");
+            case 2: result = MovieController.getMoviesByStatus("coming_soon", "preview");
                     break;
             case 3: System.out.print("Please enter the title of movie: ");
                     String title = sc.nextLine();
-                    result = MovieDB.getMoviesByTitle(title);
+                    result = MovieController.getMoviesByTitle(title);
         }
         int choice = 0;
         /*

@@ -17,7 +17,9 @@ public class Movie {
     
     public Movie() {
     }
-
+    public Movie(Movie movie) {
+        this(movie.getId(), movie.getType(), movie.getName(), movie.getStatus(), movie.getRating());
+    }
     public Movie(int id, String type, String name, String status, double rating) {
         this.id = id;
         this.type = type;
