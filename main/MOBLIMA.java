@@ -4,6 +4,7 @@
  */
 package main;
 
+import controller.StaffController;
 import db.BookingDB;
 import db.MovieDB;
 import db.CinemaDB;
@@ -16,10 +17,7 @@ import entity.Cineplex;
 import entity.Movie;
 import entity.Showtime;
 import entity.Staff;
-import java.util.Scanner;
-import page.MainPage;
 import utils.Constant;
-import utils.References;
 /**
  *
  * @author Vu
@@ -83,7 +81,7 @@ public class MOBLIMA {
         for(Staff s : StaffDB.getStaffList()) {
             System.out.println(s.getUsername());
             System.out.println(s.getPassword());
-            System.out.println(StaffDB.authenticate(s.getUsername(),"password"));
+            System.out.println(StaffController.authenticate(s.getUsername(),"password"));
         }
     }
     public static void initDB() {
