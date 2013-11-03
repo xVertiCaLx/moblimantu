@@ -4,16 +4,19 @@
  */
 package page;
 
+import controller.BookingController;
 import controller.CinemaController;
 import controller.MovieController;
 import controller.ShowtimeController;
 import controller.StaffController;
 import entity.Movie;
+import entity.Showtime;
 import factory.MovieFactory;
 import java.util.LinkedList;
 import java.util.Scanner;
 import printer.CinemaPrinter;
 import printer.MoviePrinter;
+import printer.ShowtimePrinter;
 import utils.References;
 
 /**
@@ -110,7 +113,7 @@ public class ManagementPage {
             if (movie == null) continue;
             MoviePrinter.getInstance().printInstance(movie);
             Movie newMovie = MovieFactory.clone(movie);
-            System.out.print("Enter field to edit, enter 0 to go back: ");
+            System.out.print("Enter field to edit, enter 0 to cancel: ");
             choice = Integer.parseInt(sc.nextLine());
             switch(choice) {
                 case 1: System.out.print("New movie title: ");
@@ -148,7 +151,7 @@ public class ManagementPage {
              */
             list = MovieController.getMovieList();
             MoviePrinter.getInstance().printList(list);
-            System.out.print("Enter movie Id to add showtiem, enter 0 to go back: ");
+            System.out.print("Enter movie Id to add showtime, enter 0 to cancel: ");
             int movieId = Integer.parseInt(sc.nextLine());
             if (movieId == 0) break;
             if (MovieController.getMovieById(movieId) == null) continue;
@@ -157,7 +160,7 @@ public class ManagementPage {
              */
             list = CinemaController.getCinemaList();
             CinemaPrinter.getInstance().printList(list);
-            System.out.print("Enter cinema Id to add showtiem, enter 0 to go back: ");            
+            System.out.print("Enter cinema Id to add showtime, enter 0 to cancel: ");            
             int cinemaId = Integer.parseInt(sc.nextLine());
             if (cinemaId == 0) break;
             if (CinemaController.getCinemaById(cinemaId) == null) continue;
@@ -173,6 +176,41 @@ public class ManagementPage {
         } while (choice != 2);
     }
     private void editShowtime() {
-        
+        LinkedList list;
+        int choice = 0;
+        do {
+            System.out.println("Edit/Update a showtime ...");
+            /*
+             * get cinema Id
+             */
+            list = CinemaController.getCinemaList();
+            CinemaPrinter.getInstance().printList(list);
+            System.out.print("Enter Cinema Id to edit showtime, enter 0 to cancel: ");
+            int cinemaId = Integer.parseInt(sc.nextLine());
+            if (cinemaId == 0) break;
+            if (CinemaController.getCinemaById(cinemaId) == null) continue;
+            
+            list = ShowtimeController.getShowtimesByCinema(cinemaId);
+            do {
+                ShowtimePrinter.getInstance().printList(list);
+
+                System.out.print("Enter showtime Id to edit showtime, enter 0 to cancel: ");            
+
+                int showtimeId = Integer.parseInt(sc.nextLine());
+                if (showtimeId == 0) break;
+
+                Showtime showtime = ShowtimeController.getShowtimeById(showtimeId);
+                if (showtime == null) continue;
+
+                LinkedList bookings = BookingController.getBookingByShowtimeId(showtimeId);
+                if (bookings.size() != 0) {
+                    System.out.println("This showtime has some booking already. Can not be edited.");
+                    continue;
+                }
+                ShowtimePrinter.getInstance().printInstance(showtimeId);
+                System.out.print("Enter field to edit, enter 0 to cancel: ");
+                
+            } while (true);
+        } while (choice != 2);        
     }
 }

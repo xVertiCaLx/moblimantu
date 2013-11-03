@@ -4,6 +4,7 @@
  */
 package entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -42,7 +43,12 @@ public class Showtime {
     public void setTime(Date time) {
         this.time = time;
     }
-
+    
+    public String getTimeStringFormat() {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return dateFormatter.format(time);
+    }
+    
     public int getMovieId() {
         return movieId;
     }

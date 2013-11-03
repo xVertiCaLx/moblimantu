@@ -38,7 +38,7 @@ public class QueryMoviesPage {
          * display all movies in result
          */
         do {
-            if (result == null || result.size() == 0) {
+            if (result == null) {
                 System.out.print("No movie match... Enter 0 to go back to Find Movies Page: ");
                 choice = Integer.parseInt(sc.nextLine());
             } else {

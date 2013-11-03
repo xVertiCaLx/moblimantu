@@ -28,4 +28,7 @@ public class BookingController {
     public static LinkedList<Booking> getBookingStatus(String email, String handPhone, String bookingRef) {
         return null;
     }    
+    public static LinkedList<Booking> getBookingByShowtimeId(int showtimeId) {
+        return null;
+    }
 }
