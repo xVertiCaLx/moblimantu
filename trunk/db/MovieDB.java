@@ -22,6 +22,19 @@ public class MovieDB {
         list.add(newMovie);
         commit();
     }
+    
+    /* Edit a specific movie with given information*/
+    public static void editMovie(int movieId, Movie newMovie) {
+        for(Movie m : list) {
+            if (m.getId() == movieId) {
+                m.setName(newMovie.getName());
+                m.setRating(newMovie.getRating());
+                m.setStatus(newMovie.getStatus());
+                m.setType(newMovie.getType());
+            }
+        }
+    }
+    
     /* Commit the changes to the database */
     public static void commit() {
         try 
@@ -117,10 +130,12 @@ public class MovieDB {
         return result;
     }
     
+    /* Get the movie list */
     public static LinkedList<Movie> getMovieList() {
         return list;
     }
     
+    /* Unit test part */
     public static void main(String[] args) {
         loadDB(Constant.DATABASE_PATH + Constant.MOVIE_DATABASE);
         System.out.println("UNIT TEST MOVIE DB");

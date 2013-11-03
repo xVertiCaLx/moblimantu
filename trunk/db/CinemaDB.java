@@ -94,7 +94,8 @@ public class CinemaDB {
         }
         return result;
     }
-    
+
+    /* Return the Cinema list */
     public static LinkedList<Cinema> getCinemaList() {
         return list;
     }

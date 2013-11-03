@@ -66,6 +66,7 @@ public class CineplexDB {
         return null;
     }
     
+    /* Return the Cineplex list */
     public static LinkedList<Cineplex> getCineplexList() {
         return list;
     }
