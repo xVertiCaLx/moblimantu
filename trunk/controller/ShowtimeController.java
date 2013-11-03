@@ -6,6 +6,7 @@ package controller;
 
 import db.ShowtimeDB;
 import entity.Showtime;
+import factory.ShowtimeFactory;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,23 +23,17 @@ public class ShowtimeController {
        /* Add a Showtime  to the database & database */
     public static void addShowtime(Date showtimeTime, int showtimeMovieId, int showtimeCinemaId){
         LinkedList<Showtime> list = ShowtimeDB.getShowtimeList();
-        Showtime s = new Showtime(list.size()+1, showtimeTime, showtimeMovieId, showtimeCinemaId);
+        Showtime s = ShowtimeFactory.createNewInstance(showtimeTime, showtimeMovieId, showtimeCinemaId);
         list.add(s);
         ShowtimeDB.commit();
     }
     
     /* Add a Showtime to the database & database */
-    public static void addShowtime(String showtimeTimeStringFormat, int showtimeMovieId, int showtimeCinemaId){
-        try {
-            LinkedList<Showtime> list = ShowtimeDB.getShowtimeList();
-            Date showtimeTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(showtimeTimeStringFormat);                
-            Showtime s = new Showtime(list.size()+1, showtimeTime, showtimeMovieId, showtimeCinemaId);
-            list.add(s);
-            ShowtimeDB.commit();
-        } catch (ParseException ex) {
-            System.out.println("Parse Exception at addShowtime" + ex.getMessage());
-            Logger.getLogger(ShowtimeDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public static void addShowtime(String showtimeTimeStringFormat, int showtimeMovieId, int showtimeCinemaId) {
+        LinkedList<Showtime> list = ShowtimeDB.getShowtimeList();
+        Showtime s = ShowtimeFactory.createNewInstance(showtimeTimeStringFormat, showtimeMovieId, showtimeCinemaId);
+        list.add(s);
+        ShowtimeDB.commit();
     }
     
     /* Edit a specific Showtime */
@@ -96,6 +91,12 @@ public class ShowtimeController {
         }
         return result;
     }
+    
+    /* Get the Showtime list */
+    public static LinkedList<Showtime> getShowtimeList() {
+        return ShowtimeDB.getShowtimeList();
+    }
+    
     /* Unit Test part */
     public static void main(String[] args) {
         ShowtimeDB.loadDB(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE);

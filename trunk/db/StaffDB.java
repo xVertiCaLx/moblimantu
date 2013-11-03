@@ -42,29 +42,6 @@ public class StaffDB {
         }
     }
     
-    /* Authenticate a user*/
-    public static boolean authenticate(String username, String password) {
-        try {
-            String original = password;
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(original.getBytes());
-            byte[] digest = md.digest();
-            StringBuffer sb = new StringBuffer();
-            for (byte b : digest) {
-                sb.append(Integer.toHexString((int) (b & 0xff)));
-            }
-            String digestedPassword = sb.toString();
-            for(Staff s : list) {
-                if (s.getPassword().compareTo(digestedPassword) == 0 && 
-                    s.getUsername().compareTo(username) == 0) return true;
-            }
-            return false;
-        } catch (NoSuchAlgorithmException e) {
-            System.out.println("No MD5 algorithm to authenticate " + e.getMessage());
-            return false;
-        }
-    }
-    
     public static LinkedList<Staff> getStaffList() {
         return list;
     }
