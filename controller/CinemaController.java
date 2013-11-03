@@ -7,6 +7,7 @@ package controller;
 import db.CinemaDB;
 import entity.Cinema;
 import entity.Showtime;
+import factory.CinemaFactory;
 import java.util.LinkedList;
 
 /**
@@ -14,6 +15,14 @@ import java.util.LinkedList;
  * @author Vu
  */
 public class CinemaController {
+    
+    /* Add a Cinema to the database & database */
+    public static void addCinema(String cinemaClass, String cinemaName, int cineplexId, String cinemaCode ){
+        LinkedList<Cinema> list = CinemaDB.getCinemaList();
+        Cinema c = CinemaFactory.createNewInstance(cinemaClass, cinemaName, cineplexId, cinemaCode);
+        list.add(c);
+        CinemaDB.commit();
+    }
     
     /* Return a specific Cinema with given Id */
     public static Cinema getCinemaById(int Id) {
@@ -52,11 +61,8 @@ public class CinemaController {
         return result;
     }
     
-    /* Add a Cinema to the database & database */
-    public static void addCinema(String cinemaClass, String cinemaName, int cineplexId, String cinemaCode ){
-        LinkedList<Cinema> list = CinemaDB.getCinemaList();
-        Cinema c = new Cinema(list.size()+1, cinemaClass, cinemaName, cineplexId, cinemaCode);
-        list.add(c);
-        CinemaDB.commit();
+    /* Return the Cinema list */
+    public static LinkedList<Cinema> getCinemaList() {
+        return CinemaDB.getCinemaList();
     }
 }

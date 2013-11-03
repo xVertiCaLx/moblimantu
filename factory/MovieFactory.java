@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * @author Vu
  */
 public class MovieFactory {
-    public static Movie createNewMovie(String movieType, String movieName, String movieStatus, double rating) {
+    public static Movie createNewInstance(String movieType, String movieName, String movieStatus, double rating) {
         LinkedList<Movie> list = MovieDB.getMovieList();
         return new Movie(list.size()+1, movieType, movieName, movieStatus, rating);
     }
