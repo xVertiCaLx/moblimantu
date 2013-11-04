@@ -1,6 +1,7 @@
 package db;
 import static db.CineplexDB.commit;
 import entity.Showtime;
+import factory.ShowtimeFactory;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import java.util.StringTokenizer;
 import utils.Constant;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import utils.Common;
 /* Loading database for Cineplex */
 public class ShowtimeDB {
     
@@ -26,7 +28,8 @@ public class ShowtimeDB {
                 SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 pw.write(dateFormatter.format(s.getTime())); pw.write("|");
                 pw.write(new Integer(s.getMovieId()).toString()); pw.write("|");
-                pw.write(new Integer(s.getCinemaId()).toString()); pw.write("\r\n");
+                pw.write(new Integer(s.getCinemaId()).toString()); pw.write("|");
+                pw.write(new Integer(s.getSeatLayoutId()).toString()); pw.write("\r\n");
             }
             pw.close();
         } catch (IOException e) {
@@ -43,7 +46,7 @@ public class ShowtimeDB {
                 StringTokenizer s = new StringTokenizer(sc.nextLine(),"|");
                 /*
                  * Showtime Input format
-                 * id|time|movie_id|cinema_id
+                 * id|time|movie_id|cinema_id|seatlayoutid
                  */
                 int showtimeId = Integer.parseInt(s.nextToken());
                 Date showtimeTime = null;
@@ -55,7 +58,8 @@ public class ShowtimeDB {
                 
                 int showtimeMovieId = Integer.parseInt(s.nextToken());
                 int showtimeCinemaId = Integer.parseInt(s.nextToken());
-                list.add(new Showtime(showtimeId, showtimeTime, showtimeMovieId, showtimeCinemaId));
+                int showtimeSeatLayoutId = Integer.parseInt(s.nextToken());
+                list.add(new Showtime(showtimeId, showtimeTime, showtimeMovieId, showtimeCinemaId, showtimeSeatLayoutId));
             }
         } catch (IOException e) {
             System.out.println("IOException at Showtime " + e.getMessage());
@@ -65,5 +69,23 @@ public class ShowtimeDB {
     /* Get the Showtime list */
     public static LinkedList<Showtime> getShowtimeList() {
         return list;
+    }
+    
+    /* Unit Test part */
+    public static void main(String[] args) {
+        System.out.println("UNIT TEST FOR SHOWTIME DB");
+        Common.initDB();
+        System.out.println("FINISH INIT DB");
+        Showtime newShowtime = ShowtimeFactory.createNewInstance("2013-12-28 08:30:34", 1, 2);
+        list.add(newShowtime);
+        commit();
+        ShowtimeDB.loadDB(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE);
+        for(Showtime s : ShowtimeDB.getShowtimeList()) {
+            System.out.print(s.getId() + " ");
+            System.out.print(s.getTime() + " ");
+            System.out.print(s.getMovieId() + " ");
+            System.out.print(s.getCinemaId() + " ");
+            System.out.println(s.getSeatLayoutId() + " ");
+        }
     }
 }

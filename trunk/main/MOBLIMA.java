@@ -9,16 +9,15 @@ import db.BookingDB;
 import db.MovieDB;
 import db.CinemaDB;
 import db.CineplexDB;
-import db.ShowtimeDB;
 import db.StaffDB;
 import entity.Booking;
 import entity.Cinema;
 import entity.Cineplex;
 import entity.Movie;
-import entity.Showtime;
 import entity.Staff;
 import java.util.Scanner;
 import page.MainPage;
+import utils.Common;
 import utils.Constant;
 import utils.References;
 /**
@@ -57,14 +56,6 @@ public class MOBLIMA {
             System.out.println(c.getId());
             System.out.println(c.getName());
         }
-        System.out.println("UNIT TEST FOR SHOWTIME DB");
-        ShowtimeDB.loadDB(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE);
-        for(Showtime s : ShowtimeDB.getShowtimeList()) {
-            System.out.println(s.getId());
-            System.out.println(s.getTime());
-            System.out.println(s.getMovieId());
-            System.out.println(s.getCinemaId());
-        }
         System.out.println("UNIT TEST FOR BOOKING DB");
         BookingDB.loadDB(Constant.DATABASE_PATH + Constant.BOOKING_DATABASE);
         for(Booking b : BookingDB.getBookingList()) {
@@ -87,21 +78,13 @@ public class MOBLIMA {
             System.out.println(StaffController.authenticate(s.getUsername(),"password"));
         }
     }
-    public static void initDB() {
-        MovieDB.loadDB(Constant.DATABASE_PATH + Constant.MOVIE_DATABASE);
-        CinemaDB.loadDB(Constant.DATABASE_PATH + Constant.CINEMA_DATABASE);
-        CineplexDB.loadDB(Constant.DATABASE_PATH + Constant.CINEPLEX_DATABASE);
-        ShowtimeDB.loadDB(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE);
-        BookingDB.loadDB(Constant.DATABASE_PATH + Constant.BOOKING_DATABASE);
-        StaffDB.loadDB(Constant.DATABASE_PATH + Constant.STAFF_DATABASE);
-    }
     public static void main(String[] args) {
         // TODO code application logic here
         int choice = 1;
         if (choice == 0)
             unitTestDB();
         else {
-            initDB();
+            Common.initDB();
             Scanner scanner = new Scanner(System.in);
             References.setInputStream(scanner);
             MainPage.getInstance().launch();

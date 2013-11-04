@@ -40,6 +40,7 @@ public class BookingDB {
                 }
                 pw.write(seatList.toString()); pw.write("|");
                 pw.write(new Double(b.getPrice()).toString()); pw.write("|");
+                pw.write("\r\n");
             }
             pw.close();
         } catch (IOException e) {

@@ -1,12 +1,5 @@
 1|3D_movie|Thor|status|8.0
-<<<<<<< .mine
-2|3D_movie|Thor|status|5.0
-3|alo|alo|alo|9.0
-4|blockbuster|Viet Anh|endofshowing|7.0
-5|3D|Huyen Tran|EndOfShowing|9.0
-=======
 2|3D_movie|Thor|status|5.0
 3|hihi|huhu|hehe|5.0
 4|hihi|huhu|hehe|5.0
 5|hihi|huhu|hehe|5.0
->>>>>>> .r32

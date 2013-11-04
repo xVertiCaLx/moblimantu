@@ -46,6 +46,13 @@ public class SeatLayout {
         this.seats = seats;
     }
     
+    public int getLength() {
+        return seats.length;
+    }
+    public int getWidth() {
+        if (seats.length == 0) return 0;
+        else return seats[0].length;
+    }
     public char getSeat(int X, int Y) {
         if (seats.length == 0) return INVALID_SEAT;
         if (0 <= X && X < seats.length && 0 <= Y && Y < seats[0].length) return seats[X][Y];
