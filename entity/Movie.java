@@ -3,7 +3,7 @@ public class Movie {
     private int id;
     private int type;
     private String name;
-    private String status;
+    private int status;
     private double rating;
     
     public Movie() {
@@ -11,7 +11,7 @@ public class Movie {
     public Movie(Movie movie) {
         this(movie.getId(), movie.getType(), movie.getName(), movie.getStatus(), movie.getRating());
     }
-    public Movie(int id, int type, String name, String status, double rating) {
+    public Movie(int id, int type, String name, int status, double rating) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -43,11 +43,11 @@ public class Movie {
         this.name = name;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

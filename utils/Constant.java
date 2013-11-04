@@ -30,4 +30,10 @@ public class Constant {
     public static int MOVIE_TYPE_3D = 2;
     public static String MOVIE_TYPE[] = {"Regular", "BlockBuster", "3D Movie"};
     
+    // Status Type Template
+    public static int MOVIE_STATUS_COMING_SOON = 0;
+    public static int MOVIE_STATUS_PREVIEW = 1;
+    public static int MOVIE_STATUS_NOW_SHOWING = 2;
+    public static int MOVIE_STATUS_END_OF_SHOWING = 3; // delete movie
+    public static String MOVIE_STATUS[] = {"Coming Soon","Preview","Now Showing","End of Showing"};
 }

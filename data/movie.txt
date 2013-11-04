@@ -1,2 +1,2 @@
-1|2|Titanic|Preview|8.0
-2|1|Thor|Preview|8.0
+1|1|Thor|1|8.0
+2|2|Titanic|2|9.0
