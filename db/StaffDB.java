@@ -43,6 +43,8 @@ public class StaffDB {
     }
     
     public static LinkedList<Staff> getStaffList() {
+        if (list == null) System.out.println("DATABASE NOT INITIALIZED !! PUT IN: Common.initDB() TO SETUP DATABASE");
+        assert list != null;
         return list;
     }
 }

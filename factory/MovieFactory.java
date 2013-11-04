@@ -4,9 +4,9 @@
  */
 package factory;
 
-import db.MovieDB;
 import entity.Movie;
 import java.util.LinkedList;
+import utils.Common;
 
 /**
  *
@@ -14,8 +14,7 @@ import java.util.LinkedList;
  */
 public class MovieFactory {
     public static Movie createNewInstance(String movieType, String movieName, String movieStatus, double rating) {
-        LinkedList<Movie> list = MovieDB.getMovieList();
-        return new Movie(list.size()+1, movieType, movieName, movieStatus, rating);
+        return new Movie(Common.genMovieId(), movieType, movieName, movieStatus, rating);
     }
     public static Movie clone(Movie movie) {
         Movie newMovie = new Movie(movie.getId(), movie.getType(), movie.getName(), movie.getStatus(), movie.getRating());

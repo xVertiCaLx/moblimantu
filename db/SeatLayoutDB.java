@@ -107,6 +107,8 @@ public class SeatLayoutDB {
     }
     /* Get the movie list */
     public static LinkedList<SeatLayout> getSeatLayoutList() {
+        if (list == null) System.out.println("DATABASE NOT INITIALIZED !! PUT IN: Common.initDB() TO SETUP DATABASE");
+        assert list != null;
         return list;
     }
     

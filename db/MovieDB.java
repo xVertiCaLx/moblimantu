@@ -59,6 +59,8 @@ public class MovieDB {
     
     /* Get the movie list */
     public static LinkedList<Movie> getMovieList() {
+        if (list == null) System.out.println("DATABASE NOT INITIALIZED !! PUT IN: Common.initDB() TO SETUP DATABASE");
+        assert list != null;
         return list;
     }
 }

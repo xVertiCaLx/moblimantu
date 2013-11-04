@@ -97,6 +97,8 @@ public class BookingDB {
     
     /* Return the Booking list */
     public static LinkedList<Booking> getBookingList() {
+        if (list == null) System.out.println("DATABASE NOT INITIALIZED !! PUT IN: Common.initDB() TO SETUP DATABASE");
+        assert list != null;
         return list;
     }
     

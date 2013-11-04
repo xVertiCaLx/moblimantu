@@ -51,6 +51,8 @@ public class CineplexDB {
     
     /* Return the Cineplex list */
     public static LinkedList<Cineplex> getCineplexList() {
+        if (list == null) System.out.println("DATABASE NOT INITIALIZED !! PUT IN: Common.initDB() TO SETUP DATABASE");
+        assert list != null;
         return list;
     }
 }

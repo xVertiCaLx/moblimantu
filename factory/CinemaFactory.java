@@ -7,6 +7,7 @@ package factory;
 import controller.CinemaController;
 import entity.Cinema;
 import java.util.LinkedList;
+import utils.Common;
 
 /**
  *
@@ -14,7 +15,6 @@ import java.util.LinkedList;
  */
 public class CinemaFactory {
     public static Cinema createNewInstance(String cinemaClass, String cinemaName, int cineplexId, String cinemaCode, int templateLayoutId) {
-        LinkedList<Cinema> list = CinemaController.getCinemaList();
-        return new Cinema(list.size()+1, cinemaClass, cinemaName, cineplexId, cinemaCode, templateLayoutId);        
+        return new Cinema(Common.genCinemaId(), cinemaClass, cinemaName, cineplexId, cinemaCode, templateLayoutId);        
     }
 }

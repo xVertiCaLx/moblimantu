@@ -9,7 +9,7 @@ import entity.Movie;
 import entity.Showtime;
 import factory.MovieFactory;
 import java.util.LinkedList;
-import utils.Constant;
+import utils.Common;
 
 /**
  *
@@ -104,7 +104,7 @@ public class MovieController {
     
     /* Unit Test part */
     public static void main(String[] args) {
-        MovieDB.loadDB(Constant.DATABASE_PATH + Constant.MOVIE_DATABASE);
-        addMovie("hihi","huhu","hehe",5.0);
+        Common.initDB();
+        addMovie("3D","Titanic","Preview",8.0);
     }
 }

@@ -68,6 +68,8 @@ public class ShowtimeDB {
 
     /* Get the Showtime list */
     public static LinkedList<Showtime> getShowtimeList() {
+        if (list == null) System.out.println("DATABASE NOT INITIALIZED !! PUT IN: Common.initDB() TO SETUP DATABASE");
+        assert list != null;
         return list;
     }
     

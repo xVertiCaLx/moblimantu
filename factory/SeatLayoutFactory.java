@@ -7,6 +7,7 @@ package factory;
 import controller.SeatLayoutController;
 import entity.SeatLayout;
 import java.util.LinkedList;
+import utils.Common;
 
 /**
  *
@@ -15,7 +16,6 @@ import java.util.LinkedList;
 public class SeatLayoutFactory {
     public static SeatLayout createNewInstance(int templateLayoutId) {
         char[][] seats = SeatLayoutController.getSeatLayout(templateLayoutId);
-        LinkedList<SeatLayout> list = SeatLayoutController.getSeatLayoutList();
-        return new SeatLayout(list.size()+1, templateLayoutId, seats);
+        return new SeatLayout(Common.genSeatLayoutId(), templateLayoutId, seats);
     }
 }

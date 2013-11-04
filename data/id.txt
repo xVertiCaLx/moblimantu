@@ -1,0 +1,13 @@
+8
+2
+2
+9
+2
+9
+maximum id of all entities:
+movie
+cinema
+cineplex
+showtime
+booking id
+seatlayout
