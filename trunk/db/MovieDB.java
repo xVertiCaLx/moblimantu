@@ -24,7 +24,7 @@ public class MovieDB {
                 pw.write(new Integer(m.getId()).toString()); pw.write("|");
                 pw.write(new Integer(m.getType()).toString()); pw.write("|");
                 pw.write(m.getName()); pw.write("|");
-                pw.write(m.getStatus()); pw.write("|");
+                pw.write(new Integer(m.getStatus()).toString()); pw.write("|");
                 pw.write(new Double(m.getRating()).toString()); pw.write("\r\n");
             }
             pw.close();
@@ -47,7 +47,7 @@ public class MovieDB {
                 int movieId = Integer.parseInt(s.nextToken());
                 int movieType = Integer.parseInt(s.nextToken());
                 String movieName = s.nextToken();
-                String movieStatus = s.nextToken();
+                int movieStatus = Integer.parseInt(s.nextToken());
                 double movieRating = Double.parseDouble(s.nextToken());
                 list.add(new Movie(movieId, movieType, movieName, movieStatus, 
                                    movieRating));
