@@ -1,5 +1,4 @@
 package db;
-import static db.CineplexDB.commit;
 import entity.Showtime;
 import factory.ShowtimeFactory;
 import java.io.File;

@@ -1,7 +1,6 @@
 package db;
 
 import entity.Movie;
-import entity.Showtime;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
