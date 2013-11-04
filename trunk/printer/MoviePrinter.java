@@ -13,6 +13,12 @@ import java.util.LinkedList;
  */
 public class MoviePrinter implements Printer {
     private static final MoviePrinter INSTANCE = new MoviePrinter();
+    
+    public static final int MOVIE_TITLE = 1;
+    public static final int MOVIE_TYPE = 2;
+    public static final int MOVIE_STATUS = 3;
+    public static final int MOVIE_RATING = 4;
+    
     private MoviePrinter(){}
     public static MoviePrinter getInstance() {
         return INSTANCE;
@@ -27,9 +33,9 @@ public class MoviePrinter implements Printer {
     @Override
     public void  printInstance(Object movie) {
         System.out.println("MovieId: " + ((Movie)movie).getId());
-        System.out.println("1. Title: " + ((Movie)movie).getName());
-        System.out.println("2. Type: " + ((Movie)movie).getType());
-        System.out.println("3. Status: " + ((Movie)movie).getStatus());
-        System.out.println("4. Rating: " + ((Movie)movie).getRating());
+        System.out.println(MOVIE_TITLE + ". Title: " + ((Movie)movie).getName());
+        System.out.println(MOVIE_TYPE + ". Type: " + ((Movie)movie).getType());
+        System.out.println(MOVIE_STATUS + ". Status: " + ((Movie)movie).getStatus());
+        System.out.println(MOVIE_RATING + ". Rating: " + ((Movie)movie).getRating());
     } 
 }
