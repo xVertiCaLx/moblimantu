@@ -1,5 +1,4 @@
 package db;
-import entity.Cinema;
 import entity.Cineplex;
 import java.io.File;
 import java.io.IOException;

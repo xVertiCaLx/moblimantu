@@ -7,8 +7,6 @@ package db;
 import entity.Staff;
 import java.io.File;
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.StringTokenizer;

@@ -1,7 +1,6 @@
 package db;
 
 import entity.Booking;
-import entity.Cinema;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,7 +8,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.Locale;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
