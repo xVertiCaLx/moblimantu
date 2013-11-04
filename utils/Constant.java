@@ -21,7 +21,6 @@ public class Constant {
     // Layout Template
     public static int SEAT_TEMPLATE_DEFAULT = 0;
     public static int SEAT_TEMPLATE_STANDARD = 1;
-            
     public static String SEAT_TEMPLATE[] = {"seat_template_default.txt",
                                             "seat_template_standard.txt"};
     

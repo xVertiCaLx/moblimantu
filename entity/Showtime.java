@@ -6,6 +6,7 @@ package entity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import utils.Constant;
 
 
 /**
@@ -17,15 +18,17 @@ public class Showtime {
     private Date time;
     private int movieId;
     private int cinemaId;
+    private int seatLayoutId;
     
     public Showtime() {
     }
 
-    public Showtime(int id, Date time, int movieId, int cinemaId) {
+    public Showtime(int id, Date time, int movieId, int cinemaId, int seatLayoutId) {
         this.id = id;
         this.time = time;
         this.movieId = movieId;
         this.cinemaId = cinemaId;
+        this.seatLayoutId = seatLayoutId;
     }
 
     public int getId() {
@@ -65,4 +68,10 @@ public class Showtime {
         this.cinemaId = cinemaId;
     }
     
+    public int getSeatLayoutId() {
+        return seatLayoutId;
+    }
+    public void setSeatLayoutId(int seatLayoutId) {
+        this.seatLayoutId = seatLayoutId;
+    }
 }

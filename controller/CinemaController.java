@@ -17,9 +17,9 @@ import java.util.LinkedList;
 public class CinemaController {
     
     /* Add a Cinema to the database & database */
-    public static void addCinema(String cinemaClass, String cinemaName, int cineplexId, String cinemaCode ){
+    public static void addCinema(String cinemaClass, String cinemaName, int cineplexId, String cinemaCode, int templateLayoutId){
         LinkedList<Cinema> list = CinemaDB.getCinemaList();
-        Cinema c = CinemaFactory.createNewInstance(cinemaClass, cinemaName, cineplexId, cinemaCode);
+        Cinema c = CinemaFactory.createNewInstance(cinemaClass, cinemaName, cineplexId, cinemaCode, templateLayoutId);
         list.add(c);
         CinemaDB.commit();
     }

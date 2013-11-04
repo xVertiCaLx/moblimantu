@@ -23,7 +23,7 @@ public class CinemaDB {
                 pw.write(c.getCinemaClass()); pw.write("|");
                 pw.write(c.getName()); pw.write("|");
                 pw.write(new Integer(c.getCineplexId()).toString()); pw.write("|");
-                pw.write(c.getCinemaCode()); pw.write("\n");
+                pw.write(c.getCinemaCode()); pw.write("\r\n");
             }
             pw.close();
         } catch (IOException e) {
@@ -48,7 +48,8 @@ public class CinemaDB {
                 String cinemaName = s.nextToken();
                 int cinemaCineplexId = Integer.parseInt(s.nextToken());
                 String cinemaCode = s.nextToken();
-                list.add(new Cinema(cinemaId, cinemaClass, cinemaName, cinemaCineplexId, cinemaCode));
+                int templateLayoutId = Integer.parseInt(s.nextToken());
+                list.add(new Cinema(cinemaId, cinemaClass, cinemaName, cinemaCineplexId, cinemaCode, templateLayoutId));
             }
         } catch (IOException e) {
             System.out.println("IOException at cinemaDB " + e.getMessage());

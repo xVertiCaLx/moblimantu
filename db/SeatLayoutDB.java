@@ -19,13 +19,32 @@ import utils.Constant;
  */
 public class SeatLayoutDB {
     private static LinkedList<SeatLayout> list;
+    /* Add a new seat layout */
+    public static void addSeatLayout(SeatLayout newSeatLayout) {
+        list.add(newSeatLayout);
+    }
     
     /* Commit the changes to the database */
     public static void commit() {
         try 
         {
             PrintWriter pw = new PrintWriter(new File(Constant.DATABASE_PATH + Constant.SEAT_LAYOUT_DATABASE));
-            for(SeatLayout sl : list) {}
+            for(SeatLayout sl : list) {
+                pw.write(new Integer(sl.getSeatLayoutId()).toString()); pw.write("|");
+                pw.write(new Integer(sl.getLayoutTemplate()).toString()); pw.write("|");
+                StringBuffer seatStatus = new StringBuffer();
+                seatStatus.append("*");
+                for(int i = 0; i < sl.getLength(); i++) {
+                    for(int j = 0; j < sl.getWidth(); j++) 
+                    if (sl.isSeatBooked(i, j)) {
+                        seatStatus.append(i);
+                        seatStatus.append("*");
+                        seatStatus.append(j);
+                        seatStatus.append("*");
+                    }
+                }
+                pw.write(seatStatus.toString()); pw.write("\r\n");
+            }
             pw.close();
         } catch (IOException e) {
             System.out.println("IOException in commit MovieDB " + e.getMessage());

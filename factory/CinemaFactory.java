@@ -13,8 +13,8 @@ import java.util.LinkedList;
  * @author Vu
  */
 public class CinemaFactory {
-    public static Cinema createNewInstance(String cinemaClass, String cinemaName, int cineplexId, String cinemaCode) {
+    public static Cinema createNewInstance(String cinemaClass, String cinemaName, int cineplexId, String cinemaCode, int templateLayoutId) {
         LinkedList<Cinema> list = CinemaController.getCinemaList();
-        return new Cinema(list.size()+1, cinemaClass, cinemaName, cineplexId, cinemaCode);        
+        return new Cinema(list.size()+1, cinemaClass, cinemaName, cineplexId, cinemaCode, templateLayoutId);        
     }
 }
