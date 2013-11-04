@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import utils.Constant;
 
-
 /**
  *
  * @author Khach

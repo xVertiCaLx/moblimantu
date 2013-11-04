@@ -22,7 +22,7 @@ public class MovieDB {
             PrintWriter pw = new PrintWriter(new File(Constant.DATABASE_PATH + Constant.MOVIE_DATABASE));
             for(Movie m : list) {
                 pw.write(new Integer(m.getId()).toString()); pw.write("|");
-                pw.write(m.getType()); pw.write("|");
+                pw.write(new Integer(m.getType()).toString()); pw.write("|");
                 pw.write(m.getName()); pw.write("|");
                 pw.write(m.getStatus()); pw.write("|");
                 pw.write(new Double(m.getRating()).toString()); pw.write("\r\n");
@@ -45,7 +45,7 @@ public class MovieDB {
                  * id|type|name|status
                  */
                 int movieId = Integer.parseInt(s.nextToken());
-                String movieType = s.nextToken();
+                int movieType = Integer.parseInt(s.nextToken());
                 String movieName = s.nextToken();
                 String movieStatus = s.nextToken();
                 double movieRating = Double.parseDouble(s.nextToken());
