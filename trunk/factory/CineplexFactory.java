@@ -7,6 +7,7 @@ package factory;
 import controller.CineplexController;
 import entity.Cineplex;
 import java.util.LinkedList;
+import utils.Common;
 
 /**
  *
@@ -14,7 +15,6 @@ import java.util.LinkedList;
  */
 public class CineplexFactory {
     public static Cineplex createNewInstance(String cineplexName) {
-        LinkedList<Cineplex> list = CineplexController.getCineplexList();
-        return new Cineplex(list.size()+1, cineplexName);
+        return new Cineplex(Common.genCineplexId(), cineplexName);
     }
 }

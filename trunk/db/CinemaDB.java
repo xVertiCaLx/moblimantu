@@ -58,6 +58,8 @@ public class CinemaDB {
 
     /* Return the Cinema list */
     public static LinkedList<Cinema> getCinemaList() {
+        if (list == null) System.out.println("DATABASE NOT INITIALIZED !! PUT IN: Common.initDB() TO SETUP DATABASE");
+        assert list != null;
         return list;
     }
 }

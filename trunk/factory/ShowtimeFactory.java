@@ -7,12 +7,12 @@ package factory;
 import controller.CinemaController;
 import controller.SeatLayoutController;
 import controller.ShowtimeController;
-import db.SeatLayoutDB;
 import entity.SeatLayout;
 import entity.Showtime;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
+import utils.Common;
 
 /**
  *
@@ -33,7 +33,7 @@ public class ShowtimeFactory {
         SeatLayoutController.addSeatLayout(newSeatLayout);
         SeatLayoutController.commit();
         
-        return new Showtime(list.size()+1,showtimeTime, showtimeMovieId, showtimeCinemaId, newSeatLayout.getSeatLayoutId());
+        return new Showtime(Common.genShowtimeId(),showtimeTime, showtimeMovieId, showtimeCinemaId, newSeatLayout.getSeatLayoutId());
     }
     
     /* 
@@ -52,7 +52,7 @@ public class ShowtimeFactory {
             SeatLayoutController.addSeatLayout(newSeatLayout);
             SeatLayoutController.commit();
             Date showtimeTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(showtimeTimeStringFormat);
-            return new Showtime(list.size()+1,showtimeTime, showtimeMovieId, showtimeCinemaId, newSeatLayout.getSeatLayoutId());
+            return new Showtime(Common.genShowtimeId(),showtimeTime, showtimeMovieId, showtimeCinemaId, newSeatLayout.getSeatLayoutId());
         } catch (Exception ex) {
             System.out.println("Exception in create new instance Showtime Factory" + ex.getMessage());
         }
