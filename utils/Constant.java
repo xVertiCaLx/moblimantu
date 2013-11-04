@@ -24,4 +24,10 @@ public class Constant {
     public static String SEAT_TEMPLATE[] = {"seat_template_default.txt",
                                             "seat_template_standard.txt"};
     
+    // Movie Type Template
+    public static int MOVIE_TYPE_REGULAR = 0;
+    public static int MOVIE_TYPE_BLOCK_BUSTER = 1;
+    public static int MOVIE_TYPE_3D = 2;
+    public static String MOVIE_TYPE[] = {"Regular", "BlockBuster", "3D Movie"};
+    
 }

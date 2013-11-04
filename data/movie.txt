@@ -1,8 +1,2 @@
-1|3D_movie|Thor|status|8.0
-2|3D_movie|Thor|status|5.0
-3|hihi|huhu|hehe|5.0
-4|hihi|huhu|hehe|5.0
-5|hihi|huhu|hehe|5.0
-6|3D|Titanic|Preview|8.0
-7|3D|Titanic|Preview|8.0
-8|3D|Titanic|Preview|8.0
+1|2|Titanic|Preview|8.0
+2|1|Thor|Preview|8.0

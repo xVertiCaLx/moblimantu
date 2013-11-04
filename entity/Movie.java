@@ -1,16 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
-
-/**
- *
- * @author Khach
- */
 public class Movie {
     private int id;
-    private String type;
+    private int type;
     private String name;
     private String status;
     private double rating;
@@ -20,7 +11,7 @@ public class Movie {
     public Movie(Movie movie) {
         this(movie.getId(), movie.getType(), movie.getName(), movie.getStatus(), movie.getRating());
     }
-    public Movie(int id, String type, String name, String status, double rating) {
+    public Movie(int id, int type, String name, String status, double rating) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -36,11 +27,11 @@ public class Movie {
         this.id = id;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 

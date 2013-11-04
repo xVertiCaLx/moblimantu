@@ -10,6 +10,7 @@ import entity.Showtime;
 import factory.MovieFactory;
 import java.util.LinkedList;
 import utils.Common;
+import utils.Constant;
 
 /**
  *
@@ -19,7 +20,7 @@ public class MovieController {
     /*
      * Add a new Movie to the list & database
      */
-    public static void addMovie(String movieType, String movieName, String movieStatus, double rating) {
+    public static void addMovie(int movieType, String movieName, String movieStatus, double rating) {
         LinkedList<Movie> list = MovieDB.getMovieList();
         Movie newMovie = MovieFactory.createNewInstance(movieType, movieName, movieStatus, rating);
         list.add(newMovie);
@@ -105,6 +106,6 @@ public class MovieController {
     /* Unit Test part */
     public static void main(String[] args) {
         Common.initDB();
-        addMovie("3D","Titanic","Preview",8.0);
+        addMovie(Constant.MOVIE_TYPE_BLOCK_BUSTER,"Thor","Preview",8.0);
     }
 }

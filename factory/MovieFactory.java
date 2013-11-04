@@ -13,7 +13,7 @@ import utils.Common;
  * @author Vu
  */
 public class MovieFactory {
-    public static Movie createNewInstance(String movieType, String movieName, String movieStatus, double rating) {
+    public static Movie createNewInstance(int movieType, String movieName, String movieStatus, double rating) {
         return new Movie(Common.genMovieId(), movieType, movieName, movieStatus, rating);
     }
     public static Movie clone(Movie movie) {
