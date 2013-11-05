@@ -10,7 +10,7 @@ package entity;
  */
 public class Cinema {
     private int id;
-    private String cinemaClass;
+    private int cinemaClass;
     private String name;
     private int cineplexId;
     private String cinemaCode;
@@ -19,7 +19,7 @@ public class Cinema {
     public Cinema() {
     }
 
-    public Cinema(int id, String cinemaClass, String name, int cineplexId, String cinemaCode, int layoutTemplateId) {
+    public Cinema(int id, int cinemaClass, String name, int cineplexId, String cinemaCode, int layoutTemplateId) {
         this.id = id;
         this.cinemaClass = cinemaClass;
         this.name = name;
@@ -36,11 +36,11 @@ public class Cinema {
         this.id = id;
     }
 
-    public String getCinemaClass() {
+    public int getCinemaClass() {
         return cinemaClass;
     }
 
-    public void setCinemaClass(String cinemaClass) {
+    public void setCinemaClass(int cinemaClass) {
         this.cinemaClass = cinemaClass;
     }
 

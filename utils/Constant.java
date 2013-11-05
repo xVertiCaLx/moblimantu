@@ -31,6 +31,11 @@ public class Constant {
     public static int MOVIE_TYPE_3D = 2;
     public static String MOVIE_TYPE[] = {"Regular", "BlockBuster", "3D Movie"};
     
+    // Cinema Type Class
+    public static int CINEMA_REGULAR = 0;
+    public static int CINEMA_VIP = 1;
+    public static String CINEMA_CLASS[] = {"Regular","VIP"};
+    
     // Status Type Template
     public static int MOVIE_STATUS_COMING_SOON = 0;
     public static int MOVIE_STATUS_PREVIEW = 1;

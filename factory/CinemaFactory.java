@@ -14,7 +14,7 @@ import utils.Common;
  * @author Vu
  */
 public class CinemaFactory {
-    public static Cinema createNewInstance(String cinemaClass, String cinemaName, int cineplexId, String cinemaCode, int templateLayoutId) {
+    public static Cinema createNewInstance(int cinemaClass, String cinemaName, int cineplexId, String cinemaCode, int templateLayoutId) {
         return new Cinema(Common.genCinemaId(), cinemaClass, cinemaName, cineplexId, cinemaCode, templateLayoutId);        
     }
 }
