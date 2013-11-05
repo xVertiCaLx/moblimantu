@@ -34,7 +34,7 @@ public class BookingDB {
                 StringBuffer seatList = new StringBuffer();
                 for(Integer i : b.getSeatNumbers()) {
                     seatList.append(i.toString());
-                    seatList.append("*");
+                    seatList.append(Constant.LIST_SEPARATOR);
                 }
                 pw.write(seatList.toString()); pw.write(Constant.FIELD_SEPARATOR);
                 pw.write(new Double(b.getPrice()).toString()); pw.write(Constant.FIELD_SEPARATOR);
@@ -76,7 +76,7 @@ public class BookingDB {
                 }
                 
                 LinkedList<Integer> bookingSeatNumbers = new LinkedList<Integer>();
-                StringTokenizer seatList = new StringTokenizer(s.nextToken(),"*");
+                StringTokenizer seatList = new StringTokenizer(s.nextToken(),Constant.LIST_SEPARATOR);
                 while (seatList.hasMoreTokens()) {
                     bookingSeatNumbers.add(new Integer(seatList.nextToken()));
                 }
