@@ -113,6 +113,7 @@ public class Booking {
     public void setPrice(double price) {
         this.price = price;
     }
+    
     @Override
     public String toString() {
         Showtime st = ShowtimeController.getShowtimeById(showtimeId);

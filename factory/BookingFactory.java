@@ -14,7 +14,7 @@ public class BookingFactory {
         /* Generate unique booking id */
         int bookingId = Common.genBookingId();
         
-        /* Needs to be replaced with payment later */
+        /* Later this field is replaced by payment method*/
         String transactionId = "NOT_AVAILABLE_YET";
         
         Date time = new Date();
