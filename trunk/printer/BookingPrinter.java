@@ -1,15 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package printer;
 
 import java.util.LinkedList;
 
-/**
- *
- * @author Khach
- */
 public class BookingPrinter implements Printer {
     private static final BookingPrinter INSTANCE = new BookingPrinter();
     private BookingPrinter(){}

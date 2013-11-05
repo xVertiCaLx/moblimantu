@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package printer;
 
 import entity.Cinema;
 import java.util.LinkedList;
 
-/**
- *
- * @author Khach
- */
 public class CinemaPrinter implements Printer {
     private static final CinemaPrinter INSTANCE = new CinemaPrinter();
     private CinemaPrinter(){}

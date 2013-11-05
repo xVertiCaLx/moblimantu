@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
 import controller.StaffController;
@@ -20,10 +16,7 @@ import page.MainPage;
 import utils.Common;
 import utils.Constant;
 import utils.References;
-/**
- *
- * @author Vu
- */
+
 public class MOBLIMA {
 
     /**

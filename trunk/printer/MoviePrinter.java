@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package printer;
 
 import entity.Movie;
 import java.util.LinkedList;
 
-/**
- *
- * @author Khach
- */
 public class MoviePrinter implements Printer {
     private static final MoviePrinter INSTANCE = new MoviePrinter();
     

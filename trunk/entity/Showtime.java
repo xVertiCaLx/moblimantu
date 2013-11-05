@@ -1,17 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import utils.Constant;
 
-/**
- *
- * @author Khach
- */
 public class Showtime {
     private int id;
     private Date time;

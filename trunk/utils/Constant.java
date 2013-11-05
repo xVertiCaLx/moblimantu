@@ -1,13 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package utils;
 
-/**
- *
- * @author Vu
- */
 public class Constant {
     public static String DATABASE_PATH = "src\\data\\";
     public static String MOVIE_DATABASE = "movie.txt";

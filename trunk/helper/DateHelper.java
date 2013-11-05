@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package helper;
 
 import java.io.File;
@@ -15,10 +11,6 @@ import java.util.Scanner;
 import utils.Common;
 import utils.Constant;
 
-/**
- *
- * @author Vu
- */
 public class DateHelper {
     private static LinkedList<Date> publicHolidays;
     

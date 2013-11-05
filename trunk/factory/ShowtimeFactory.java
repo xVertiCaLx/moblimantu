@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package factory;
 
 import controller.CinemaController;
@@ -14,10 +10,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import utils.Common;
 
-/**
- *
- * @author Vu
- */
 public class ShowtimeFactory {
     
     /* 
