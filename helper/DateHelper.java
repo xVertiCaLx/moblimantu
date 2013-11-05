@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package utils;
+package helper;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
+import utils.Common;
+import utils.Constant;
 
 /**
  *
