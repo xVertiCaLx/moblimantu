@@ -17,6 +17,7 @@ public class Constant {
     public static String BOOKING_DATABASE = "booking.txt";
     public static String STAFF_DATABASE = "staff.txt";
     public static String SEAT_LAYOUT_DATABASE = "seat_layout.txt";
+    public static String PUBLIC_HOLIDAY_DATABASE = "public_holiday.txt";
     public static String ID_DATABASE = "id.txt";
     // Layout Template
     public static int SEAT_TEMPLATE_DEFAULT = 0;

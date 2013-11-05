@@ -35,7 +35,7 @@ public class Common {
         ShowtimeDB.loadDB(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE);
         BookingDB.loadDB(Constant.DATABASE_PATH + Constant.BOOKING_DATABASE);
         StaffDB.loadDB(Constant.DATABASE_PATH + Constant.STAFF_DATABASE);
-        SeatLayoutDB.loadDB(Constant.DATABASE_PATH + Constant.SEAT_LAYOUT_DATABASE);
+        DateHelper.getPublicHolidays();
         try {
             Scanner sc = new Scanner(new File(Constant.DATABASE_PATH + Constant.ID_DATABASE));
             maxMovieId = sc.nextInt();
