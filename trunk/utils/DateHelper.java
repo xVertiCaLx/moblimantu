@@ -32,7 +32,8 @@ public class DateHelper {
             System.out.println("IOException in commit public holiday");
         }
     }
-    public static void getPublicHolidays() {
+    
+    public static void initPublicHolidays() {
         try {
             publicHolidays = new LinkedList<Date>();
             Scanner sc = new Scanner(new File(Constant.DATABASE_PATH+Constant.PUBLIC_HOLIDAY_DATABASE));
@@ -47,6 +48,7 @@ public class DateHelper {
         } 
             
     }
+    
     public static void addPublicHoliday(String year, String month, String day) {
         try {
             String newDate = year + "-" + month + "-" + day;
@@ -56,6 +58,7 @@ public class DateHelper {
             System.out.println("Parse Exception in add Public Holiday" + e.getMessage());
         }
     }
+    
     public static void addPublicHoliday(String newDate) {
         try {
             publicHolidays.add(new SimpleDateFormat("yyyy-MM-dd").parse(newDate));
@@ -89,10 +92,12 @@ public class DateHelper {
             System.out.println("Parse Exception in remove public holiday " + e.getMessage());
         }
     }
+    
     public static boolean isSameDay(Date dayA, Date dayB) {
         if (dayA.getTime() == dayB.getTime()) return true;
         else return false;
     }
+    
     public static boolean isPublicHoliday(String date) {
         try {
             Date curDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
@@ -117,12 +122,18 @@ public class DateHelper {
         }
         return false;
     }
+    
     public static boolean isPublicHoliday(Date date) {
         for(Date d: publicHolidays) {
             if (isSameDay(date, d)) return true;
         }
         return false;
     }
+    
+    public static LinkedList<Date> getPublicHolidays() {
+        return publicHolidays;
+    }
+    
     //unit test for public holiday
     public static void main(String[] args) {
         Common.initDB();
