@@ -206,7 +206,7 @@ public class ManagementPage {
                 Showtime showtime = ShowtimeController.getShowtimeById(showtimeId);
                 if (showtime == null) continue;
 
-                LinkedList bookings = BookingController.getBookingByShowtime(showtimeId);
+                LinkedList bookings = BookingController.getBookingByShowtimeId(showtimeId);
                 if (bookings.size() != 0) {
                     System.out.println("This showtime has some booking already. Can not be edited.");
                     continue;
