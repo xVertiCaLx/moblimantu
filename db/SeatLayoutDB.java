@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package db;
 
 import entity.SeatLayout;
@@ -13,10 +9,6 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import utils.Constant;
 
-/**
- *
- * @author Vu
- */
 public class SeatLayoutDB {
     private static LinkedList<SeatLayout> list;
     /* Add a new seat layout */

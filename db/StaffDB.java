@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package db;
 
 import entity.Staff;
@@ -11,10 +7,6 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-/**
- *
- * @author Vu
- */
 public class StaffDB {
     private static LinkedList<Staff> list;
     

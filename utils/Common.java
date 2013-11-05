@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package utils;
 
 import helper.DateHelper;
@@ -17,10 +13,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-/**
- *
- * @author Vu
- */
 public class Common {
     public static int maxMovieId;
     public static int maxCinemaId;

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package printer;
 
 import controller.CinemaController;
@@ -11,10 +7,6 @@ import entity.Movie;
 import entity.Showtime;
 import java.util.LinkedList;
 
-/**
- *
- * @author Khach
- */
 public class ShowtimePrinter implements Printer {
     private static final ShowtimePrinter INSTANCE = new ShowtimePrinter();
     private ShowtimePrinter(){}

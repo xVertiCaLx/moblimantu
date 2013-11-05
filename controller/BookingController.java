@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import db.BookingDB;
@@ -9,10 +5,6 @@ import entity.Booking;
 import factory.BookingFactory;
 import java.util.LinkedList;
 
-/**
- *
- * @author Vu
- */
 public class BookingController {
     
     /* Return a specific booking with given Id */

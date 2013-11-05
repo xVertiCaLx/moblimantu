@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import db.CinemaDB;
@@ -10,10 +6,6 @@ import entity.Showtime;
 import factory.CinemaFactory;
 import java.util.LinkedList;
 
-/**
- *
- * @author Vu
- */
 public class CinemaController {
     
     /* Add a Cinema to the database & database */

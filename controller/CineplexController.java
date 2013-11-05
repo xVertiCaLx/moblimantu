@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import db.CineplexDB;
@@ -9,10 +5,6 @@ import entity.Cineplex;
 import factory.CineplexFactory;
 import java.util.LinkedList;
 
-/**
- *
- * @author Vu
- */
 public class CineplexController {
     
     /* Add a Cineplex to the database & database */

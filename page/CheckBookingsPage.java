@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package page;
 
 import controller.BookingController;
@@ -10,10 +6,6 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import utils.References;
 
-/**
- *
- * @author Khach
- */
 public class CheckBookingsPage {
     private static final CheckBookingsPage INSTANCE = new CheckBookingsPage();
     private String email, handPhone, bookingRef;

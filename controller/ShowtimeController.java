@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import db.ShowtimeDB;
@@ -15,10 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.Constant;
 
-/**
- *
- * @author Vu
- */
 public class ShowtimeController {
        /* Add a Showtime  to the database & database */
     public static void addShowtime(Date showtimeTime, int showtimeMovieId, int showtimeCinemaId){

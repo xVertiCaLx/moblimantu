@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
 import controller.CinemaController;
@@ -10,10 +6,6 @@ import controller.ShowtimeController;
 import java.util.Date;
 import java.util.LinkedList;
 
-/**
- *
- * @author Khach
- */
 public class Booking {
     private int id;
     private String transactionId;

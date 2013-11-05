@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package page;
 
 import controller.MovieController;
@@ -11,10 +7,6 @@ import java.util.Scanner;
 import utils.Constant;
 import utils.References;
 
-/**
- *
- * @author Khach
- */
 public class QueryMoviesPage {
     private static final QueryMoviesPage INSTANCE = new QueryMoviesPage();
     private QueryMoviesPage(){}

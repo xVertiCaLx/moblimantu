@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import db.StaffDB;
@@ -10,10 +6,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.LinkedList;
 
-/**
- *
- * @author Vu
- */
 public class StaffController {
     
     /* Authenticate a user*/

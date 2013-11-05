@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package helper;
 
 import controller.CinemaController;
@@ -13,10 +9,6 @@ import entity.Movie;
 import entity.Showtime;
 import utils.Constant;
 
-/**
- *
- * @author Vu
- */
 public class PriceHelper {
 
     public static double PRICE_REGULAR_MOVIE = 10.0;

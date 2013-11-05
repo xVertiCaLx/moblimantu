@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package page;
 
 import controller.BookingController;
@@ -20,10 +16,6 @@ import printer.MoviePrinter;
 import printer.ShowtimePrinter;
 import utils.References;
 
-/**
- *
- * @author Khach
- */
 public class ManagementPage {
     private static final ManagementPage INSTANCE = new ManagementPage();
     private Scanner sc = References.getInputStream();

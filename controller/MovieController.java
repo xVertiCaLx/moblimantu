@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import db.MovieDB;
@@ -12,10 +8,6 @@ import java.util.LinkedList;
 import utils.Common;
 import utils.Constant;
 
-/**
- *
- * @author Vu
- */
 public class MovieController {
     /*
      * Add a new Movie to the list & database
