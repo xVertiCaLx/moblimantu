@@ -22,6 +22,8 @@ public class Common {
     public static int maxSeatLayoutId;
     
     public static void initDB() {
+        Scanner scanner = new Scanner(System.in);
+        References.setInputStream(scanner);
         MovieDB.loadDB(Constant.DATABASE_PATH + Constant.MOVIE_DATABASE);
         CinemaDB.loadDB(Constant.DATABASE_PATH + Constant.CINEMA_DATABASE);
         CineplexDB.loadDB(Constant.DATABASE_PATH + Constant.CINEPLEX_DATABASE);
