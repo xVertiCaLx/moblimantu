@@ -18,7 +18,7 @@ public class CinemaDB {
             PrintWriter pw = new PrintWriter(new File(Constant.DATABASE_PATH + Constant.CINEMA_DATABASE));
             for(Cinema c : list) {
                 pw.write(new Integer(c.getId()).toString()); pw.write("|");
-                pw.write(c.getCinemaClass()); pw.write("|");
+                pw.write(new Integer(c.getCinemaClass()).toString()); pw.write("|");
                 pw.write(c.getName()); pw.write("|");
                 pw.write(new Integer(c.getCineplexId()).toString()); pw.write("|");
                 pw.write(c.getCinemaCode()); pw.write("\r\n");
@@ -42,7 +42,7 @@ public class CinemaDB {
                  * id|class|name|CineplexID|code
                  */
                 int cinemaId = Integer.parseInt(s.nextToken());
-                String cinemaClass = s.nextToken();
+                int cinemaClass = Integer.parseInt(s.nextToken());
                 String cinemaName = s.nextToken();
                 int cinemaCineplexId = Integer.parseInt(s.nextToken());
                 String cinemaCode = s.nextToken();
