@@ -11,6 +11,9 @@ public class Constant {
     public static String SEAT_LAYOUT_DATABASE = "seat_layout.txt";
     public static String PUBLIC_HOLIDAY_DATABASE = "public_holiday.txt";
     public static String ID_DATABASE = "id.txt";
+    
+    public static String FIELD_SEPARATOR = "|";
+    public static String LIST_SEPARATOR = "*";
     // Layout Template
     public static int SEAT_TEMPLATE_DEFAULT = 0;
     public static int SEAT_TEMPLATE_STANDARD = 1;

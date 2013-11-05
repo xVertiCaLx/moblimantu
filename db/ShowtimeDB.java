@@ -23,11 +23,11 @@ public class ShowtimeDB {
         try {
             PrintWriter pw = new PrintWriter(new File(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE));
             for(Showtime s : list) {
-                pw.write(new Integer(s.getId()).toString()); pw.write("|");
+                pw.write(new Integer(s.getId()).toString()); pw.write(Constant.FIELD_SEPARATOR);
                 SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                pw.write(dateFormatter.format(s.getTime())); pw.write("|");
-                pw.write(new Integer(s.getMovieId()).toString()); pw.write("|");
-                pw.write(new Integer(s.getCinemaId()).toString()); pw.write("|");
+                pw.write(dateFormatter.format(s.getTime())); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(new Integer(s.getMovieId()).toString()); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(new Integer(s.getCinemaId()).toString()); pw.write(Constant.FIELD_SEPARATOR);
                 pw.write(new Integer(s.getSeatLayoutId()).toString()); pw.write("\r\n");
             }
             pw.close();
@@ -42,7 +42,7 @@ public class ShowtimeDB {
             Scanner sc = new Scanner(new File(filename));
             while (sc.hasNext()) {
                 
-                StringTokenizer s = new StringTokenizer(sc.nextLine(),"|");
+                StringTokenizer s = new StringTokenizer(sc.nextLine(),Constant.FIELD_SEPARATOR);
                 /*
                  * Showtime Input format
                  * id|time|movie_id|cinema_id|seatlayoutid

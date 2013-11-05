@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import utils.Constant;
 
 public class StaffDB {
     private static LinkedList<Staff> list;
@@ -17,7 +18,7 @@ public class StaffDB {
             Scanner sc = new Scanner(new File(filename));
             while (sc.hasNext()) {
                 
-                StringTokenizer s = new StringTokenizer(sc.nextLine(),"|");
+                StringTokenizer s = new StringTokenizer(sc.nextLine(),Constant.FIELD_SEPARATOR);
                 /* 
                  * Staff input format
                  * username, format

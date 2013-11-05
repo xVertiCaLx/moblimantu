@@ -22,22 +22,22 @@ public class BookingDB {
         try {
             PrintWriter pw = new PrintWriter(new File(Constant.DATABASE_PATH + Constant.BOOKING_DATABASE));
             for(Booking b : list) {
-                pw.write(new Integer(b.getId()).toString()); pw.write("|");
-                pw.write(b.getTransactionId()); pw.write("|");
-                pw.write(new Integer(b.getShowtimeId()).toString()); pw.write("|");
-                pw.write(b.getCustomerName()); pw.write("|");
-                pw.write(b.getCustomerHP()); pw.write("|");
-                pw.write(b.getCustomerEmail()); pw.write("|");
-                pw.write(new Integer(b.getCustomerAge()).toString()); pw.write("|");
+                pw.write(new Integer(b.getId()).toString()); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(b.getTransactionId()); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(new Integer(b.getShowtimeId()).toString()); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(b.getCustomerName()); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(b.getCustomerHP()); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(b.getCustomerEmail()); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(new Integer(b.getCustomerAge()).toString()); pw.write(Constant.FIELD_SEPARATOR);
                 SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                pw.write(dateFormatter.format(b.getTime())); pw.write("|");
+                pw.write(dateFormatter.format(b.getTime())); pw.write(Constant.FIELD_SEPARATOR);
                 StringBuffer seatList = new StringBuffer();
                 for(Integer i : b.getSeatNumbers()) {
                     seatList.append(i.toString());
                     seatList.append("*");
                 }
-                pw.write(seatList.toString()); pw.write("|");
-                pw.write(new Double(b.getPrice()).toString()); pw.write("|");
+                pw.write(seatList.toString()); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(new Double(b.getPrice()).toString()); pw.write(Constant.FIELD_SEPARATOR);
                 pw.write("\r\n");
             }
             pw.close();
@@ -53,7 +53,7 @@ public class BookingDB {
             Scanner sc = new Scanner(new File(filename));
             while (sc.hasNext()) {
                 
-                StringTokenizer s = new StringTokenizer(sc.nextLine(),"|");
+                StringTokenizer s = new StringTokenizer(sc.nextLine(),Constant.FIELD_SEPARATOR);
                 /* 
                  * Booking input format
                  * id|transaction_id|showtime_id|customer_name|customer_hp|customer_email|

@@ -17,10 +17,10 @@ public class CinemaDB {
         try {
             PrintWriter pw = new PrintWriter(new File(Constant.DATABASE_PATH + Constant.CINEMA_DATABASE));
             for(Cinema c : list) {
-                pw.write(new Integer(c.getId()).toString()); pw.write("|");
-                pw.write(new Integer(c.getCinemaClass()).toString()); pw.write("|");
-                pw.write(c.getName()); pw.write("|");
-                pw.write(new Integer(c.getCineplexId()).toString()); pw.write("|");
+                pw.write(new Integer(c.getId()).toString()); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(new Integer(c.getCinemaClass()).toString()); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(c.getName()); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(new Integer(c.getCineplexId()).toString()); pw.write(Constant.FIELD_SEPARATOR);
                 pw.write(c.getCinemaCode()); pw.write("\r\n");
             }
             pw.close();
@@ -36,7 +36,7 @@ public class CinemaDB {
             Scanner sc = new Scanner(new File(filename));
             while (sc.hasNext()) {
                 
-                StringTokenizer s = new StringTokenizer(sc.nextLine(),"|");
+                StringTokenizer s = new StringTokenizer(sc.nextLine(),Constant.FIELD_SEPARATOR);
                 /* 
                  * Cinema input format
                  * id|class|name|CineplexID|code
