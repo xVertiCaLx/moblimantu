@@ -34,12 +34,12 @@ public class Constant {
     // Cinema Type Class
     public static int CINEMA_REGULAR = 0;
     public static int CINEMA_VIP = 1;
-    public static String CINEMA_CLASS[] = {"Regular","VIP"};
+    public static String CINEMA_CLASS[] = {"Regular", "Plantium Movie Suite"};
     
     // Status Type Template
     public static int MOVIE_STATUS_COMING_SOON = 0;
     public static int MOVIE_STATUS_PREVIEW = 1;
     public static int MOVIE_STATUS_NOW_SHOWING = 2;
     public static int MOVIE_STATUS_END_OF_SHOWING = 3; // delete movie
-    public static String MOVIE_STATUS[] = {"Coming Soon","Preview","Now Showing","End of Showing"};
+    public static String MOVIE_STATUS[] = {"Coming Soon", "Preview", "Now Showing", "End of Showing"};
 }

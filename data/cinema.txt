@@ -1,2 +1,2 @@
-1|Platium Movie Suites|Golden Villages - Room 5|1|GV|0
-2|Platium Movie Suites|Golden Villages - Room 5|1|GV|1
+1|0|Golden Villages - Room 5|1|GV|0
+2|1|Golden Villages - Room 5|1|GV|1
