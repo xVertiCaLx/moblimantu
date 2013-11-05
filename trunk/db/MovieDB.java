@@ -20,10 +20,10 @@ public class MovieDB {
         {
             PrintWriter pw = new PrintWriter(new File(Constant.DATABASE_PATH + Constant.MOVIE_DATABASE));
             for(Movie m : list) {
-                pw.write(new Integer(m.getId()).toString()); pw.write("|");
-                pw.write(new Integer(m.getType()).toString()); pw.write("|");
-                pw.write(m.getName()); pw.write("|");
-                pw.write(new Integer(m.getStatus()).toString()); pw.write("|");
+                pw.write(new Integer(m.getId()).toString()); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(new Integer(m.getType()).toString()); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(m.getName()); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(new Integer(m.getStatus()).toString()); pw.write(Constant.FIELD_SEPARATOR);
                 pw.write(new Double(m.getRating()).toString()); pw.write("\r\n");
             }
             pw.close();
@@ -38,7 +38,7 @@ public class MovieDB {
             Scanner sc = new Scanner(new File(filename));
             while (sc.hasNext()) {
                 
-                StringTokenizer s = new StringTokenizer(sc.nextLine(),"|");
+                StringTokenizer s = new StringTokenizer(sc.nextLine(),Constant.FIELD_SEPARATOR);
                 /* 
                  * movie input format 
                  * id|type|name|status

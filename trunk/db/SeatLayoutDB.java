@@ -22,17 +22,17 @@ public class SeatLayoutDB {
         {
             PrintWriter pw = new PrintWriter(new File(Constant.DATABASE_PATH + Constant.SEAT_LAYOUT_DATABASE));
             for(SeatLayout sl : list) {
-                pw.write(new Integer(sl.getSeatLayoutId()).toString()); pw.write("|");
-                pw.write(new Integer(sl.getLayoutTemplate()).toString()); pw.write("|");
+                pw.write(new Integer(sl.getSeatLayoutId()).toString()); pw.write(Constant.FIELD_SEPARATOR);
+                pw.write(new Integer(sl.getLayoutTemplate()).toString()); pw.write(Constant.FIELD_SEPARATOR);
                 StringBuffer seatStatus = new StringBuffer();
-                seatStatus.append("*");
+                seatStatus.append(Constant.LIST_SEPARATOR);
                 for(int i = 0; i < sl.getLength(); i++) {
                     for(int j = 0; j < sl.getWidth(); j++) 
                     if (sl.isSeatBooked(i, j)) {
                         seatStatus.append(i);
-                        seatStatus.append("*");
+                        seatStatus.append(Constant.LIST_SEPARATOR);
                         seatStatus.append(j);
-                        seatStatus.append("*");
+                        seatStatus.append(Constant.LIST_SEPARATOR);
                     }
                 }
                 pw.write(seatStatus.toString()); pw.write("\r\n");
@@ -51,7 +51,7 @@ public class SeatLayoutDB {
             Scanner sc = new Scanner(new File(filename));
             while (sc.hasNext()) {
                 
-                StringTokenizer s = new StringTokenizer(sc.nextLine(),"|");
+                StringTokenizer s = new StringTokenizer(sc.nextLine(),Constant.FIELD_SEPARATOR);
                 /* 
                  * Layout input format 
                  * id|tempalte_id| list of booking: seat1*seat2* ...*seat
@@ -62,7 +62,7 @@ public class SeatLayoutDB {
                 
                 SeatLayout sl = new SeatLayout(seatLayoutId, seatLayoutTemplateId, seatLayoutSeats);
                 if (s.hasMoreTokens()) {
-                    StringTokenizer seatTaken = new StringTokenizer(s.nextToken(),"*");
+                    StringTokenizer seatTaken = new StringTokenizer(s.nextToken(),Constant.LIST_SEPARATOR);
                     while (seatTaken.hasMoreTokens()) {
                         int X = Integer.parseInt(seatTaken.nextToken());
                         int Y = Integer.parseInt(seatTaken.nextToken());

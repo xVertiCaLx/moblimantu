@@ -18,7 +18,7 @@ public class CineplexDB {
         try {
             PrintWriter pw = new PrintWriter(new File(Constant.DATABASE_PATH + Constant.CINEPLEX_DATABASE));
             for(Cineplex c : list) {
-                pw.write(new Integer(c.getId()).toString()); pw.write("|");
+                pw.write(new Integer(c.getId()).toString()); pw.write(Constant.FIELD_SEPARATOR);
                 pw.write(c.getName()); pw.write("\r\n");
             }
             pw.close();
@@ -34,7 +34,7 @@ public class CineplexDB {
             Scanner sc = new Scanner(new File(filename));
             while (sc.hasNext()) {
                 
-                StringTokenizer s = new StringTokenizer(sc.nextLine(),"|");
+                StringTokenizer s = new StringTokenizer(sc.nextLine(),Constant.FIELD_SEPARATOR);
                 /*
                  * Cineplex Input format
                  * id|name
