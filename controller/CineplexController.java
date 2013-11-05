@@ -17,7 +17,7 @@ public class CineplexController {
     
     /* Get a specific Cineplex with given Id */
     public static Cineplex getCineplexById(int Id) {
-        LinkedList<Cineplex> list = new LinkedList<Cineplex>();
+        LinkedList<Cineplex> list = CineplexDB.getCineplexList();
         for(Cineplex c : list) {
             if (c.getId() == Id)  return c;
         }

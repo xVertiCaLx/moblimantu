@@ -4,6 +4,8 @@ import db.BookingDB;
 import entity.Booking;
 import factory.BookingFactory;
 import java.util.LinkedList;
+import page.ConfirmBookingSubPage;
+import utils.Common;
 
 public class BookingController {
     
@@ -23,11 +25,9 @@ public class BookingController {
         /* Create a booking given the data */
         Booking b = BookingFactory.createNewInstance(showtimeId, customerName, customerHP, customerEmail, customerAge, seatNumbers);
         
-        /********************NOT IMPLEMENTED YET********************/
         /* Display the invoice to the user, confirm booking */
-        
-        /***********************************************************/
-        
+        boolean confirm = ConfirmBookingSubPage.getInstance().getConfirmation(b);
+        if (!confirm) return false;
         
         /*******************NOT IMPLEMENTED YET*********************/
         /* Enquiry making payment*/
@@ -36,6 +36,10 @@ public class BookingController {
         
         /* On successful, add the booking to the list */
         addBooking(b);
+        
+        /**********************NOT IMPLEMENTED YET ****************/
+        /* Update the seat layout of show time*/
+        /**********************************************************/
         return true;
     }
     
@@ -75,5 +79,16 @@ public class BookingController {
         for(Booking b: list) 
             if (b.getShowtimeId() == showtimeId) result.add(b);
         return result;
+    }
+    
+    //unit test for booking controller
+    public static void main(String[] args) {
+        Common.initDB();
+        LinkedList<Integer> seats = new LinkedList<Integer>();
+        seats.add(new Integer(3));
+        seats.add(new Integer(4));
+        seats.add(new Integer(5));
+        makeBooking(1,"Pham Quang Vu","96130325","ConanKudo5@gmail.com",20,seats);
+        
     }
 }

@@ -78,8 +78,6 @@ public class MOBLIMA {
             unitTestDB();
         else {
             Common.initDB();
-            Scanner scanner = new Scanner(System.in);
-            References.setInputStream(scanner);
             MainPage.getInstance().launch();
         }
     }

@@ -20,7 +20,7 @@ public class BookingFactory {
         Date time = new Date();
         
         /* Calculate the price */
-        double price = PriceHelper.calculatePrice(showtimeId, customerAge);
+        double price = PriceHelper.calculatePrice(showtimeId, customerAge) * seatNumbers.size();
         
         return new Booking(bookingId, transactionId, showtimeId, customerName,
                             customerHP, customerEmail, customerAge, time, seatNumbers, price);
