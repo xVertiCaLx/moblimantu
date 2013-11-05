@@ -42,6 +42,7 @@ public class ManagementPage {
         if (StaffController.authenticate(userName, password)) return true;
         return false;
     }
+    
     public void launch() {
         int choice = 0;
         do {
@@ -85,10 +86,10 @@ public class ManagementPage {
             System.out.println("Adding movie ...");
             System.out.print("Movie name: ");
             String name = sc.nextLine();
-            System.out.print("Movie type: ");
-            String type = sc.nextLine();
-            System.out.print("Movie status: ");
-            String status = sc.nextLine();
+            System.out.print("Movie type (0 - Regular, 1 - BlockBuster, 2 - 3D Movie): ");
+            int type = Integer.parseInt(sc.nextLine());
+            System.out.print("Movie status (0 - Coming Soon, 1 - Preview, 2 - Now Showing, 3 - End of Showing):");
+            int status = Integer.parseInt(sc.nextLine());
             System.out.print("Movie rating: ");
             double rating = Double.parseDouble(sc.nextLine());
             MovieController.addMovie(type, name, status, rating);
@@ -122,12 +123,12 @@ public class ManagementPage {
                         newMovie.setName(newTittle);
                         MovieController.editMovie(movieId, newMovie);
                         break;
-                case 2: System.out.print("New movie type: ");
-                        String newType = sc.nextLine();
+                case 2: System.out.print("New movie type (0 - Regular, 1 - BlockBuster, 2 - 3D Movie): ");
+                        int newType = Integer.parseInt(sc.nextLine());
                         newMovie.setType(newType);
                         break;
-                case 3: System.out.print("New movie status: ");
-                        String newStatus = sc.nextLine();
+                case 3: System.out.print("New movie status (0 - Coming Soon, 1 - Preview, 2 - Now Showing, 3 - End of Showing): ");
+                        int newStatus = Integer.parseInt(sc.nextLine());
                         newMovie.setStatus(newStatus);
                         break;
                 case 4: System.out.print("New movie rating: ");
@@ -176,6 +177,7 @@ public class ManagementPage {
             choice = Integer.parseInt(sc.nextLine());
         } while (choice != 2);
     }
+    
     private void editShowtime() {
         LinkedList list;
         int choice = 0;
