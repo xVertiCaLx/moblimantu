@@ -3,13 +3,9 @@ package controller;
 import db.ShowtimeDB;
 import entity.Showtime;
 import factory.ShowtimeFactory;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import utils.Constant;
+import utils.Common;
 
 public class ShowtimeController {
        /* Add a Showtime  to the database & database */
@@ -73,7 +69,7 @@ public class ShowtimeController {
     }
  
     /* Return list of Showtimes with given cinemaId and movie Id */
-    public static LinkedList<Showtime> getShowtimesByCinemaAndMovie(int movieId, int cinemaId) {
+    public static LinkedList<Showtime> getShowtimesByMovieAndCinema(int movieId, int cinemaId) {
         LinkedList<Showtime> result = new LinkedList<Showtime>();
         LinkedList<Showtime> list = ShowtimeDB.getShowtimeList();
         for(Showtime s : list) {
@@ -94,8 +90,15 @@ public class ShowtimeController {
     }
     /* Unit Test part */
     public static void main(String[] args) {
-        ShowtimeDB.loadDB(Constant.DATABASE_PATH + Constant.SHOWTIME_DATABASE);
-        Date x = new Date();
-        addShowtime("2013-12-28 12:13:12",2,3);
+        Common.initDB();
+        LinkedList<Showtime> showtimeList = getShowtimeList();
+        for(Showtime st : showtimeList) {
+            System.out.println(st.getId() + " " + st.getMovieId() + " " + st.getCinemaId());
+        }
+        showtimeList = getShowtimesByMovieAndCinema(1,1);
+        for(Showtime st : showtimeList) {
+            System.out.println(st.getId() + " " + st.getMovieId() + " " + st.getCinemaId());
+        }
+        
     }
 }

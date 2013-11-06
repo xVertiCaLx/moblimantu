@@ -5,6 +5,7 @@ import entity.Cinema;
 import entity.Showtime;
 import factory.CinemaFactory;
 import java.util.LinkedList;
+import utils.Common;
 
 public class CinemaController {
     
@@ -48,6 +49,7 @@ public class CinemaController {
                     break;
                 }
             }
+            if (isValid)
             result.add(c);
         }
         return result;
@@ -56,5 +58,13 @@ public class CinemaController {
     /* Return the Cinema list */
     public static LinkedList<Cinema> getCinemaList() {
         return CinemaDB.getCinemaList();
+    }
+    
+    public static void main(String[] args) {
+        Common.initDB();
+        LinkedList<Cinema> res = getCinemasByMovie(1);
+        for(Cinema c:res) {
+            System.out.println(c.getId() + " " + c.getName());
+        }
     }
 }
