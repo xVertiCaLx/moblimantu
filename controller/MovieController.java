@@ -55,7 +55,7 @@ public class MovieController {
         LinkedList<Movie> result = new LinkedList<Movie>();
         LinkedList<Movie> list = MovieDB.getMovieList();
         for(Movie m : list) {
-            if (m.getName().compareTo(title) == 0) {
+            if (m.getName().equalsIgnoreCase(title)) {
                 result.add(m);
             }
         }

@@ -24,6 +24,7 @@ public class QueryMoviesPage {
                     break;
             case 3: System.out.print("Please enter the title of movie: ");
                     String title = sc.nextLine();
+                    System.out.println();
                     result = MovieController.getMoviesByTitle(title);
         }
         int choice = 0;
@@ -31,15 +32,17 @@ public class QueryMoviesPage {
          * display all movies in result
          */
         do {
+            System.out.println("Searching result:");
             if (result == null) {
-                System.out.print("No movie match... Enter 0 to go back to Find Movies Page: ");
+                System.out.print("No movie match. Enter 0 to go back to Movie Search Engine: ");
                 choice = Integer.parseInt(sc.nextLine());
             } else {
                 for (int index = 1; index <= result.size(); index++) {
                     System.out.println(index + ". " + result.get(index - 1).getName());
                 }
-                System.out.print("Enter one the the above movie or 0 to go back to Find Movies Page: ");
+                System.out.print("Choose a movie to book (1-" + result.size() + "), 0 to go back: ");
                 choice = Integer.parseInt(sc.nextLine());
+                System.out.println();
                 if (1 <= choice && choice <= result.size()) {
                     System.out.println("We have not implemented this feature yet. Poor you :))");
                 }

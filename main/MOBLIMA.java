@@ -73,12 +73,7 @@ public class MOBLIMA {
     }
     public static void main(String[] args) {
         // TODO code application logic here
-        int choice = 1;
-        if (choice == 0)
-            unitTestDB();
-        else {
-            Common.initDB();
-            MainPage.getInstance().launch();
-        }
+        Common.initDB();
+        MainPage.getInstance().launch();
     }
 }
