@@ -67,7 +67,6 @@ public class SeatLayout {
             }
         return true;
     }
-    
     public void setBooked(int X, int Y) {
         seats[X][Y] = SEAT_BOOKED;
     }
@@ -75,8 +74,24 @@ public class SeatLayout {
         seats[X][Y] = SEAT_AVAILABLE;
     }
     
+    public int getRow(int seatNumbers) {
+        return (seatNumbers-1) / seats[0].length;
+    }
+    public int getCol(int seatNumbers) {
+        return (seatNumbers-1) % seats[0].length;
+    }
+    public int getSeatNumbers(int row, int col) {
+        return row * seats[0].length + col + 1;
+    }
     /**********IMPLEMENTED THIS ONE TO SUPPORT UNIT TEST ***********/
     public void display() {
-        
+        for(int i = 0; i < seats.length; i++) {
+            for(int j = 0; j < seats[0].length; j++) {
+                if (isSeatAvailable(i, j)) System.out.print("[A]");
+                else if (isSeatBooked(i, j)) System.out.print("[x]");
+                else System.out.print(" . ");
+            }
+            System.out.println();
+        }
     }
 }

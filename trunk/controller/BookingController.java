@@ -2,10 +2,14 @@ package controller;
 
 import db.BookingDB;
 import entity.Booking;
+import entity.SeatLayout;
+import entity.Showtime;
 import factory.BookingFactory;
+import helper.PaymentHelper;
 import java.util.LinkedList;
 import page.ConfirmBookingSubPage;
 import utils.Common;
+import utils.Constant;
 
 public class BookingController {
     
@@ -21,24 +25,46 @@ public class BookingController {
     /* IMPORTANT FUNCTION: MAKE A BOOKING */
     public static boolean makeBooking(int showtimeId, String customerName, 
                                        String customerHP, String customerEmail, 
-                                       int customerAge, LinkedList<Integer> seatNumbers) {
+                                       int customerAge, LinkedList<Integer> bookedSeatNumbers) {
         /* Create a booking given the data */
-        Booking b = BookingFactory.createNewInstance(showtimeId, customerName, customerHP, customerEmail, customerAge, seatNumbers);
-        
+        Booking b = BookingFactory.createNewInstance(showtimeId, customerName, customerHP, customerEmail, customerAge, bookedSeatNumbers);
+        Showtime st = ShowtimeController.getShowtimeById(b.getShowtimeId());
         /* Display the invoice to the user, confirm booking */
         boolean confirm = ConfirmBookingSubPage.getInstance().getConfirmation(b);
         if (!confirm) return false;
         
+        /*********************CheckingSeat availability *************/
+        SeatLayout sl = SeatLayoutController.getSeatLayoutById(st.getSeatLayoutId());
+        for(Integer seat : bookedSeatNumbers) {
+            int row = sl.getRow(seat.intValue());
+            int col = sl.getCol(seat.intValue());
+            if (sl.isSeatAvailable(row, col) == false) {
+                // seat is not available
+                //     System.out.println("Seat is not available");
+                return false;
+            }
+        }
         /*******************NOT IMPLEMENTED YET*********************/
-        /* Enquiry making payment*/
+        /*************** Enquiry making payment*********************/
+        
+        String transactionId = PaymentHelper.makePayment();
+        if (transactionId.equalsIgnoreCase(Constant.INVALID_TRANSACTION)) return false; //transaction unsuccessful
         
         /***********************************************************/
         
         /* On successful, add the booking to the list */
         addBooking(b);
         
-        /**********************NOT IMPLEMENTED YET ****************/
         /* Update the seat layout of show time*/
+        sl = SeatLayoutController.getSeatLayoutById(st.getSeatLayoutId());
+        for(Integer seat : bookedSeatNumbers) {
+            int row = sl.getRow(seat.intValue());
+            int col = sl.getCol(seat.intValue());
+            sl.setBooked(row, col);
+        }
+        sl.display();
+        SeatLayoutController.updateSeatLayoutById(st.getSeatLayoutId(), sl);
+        SeatLayoutController.commit();
         /**********************************************************/
         return true;
     }
@@ -85,10 +111,8 @@ public class BookingController {
     public static void main(String[] args) {
         Common.initDB();
         LinkedList<Integer> seats = new LinkedList<Integer>();
-        seats.add(new Integer(3));
         seats.add(new Integer(4));
-        seats.add(new Integer(5));
-        makeBooking(1,"Pham Quang Vu","96130325","ConanKudo5@gmail.com",20,seats);
+        makeBooking(4,"Pham Quang Vu","96130325","ConanKudo5@gmail.com",20,seats);
         
     }
 }
