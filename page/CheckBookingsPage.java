@@ -19,9 +19,9 @@ public class CheckBookingsPage {
     public void captureInformation() {
         Scanner sc = References.getInputStream();        
         System.out.println("Please enter your information below");
-        System.out.print("Email address: ");
+        System.out.print("Email address:\t");
         email = sc.nextLine();
-        System.out.println("Mobile number: ");
+        System.out.print("Mobile number:\t");
         handPhone = sc.nextLine();
     }
     
@@ -44,7 +44,18 @@ public class CheckBookingsPage {
                 case 2: result = BookingController.getBookingStatus(email, handPhone);
                         break;
             }
+            if (result == null || result.size() == 0) {
+                System.out.println("There is no result match with your information");
+                continue;
+            }
             BookingPrinter.getInstance().printList(result);
+            System.out.print("Choose a booking to see booking invoice (1-" + result.size() + "), 0 to cancel: ");
+            choice = Integer.parseInt(sc.nextLine());
+            if (1 <= choice && choice <= result.size()) {
+                BookingPrinter.getInstance().printInstance(result.get(choice - 1));
+                System.out.println("Enter anything to continue ...");
+                String s = sc.nextLine();
+            }
         } while (choice != 3);        
     }
 }
