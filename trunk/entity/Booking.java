@@ -5,6 +5,7 @@ import controller.MovieController;
 import controller.ShowtimeController;
 import java.util.Date;
 import java.util.LinkedList;
+import utils.Constant;
 
 public class Booking {
     private int id;
@@ -114,6 +115,9 @@ public class Booking {
         this.price = price;
     }
     
+    public boolean isPaid() {
+        return !(Constant.NOT_AVAILABLE.equals(transactionId));
+    }
     @Override
     public String toString() {
         Showtime st = ShowtimeController.getShowtimeById(showtimeId);

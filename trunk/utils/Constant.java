@@ -40,4 +40,6 @@ public class Constant {
     
     // Payment response
     public static String FAILED_TRANSACTION = "Payment failed";
+    //Transaction not available
+    public static String NOT_AVAILABLE = "Not available yet";
 }

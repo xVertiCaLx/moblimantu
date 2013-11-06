@@ -4,11 +4,12 @@ import controller.BookingController;
 import entity.Booking;
 import java.util.LinkedList;
 import java.util.Scanner;
+import printer.BookingPrinter;
 import utils.References;
 
 public class CheckBookingsPage {
     private static final CheckBookingsPage INSTANCE = new CheckBookingsPage();
-    private String email, handPhone, bookingRef;
+    private String email, handPhone;
     
     private CheckBookingsPage(){}
     public static CheckBookingsPage getInstance() {
@@ -22,8 +23,6 @@ public class CheckBookingsPage {
         email = sc.nextLine();
         System.out.println("Mobile number: ");
         handPhone = sc.nextLine();
-        System.out.println("Booking references: ");
-        bookingRef = sc.nextLine();        
     }
     
     public void launch() {
@@ -40,14 +39,12 @@ public class CheckBookingsPage {
             captureInformation();
             LinkedList<Booking> result = null;
             switch(choice) {
-                case 1: result = BookingController.getBookingHistory(email, handPhone, bookingRef);
+                case 1: result = BookingController.getBookingHistory(email, handPhone);
                         break;
-                case 2: result = BookingController.getBookingStatus(email, handPhone, bookingRef);
+                case 2: result = BookingController.getBookingStatus(email, handPhone);
                         break;
             }
-            for(Booking booking: result) {
-                System.out.println(booking.toString());
-            }
+            BookingPrinter.getInstance().printList(result);
         } while (choice != 3);        
     }
 }

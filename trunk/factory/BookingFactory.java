@@ -5,6 +5,7 @@ import helper.PriceHelper;
 import java.util.Date;
 import java.util.LinkedList;
 import utils.Common;
+import utils.Constant;
 
 public class BookingFactory {
     
@@ -15,7 +16,7 @@ public class BookingFactory {
         int bookingId = Common.genBookingId();
         
         /* Later this field is replaced by payment method*/
-        String transactionId = "NOT_AVAILABLE_YET";
+        String transactionId = Constant.NOT_AVAILABLE;
         
         Date time = new Date();
         
