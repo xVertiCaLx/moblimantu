@@ -37,4 +37,7 @@ public class Constant {
     public static int MOVIE_STATUS_NOW_SHOWING = 2;
     public static int MOVIE_STATUS_END_OF_SHOWING = 3; // delete movie
     public static String MOVIE_STATUS[] = {"Coming Soon", "Preview", "Now Showing", "End of Showing"};
+    
+    // Payment response
+    public static String INVALID_TRANSACTION = "NOT_AVAILABLE_YET";
 }
