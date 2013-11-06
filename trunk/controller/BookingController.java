@@ -6,6 +6,7 @@ import entity.SeatLayout;
 import entity.Showtime;
 import factory.BookingFactory;
 import helper.PaymentHelper;
+import java.util.Date;
 import java.util.LinkedList;
 import page.ConfirmBookingSubPage;
 import utils.Common;
@@ -79,12 +80,11 @@ public class BookingController {
     }
     
     /*          Get all bookings for an user            */
-    public static LinkedList<Booking> getBookingByUser(String customerName, String customerEmail, String customerHP) {
+    public static LinkedList<Booking> getBookingByUser(String customerEmail, String customerHP) {
         LinkedList<Booking> list = BookingDB.getBookingList();
         LinkedList<Booking> result = new LinkedList<Booking>();
         for (Booking b: list){
-            if (b.getCustomerName().compareToIgnoreCase(customerName) == 0 &&
-                b.getCustomerEmail().compareToIgnoreCase(customerEmail) == 0 && 
+            if (b.getCustomerEmail().compareToIgnoreCase(customerEmail) == 0 && 
                 b.getCustomerHP().compareToIgnoreCase(customerHP) == 0) {
                 result.add(b);
             }
@@ -93,11 +93,27 @@ public class BookingController {
     }
     
     public static LinkedList<Booking> getBookingHistory(String customerEmail, String customerHP) {
-        return null;
+        LinkedList<Booking> temp = getBookingByUser(customerEmail, customerHP);
+        LinkedList<Booking> result = new LinkedList<Booking>();        
+        Date now = new Date();
+        for (Booking b: temp) {
+            Showtime st = ShowtimeController.getShowtimeById(b.getShowtimeId());            
+            if (st.getTime().before(now)) 
+                result.add(b);
+        }
+        return result;
     }
     
     public static LinkedList<Booking> getBookingStatus(String customerEmail, String customerHP) {
-        return null;
+        LinkedList<Booking> temp = getBookingByUser(customerEmail, customerHP);
+        LinkedList<Booking> result = new LinkedList<Booking>();        
+        Date now = new Date();
+        for (Booking b: temp) {
+            Showtime st = ShowtimeController.getShowtimeById(b.getShowtimeId());
+            if (st.getTime().after(now)) 
+                result.add(b);
+        }
+        return result;
     }    
     
     /*         Return the list of booking given a showtime Id           */

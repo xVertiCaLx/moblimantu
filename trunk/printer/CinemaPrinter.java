@@ -13,7 +13,7 @@ public class CinemaPrinter implements Printer {
     @Override
     public void printList(LinkedList list) {
         for (Object cinema: list) {
-            System.out.print(((Cinema)cinema).getId() + ". " + ((Cinema)cinema).getName());
+            System.out.println(((Cinema)cinema).getId() + ". " + ((Cinema)cinema).getName());
         }
     }
 

@@ -64,7 +64,4 @@ public class BookingPrinter implements Printer {
         System.out.println("Price: \t\t" + b.getPrice() + " SGD");
         System.out.println("=========================================");        
     }
-    public static void main(String args[]) {
-        
-    }
 }

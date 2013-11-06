@@ -17,25 +17,23 @@ public class ShowtimePrinter implements Printer {
     @Override
     public void printList(LinkedList list) {
         for (Object o: list) {
-            printInstance(o);
             Showtime showtime = (Showtime)(o);
             Movie movie = MovieController.getMovieById(showtime.getMovieId());
             Cinema cinema = CinemaController.getCinemaById(showtime.getCinemaId());
-            System.out.println(showtime.getId() + ". " + showtime.getTimeStringFormat() + " " + movie.getName() + " " 
+            System.out.println(showtime.getId() + ". " + showtime.getTimeStringFormat() + " - " + movie.getName() + " - " 
                                 + cinema.getName());                    
         }
     }
 
     @Override
     public void printInstance(Object o) {
-            printInstance(o);
-            Showtime showtime = (Showtime)(o);
-            Movie movie = MovieController.getMovieById(showtime.getMovieId());
-            Cinema cinema = CinemaController.getCinemaById(showtime.getCinemaId());
-            System.out.println("ShowtimeID: " + showtime.getId());
-            System.out.println("1. Show time: " + showtime.getTimeStringFormat());
-            System.out.println("2. Cinema: " + cinema.getName() + " - ID: " + cinema.getName());
-            System.out.println("3. Movie: " + movie.getName() + " - ID: " + movie.getId());
+        Showtime showtime = (Showtime)(o);
+        Movie movie = MovieController.getMovieById(showtime.getMovieId());
+        Cinema cinema = CinemaController.getCinemaById(showtime.getCinemaId());
+        System.out.println("ShowtimeID:\t" + showtime.getId());
+        System.out.println("Show time:\t" + showtime.getTimeStringFormat());
+        System.out.println("Cinema:\t\t" + cinema.getName() + " - ID: " + cinema.getId());
+        System.out.println("Movie:\t\t" + movie.getName() + " - ID: " + movie.getId());
     }
     
 }
