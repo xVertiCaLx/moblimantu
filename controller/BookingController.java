@@ -92,11 +92,11 @@ public class BookingController {
         return result;        
     }
     
-    public static LinkedList<Booking> getBookingHistory(String customerName, String customerEmail, String customerHP) {
+    public static LinkedList<Booking> getBookingHistory(String customerEmail, String customerHP) {
         return null;
     }
     
-    public static LinkedList<Booking> getBookingStatus(String customerName, String customerEmail, String customerHP) {
+    public static LinkedList<Booking> getBookingStatus(String customerEmail, String customerHP) {
         return null;
     }    
     
@@ -118,8 +118,7 @@ public class BookingController {
         SeatLayout sl = SeatLayoutController.getSeatLayoutById(seatLayoutId);
         sl.display();
         LinkedList<Integer> seats = new LinkedList<Integer>();
-        seats.add(new Integer(20));
-        seats.add(new Integer(24));
+        seats.add(new Integer(19));
         makeBooking(showtimeId,"Pham Quang Vu","96130325","ConanKudo5@gmail.com",20,seats);
         
     }
