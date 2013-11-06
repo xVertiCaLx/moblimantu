@@ -39,5 +39,5 @@ public class Constant {
     public static String MOVIE_STATUS[] = {"Coming Soon", "Preview", "Now Showing", "End of Showing"};
     
     // Payment response
-    public static String INVALID_TRANSACTION = "NOT_AVAILABLE_YET";
+    public static String FAILED_TRANSACTION = "Payment failed";
 }

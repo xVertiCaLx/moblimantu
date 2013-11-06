@@ -47,9 +47,9 @@ public class BookingController {
         /*******************NOT IMPLEMENTED YET*********************/
         /*************** Enquiry making payment*********************/
         
-        String transactionId = PaymentHelper.makePayment();
-        if (transactionId.equalsIgnoreCase(Constant.INVALID_TRANSACTION)) return false; //transaction unsuccessful
-        
+        String transactionId = PaymentHelper.makePayment(b);
+        if (transactionId.equalsIgnoreCase(Constant.FAILED_TRANSACTION)) return false; //transaction unsuccessful
+        b.setTransactionId(transactionId);
         /***********************************************************/
         
         /* On successful, add the booking to the list */
@@ -116,9 +116,8 @@ public class BookingController {
         SeatLayout sl = SeatLayoutController.getSeatLayoutById(seatLayoutId);
         sl.display();
         LinkedList<Integer> seats = new LinkedList<Integer>();
-        seats.add(new Integer(10));
-        seats.add(new Integer(16));
-        seats.add(new Integer(14));
+        seats.add(new Integer(20));
+        seats.add(new Integer(24));
         makeBooking(showtimeId,"Pham Quang Vu","96130325","ConanKudo5@gmail.com",20,seats);
         
     }
