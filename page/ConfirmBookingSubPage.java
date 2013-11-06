@@ -37,15 +37,15 @@ public class ConfirmBookingSubPage {
         Movie m = MovieController.getMovieById(st.getMovieId());
         
         System.out.println("=========================================");
-        System.out.println("BOOKING INVOICE ");
-        System.out.println("Booking Id: " + b.getId());
-        System.out.println("Customer: " + b.getCustomerName());
-        System.out.println("Email: " + b.getCustomerEmail());
-        System.out.println("Movie name: " + m.getName());
-        System.out.println("Cineplex: " + cx.getName());
-        System.out.println("Cinema: " + c.getName());
-        System.out.println("Time: " + st.getTimeStringFormat());
-        System.out.print("Seat: ");
+        System.out.println("\tBOOKING INVOICE ");
+        System.out.println("Booking Id: \t" + b.getId());
+        System.out.println("Customer: \t" + b.getCustomerName());
+        System.out.println("Email: \t\t" + b.getCustomerEmail());
+        System.out.println("Movie name: \t" + m.getName());
+        System.out.println("Cineplex: \t" + cx.getName());
+        System.out.println("Cinema: \t" + c.getName());
+        System.out.println("Time: \t\t" + st.getTimeStringFormat());
+        System.out.print("Seat: \t\t");
         LinkedList<Integer> seats = b.getSeatNumbers();
         boolean firstSeat = true;
         for(Integer seat : seats) {
@@ -54,7 +54,7 @@ public class ConfirmBookingSubPage {
             firstSeat = false;
         }
         System.out.println();
-        System.out.println("Price: " + b.getPrice() + " SGD");
+        System.out.println("Price: \t\t" + b.getPrice() + " SGD");
         System.out.println("=========================================");
         
         System.out.print("Confirm your Booking (y/n)? ");

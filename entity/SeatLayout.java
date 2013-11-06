@@ -85,13 +85,20 @@ public class SeatLayout {
     }
     /**********IMPLEMENTED THIS ONE TO SUPPORT UNIT TEST ***********/
     public void display() {
+        /* Adjust the tab to display the layout nicely */
+        for(int i = 0; i < (seats[0].length) / 2-1; i++) System.out.print("\t");
+        if (seats[0].length % 2 == 0) System.out.println("[--SCREEN--]");
+        else System.out.println("[------SCREEN------]");
+        
         for(int i = 0; i < seats.length; i++) {
             for(int j = 0; j < seats[0].length; j++) {
-                if (isSeatAvailable(i, j)) System.out.print("[A]");
-                else if (isSeatBooked(i, j)) System.out.print("[x]");
-                else System.out.print(" . ");
+                if (isSeatAvailable(i, j)) System.out.print("[" + getSeatNumbers(i,j) + "]\t");
+                else if (isSeatBooked(i, j)) System.out.print("[*]\t");
+                else System.out.print(" . \t");
             }
             System.out.println();
         }
+        for(int i = 0; i < seats[0].length-2; i++) System.out.print("\t");
+        System.out.println("[*] = Seat booked");
     }
 }
