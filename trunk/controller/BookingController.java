@@ -110,9 +110,16 @@ public class BookingController {
     //unit test for booking controller
     public static void main(String[] args) {
         Common.initDB();
+        int showtimeId = 4;
+        Showtime st = ShowtimeController.getShowtimeById(showtimeId);
+        int seatLayoutId = st.getSeatLayoutId();
+        SeatLayout sl = SeatLayoutController.getSeatLayoutById(seatLayoutId);
+        sl.display();
         LinkedList<Integer> seats = new LinkedList<Integer>();
-        seats.add(new Integer(4));
-        makeBooking(4,"Pham Quang Vu","96130325","ConanKudo5@gmail.com",20,seats);
+        seats.add(new Integer(10));
+        seats.add(new Integer(16));
+        seats.add(new Integer(14));
+        makeBooking(showtimeId,"Pham Quang Vu","96130325","ConanKudo5@gmail.com",20,seats);
         
     }
 }
