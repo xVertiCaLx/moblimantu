@@ -40,11 +40,9 @@ public class BookingController {
             int col = sl.getCol(seat.intValue());
             if (sl.isSeatAvailable(row, col) == false) {
                 // seat is not available
-                //     System.out.println("Seat is not available");
                 return false;
             }
         }
-        /*******************NOT IMPLEMENTED YET*********************/
         /*************** Enquiry making payment*********************/
         
         String transactionId = PaymentHelper.makePayment(b);
@@ -62,10 +60,14 @@ public class BookingController {
             int col = sl.getCol(seat.intValue());
             sl.setBooked(row, col);
         }
-        sl.display();
+        //sl.display();
         SeatLayoutController.updateSeatLayoutById(st.getSeatLayoutId(), sl);
         SeatLayoutController.commit();
         /**********************************************************/
+        System.out.println();
+        System.out.println("Your booking is confirmed. Please keep the invoice for future reference");
+        ConfirmBookingSubPage.showDisplay(b);
+        System.out.println();
         return true;
     }
     

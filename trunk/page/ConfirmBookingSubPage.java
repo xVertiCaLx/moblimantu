@@ -29,13 +29,11 @@ public class ConfirmBookingSubPage {
     public static ConfirmBookingSubPage getInstance() {
         return INSTANCE;
     }
-    
-    public boolean getConfirmation(Booking b) {
+    public static void showDisplay(Booking b) {
         Showtime st = ShowtimeController.getShowtimeById(b.getShowtimeId());
         Cinema c = CinemaController.getCinemaById(st.getCinemaId());
         Cineplex cx = CineplexController.getCineplexById(c.getCineplexId());
         Movie m = MovieController.getMovieById(st.getMovieId());
-        
         System.out.println("=========================================");
         System.out.println("\tBOOKING INVOICE ");
         System.out.println("Booking Id: \t" + b.getId());
@@ -56,6 +54,15 @@ public class ConfirmBookingSubPage {
         System.out.println();
         System.out.println("Price: \t\t" + b.getPrice() + " SGD");
         System.out.println("=========================================");
+    }
+    
+    public boolean getConfirmation(Booking b) {
+        Showtime st = ShowtimeController.getShowtimeById(b.getShowtimeId());
+        Cinema c = CinemaController.getCinemaById(st.getCinemaId());
+        Cineplex cx = CineplexController.getCineplexById(c.getCineplexId());
+        Movie m = MovieController.getMovieById(st.getMovieId());
+        
+        showDisplay(b);
         
         System.out.print("Confirm your Booking (y/n)? ");
         Scanner sc = References.getInputStream();    
