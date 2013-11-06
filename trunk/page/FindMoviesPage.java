@@ -15,8 +15,8 @@ public class FindMoviesPage {
         int choice = 0;
         do {
             System.out.println("Movies Search Engine");                    
-            System.out.println("1. Search Now showing movie");
-            System.out.println("2. Search Coming soon and Preview movie");
+            System.out.println("1. Search Now Showing movie");
+            System.out.println("2. Search Coming Soon and Preview movie");
             System.out.println("3. Search movie by title");
             System.out.println("4. Back to main page");
             System.out.print("Please choose your options: ");
