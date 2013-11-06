@@ -4,14 +4,18 @@
  */
 package page;
 
+import controller.BookingController;
 import controller.CinemaController;
 import controller.MovieController;
+import controller.SeatLayoutController;
 import controller.ShowtimeController;
 import entity.Cinema;
 import entity.Movie;
+import entity.SeatLayout;
 import entity.Showtime;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 import utils.Common;
 import utils.References;
 
@@ -49,8 +53,61 @@ public class ShowtimeByMovieSubPage {
         if (cinemaList.size() > 0) {
             System.out.print("Choose a showtime to proceed on booking (0 to go back): ");
             int showtimeId = Integer.parseInt(sc.nextLine());
+            System.out.println();
+            launchSeatSelection(showtimeId);
         }
     }
+    
+    private void launchSeatSelection(int showtimeId) {
+        Scanner sc = References.getInputStream();
+        Showtime st = ShowtimeController.getShowtimeById(showtimeId);
+        Cinema c = CinemaController.getCinemaById(st.getCinemaId());
+        Movie m = MovieController.getMovieById(st.getMovieId());
+        SeatLayout sl = SeatLayoutController.getSeatLayoutById(st.getSeatLayoutId());
+        System.out.println("\tBOOKING YOUR SEATS");
+        System.out.println("================================");
+        System.out.println("Movie: " + m.getName());
+        System.out.println("Cinema: " + c.getName());
+        System.out.println("Time: " + st.getTimeStringFormat());
+        System.out.println("Seat Layout: ");
+        sl.display();
+        String customerName, customerEmail, customerHP;
+        int customerAge;
+        System.out.print("Name: \t\t");         customerName = sc.nextLine();
+        System.out.print("Email: \t\t");        customerEmail = sc.nextLine();
+        System.out.print("Handphone No: \t");   customerHP = sc.nextLine();
+        System.out.print("Age: \t\t");            customerAge = Integer.parseInt(sc.nextLine());
+        while (true) {
+            System.out.print("Seats (e.g: '4,5'): \t");
+            StringTokenizer s = new StringTokenizer(sc.nextLine(),",");
+            LinkedList<Integer> seats = new LinkedList<Integer>();
+            while (s.hasMoreTokens()) {
+                seats.add(new Integer(s.nextToken()));
+            }
+            if (checkAvailableSeat(seats, st) == true) {
+                System.out.println();
+                BookingController.makeBooking(showtimeId, customerName, customerHP, customerEmail, customerAge, seats);
+                break;
+            } else {
+                System.out.println("Selected seats are not available");
+                System.out.println();
+            }
+        }
+        
+    }
+    
+    public static boolean checkAvailableSeat(LinkedList<Integer> bookedSeatNumbers, Showtime st) {
+        SeatLayout sl = SeatLayoutController.getSeatLayoutById(st.getSeatLayoutId());
+        for(Integer seat : bookedSeatNumbers) {
+            int row = sl.getRow(seat.intValue());
+            int col = sl.getCol(seat.intValue());
+            if (sl.isSeatAvailable(row, col) == false) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
     //unit testing
     public static void main(String args[]) {
         Common.initDB();
