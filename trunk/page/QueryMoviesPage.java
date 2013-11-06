@@ -44,7 +44,7 @@ public class QueryMoviesPage {
                 choice = Integer.parseInt(sc.nextLine());
                 System.out.println();
                 if (1 <= choice && choice <= result.size()) {
-                    System.out.println("We have not implemented this feature yet. Poor you :))");
+                    ShowtimeByMovieSubPage.getInstance().launch(result.get(choice-1).getId());
                 }
             }
         } while (choice != 0);

@@ -1,2 +1,2 @@
 1|0|Golden Villages - Room 5|1|GV|0
-2|1|Golden Villages - Room 5|1|GV|1
+2|1|Cathay Cineplex Cineleisure Orchard|1|CCCO|1
