@@ -61,8 +61,9 @@ public class ManagementPage {
             System.out.println("2. Edit movie");
             System.out.println("3. Add showtime");
             System.out.println("4. Edit showtime");
-            System.out.println("5: Print Sale Revenue report");
-            System.out.println("6. Go back to Staff Management page");
+            System.out.println("5. Print Sale Revenue report");
+            System.out.println("6. Configure system setting");
+            System.out.println("7. Go back to Staff Management page");
             System.out.print("Please choose your option: ");
             choice = Integer.parseInt(sc.nextLine());
             switch (choice) {
@@ -76,8 +77,10 @@ public class ManagementPage {
                         break;
                 case 5: printReport();
                         break;
+                case 6: configureSetting();
+                        break;
             }
-        } while (choice != 6);
+        } while (choice != 7);
     }
     
     private void addMovie() {
@@ -98,5 +101,9 @@ public class ManagementPage {
     
     private void printReport() {
         PrintSaleRevenueReportPage.getInstance().launch();
+    }
+    
+    private void configureSetting() {
+        ConfigureSettingPage.getInstance().launch();
     }
 }
