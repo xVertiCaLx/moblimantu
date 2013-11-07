@@ -92,6 +92,7 @@ public class EditShowtimePage {
             }
             if (ShowtimePrinter.SHOWTIME_TIME <= choice && choice <= ShowtimePrinter.MOVIE) {
                 ShowtimeController.editShowtime(showtime.getId(), newShowtime);
+                System.out.println("Showtime editted");
             }
         } while (choice != 0);        
     }
