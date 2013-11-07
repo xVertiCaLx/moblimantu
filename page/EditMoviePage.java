@@ -18,51 +18,60 @@ import utils.References;
  */
 public class EditMoviePage {
     private static final EditMoviePage INSTANCE = new EditMoviePage();
-    
+    private Scanner sc;
     private EditMoviePage(){}
     public static EditMoviePage getInstance() {
         return INSTANCE;
     }
+    private Movie getMovieToEdit() {
+        System.out.println("List of movie in the system: ");
+        LinkedList<Movie> list = MovieController.getMovieList();        
+        MoviePrinter.getInstance().printList(list);
+        System.out.print("Enter movie (1-" + list.size() + ") to edit, enter 0 to cancel: ");
+        int index = Integer.parseInt(sc.nextLine());
+        if (1 <= index && index <= list.size()) {
+            return list.get(index - 1);        
+        }
+        return null;
+    }
+    
     public void launch() {
-        Scanner sc = References.getInputStream();
-        LinkedList<Movie> list = MovieController.getMovieList();
+        sc = References.getInputStream();        
         int choice = 0;
-        int movieId = 0;
         do {
-            System.out.println("List of movie in the system: ");
-            MoviePrinter.getInstance().printList(list);
-            System.out.print("Enter movie Id to edit, enter 0 to go back: ");
-            movieId = Integer.parseInt(sc.nextLine());
-            if (movieId == 0) break;            
-            Movie movie = MovieController.getMovieById(movieId);
-            if (movie == null) continue;
+            Movie movie = getMovieToEdit();
+            if (movie == null) break;
             MoviePrinter.getInstance().printInstance(movie);
             Movie newMovie = MovieFactory.clone(movie);
             System.out.print("Enter field to edit, enter 0 to cancel: ");
             choice = Integer.parseInt(sc.nextLine());
+            if (choice == 0) continue;
             switch(choice) {
-                case 1: System.out.print("New movie title: ");
+                case MoviePrinter.MOVIE_TITLE: 
+                        System.out.print("New movie title: ");
                         String newTittle = sc.nextLine();
                         newMovie.setName(newTittle);
-                        MovieController.editMovie(movieId, newMovie);
                         break;
-                case 2: System.out.print("New movie type (0 - Regular, 1 - BlockBuster, 2 - 3D Movie): ");
+                case MoviePrinter.MOVIE_TYPE: 
+                        System.out.print("New movie type (0 - Regular, 1 - BlockBuster, 2 - 3D Movie): ");
                         int newType = Integer.parseInt(sc.nextLine());
                         newMovie.setType(newType);
                         break;
-                case 3: System.out.print("New movie status (0 - Coming Soon, 1 - Preview, 2 - Now Showing, 3 - End of Showing): ");
+                case MoviePrinter.MOVIE_STATUS: 
+                        System.out.print("New movie status (0 - Coming Soon, 1 - Preview, 2 - Now Showing, 3 - End of Showing): ");
                         int newStatus = Integer.parseInt(sc.nextLine());
                         newMovie.setStatus(newStatus);
                         break;
-                case 4: System.out.print("New movie rating: ");
+                case MoviePrinter.MOVIE_RATING: 
+                        System.out.print("New movie rating: ");
                         double newRating = Double.parseDouble(sc.nextLine());
                         newMovie.setRating(newRating);
                         break;
             }
-            if ((1 <= choice && choice <= 4)) {
-                MovieController.editMovie(movieId, newMovie);                
+            if ((MoviePrinter.MOVIE_TITLE <= choice && choice <= MoviePrinter.MOVIE_RATING)) {
+                MovieController.editMovie(movie.getId(), newMovie);                
                 System.out.println("Movie editted\n");
             }
-        } while (movieId != 0);
+        } while (true);
     }
 }

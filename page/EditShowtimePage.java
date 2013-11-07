@@ -6,14 +6,18 @@ package page;
 
 import controller.BookingController;
 import controller.CinemaController;
+import controller.MovieController;
 import controller.ShowtimeController;
 import entity.Cinema;
+import entity.Movie;
 import entity.Showtime;
 import factory.ShowtimeFactory;
 import java.util.LinkedList;
 import java.util.Scanner;
 import printer.CinemaPrinter;
+import printer.MoviePrinter;
 import printer.ShowtimePrinter;
+import utils.Constant;
 import utils.References;
 
 /**
@@ -98,14 +102,20 @@ public class EditShowtimePage {
     }
     
     private Showtime editCinema(Showtime showtime) {
-        System.out.print("New cinema ID: ");
-        int newCinemaId = Integer.parseInt(sc.nextLine());
-        return ShowtimeFactory.createNewInstance(showtime.getTime(), showtime.getMovieId(), newCinemaId);        
+        LinkedList<Cinema> cinemaList = CinemaController.getCinemaList();
+        CinemaPrinter.getInstance().printList(cinemaList);
+        System.out.print("Choose new cinema (1-" + cinemaList.size() + ") for this showtime: ");
+        int index = Integer.parseInt(sc.nextLine());
+        Cinema cinema = cinemaList.get(index - 1);
+        return ShowtimeFactory.createNewInstance(showtime.getTime(), showtime.getMovieId(), cinema.getId());        
     }
     
     private Showtime editMovie(Showtime showtime) {
-        System.out.print("New movie ID: ");
-        int newMovieId = Integer.parseInt(sc.nextLine());
-        return ShowtimeFactory.createNewInstance(showtime.getTime(), newMovieId, showtime.getCinemaId());
+        LinkedList<Movie> movieList = MovieController.getMoviesByStatus(Constant.MOVIE_STATUS_NOW_SHOWING);
+        MoviePrinter.getInstance().printList(movieList);
+        System.out.print("Choose new movie (1-" + movieList.size() + ") for this showtime: ");
+        int index = Integer.parseInt(sc.nextLine());
+        Movie movie = movieList.get(index - 1);
+        return ShowtimeFactory.createNewInstance(showtime.getTime(), movie.getId(), showtime.getCinemaId());
     }
 }

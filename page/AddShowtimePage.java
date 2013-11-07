@@ -7,10 +7,13 @@ package page;
 import controller.CinemaController;
 import controller.MovieController;
 import controller.ShowtimeController;
+import entity.Cinema;
+import entity.Movie;
 import java.util.LinkedList;
 import java.util.Scanner;
 import printer.CinemaPrinter;
 import printer.MoviePrinter;
+import utils.Constant;
 import utils.References;
 
 /**
@@ -26,32 +29,36 @@ public class AddShowtimePage {
     }
     public void launch() {
         Scanner sc = References.getInputStream();
-        LinkedList list;
         int choice = 0;
         do {
             System.out.println("Add a showtime ...");
             /*
              * get Movie Id
              */
-            list = MovieController.getMovieList();
-            MoviePrinter.getInstance().printList(list);
-            System.out.print("Enter movie Id to add showtime, enter 0 to cancel: ");
-            int movieId = Integer.parseInt(sc.nextLine());
-            if (movieId == 0) break;
-            if (MovieController.getMovieById(movieId) == null) continue;
+            LinkedList<Movie> movieList = MovieController.getMoviesByStatus(Constant.MOVIE_STATUS_NOW_SHOWING);
+            MoviePrinter.getInstance().printList(movieList);
+            System.out.print("Enter movie (1-" + movieList.size() + ") to add showtime, enter 0 to cancel: ");
+            int mvIndex = Integer.parseInt(sc.nextLine());
+            Movie movie;
+            if (1 <= mvIndex && mvIndex <= movieList.size()) {
+                movie = movieList.get(mvIndex - 1);
+            } else break;
+            
             /*
              * get cinema Id
              */
-            list = CinemaController.getCinemaList();
-            CinemaPrinter.getInstance().printList(list);
+            LinkedList<Cinema> cinemaList = CinemaController.getCinemaList();
+            CinemaPrinter.getInstance().printList(cinemaList);
             System.out.print("Enter cinema Id to add showtime, enter 0 to cancel: ");            
-            int cinemaId = Integer.parseInt(sc.nextLine());
-            if (cinemaId == 0) break;
-            if (CinemaController.getCinemaById(cinemaId) == null) continue;
+            int cnIndex = Integer.parseInt(sc.nextLine());
+            Cinema cinema;
+            if (1 <= cnIndex && cnIndex <= cinemaList.size()) {
+                cinema = cinemaList.get(cnIndex - 1);
+            } else break;
             
             System.out.print("Enter time to show (with format YYYY-MM-DD hh:mm:ss): ");
             String time = sc.nextLine();
-            ShowtimeController.addShowtime(time, movieId, cinemaId);
+            ShowtimeController.addShowtime(time, movie.getId(), cinema.getId());
             System.out.println("Showtime added ...");
             System.out.println("1. Add another showtime");
             System.out.println("2. Go back to Staff Function page ...");

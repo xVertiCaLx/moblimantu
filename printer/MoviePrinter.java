@@ -18,16 +18,18 @@ public class MoviePrinter implements Printer {
     
     @Override
     public void printList(LinkedList list) {
-        for (Object movie: list) {
-            System.out.println(((Movie)movie).getId() + ". " + ((Movie)movie).getName());
+        for (int index = 0; index < list.size(); index ++) {
+            Movie movie = (Movie)(list.get(index));
+            System.out.println((index + 1) + ". " + movie.getName());
         }
     }
     @Override
-    public void  printInstance(Object movie) {
-        System.out.println("MovieId: " + ((Movie)movie).getId());
-        System.out.println(MOVIE_TITLE + ". Title: " + ((Movie)movie).getName());
-        System.out.println(MOVIE_TYPE + ". Type: " + ((Movie)movie).getType());
-        System.out.println(MOVIE_STATUS + ". Status: " + ((Movie)movie).getStatus());
-        System.out.println(MOVIE_RATING + ". Rating: " + ((Movie)movie).getRating());
+    public void  printInstance(Object o) {
+        Movie movie = (Movie)(o);
+        System.out.println("MovieId: " + movie.getId());
+        System.out.println(MOVIE_TITLE + ". Title: " + movie.getName());
+        System.out.println(MOVIE_TYPE + ". Type: " + movie.getType());
+        System.out.println(MOVIE_STATUS + ". Status: " + movie.getStatus());
+        System.out.println(MOVIE_RATING + ". Rating: " + movie.getRating());
     } 
 }
