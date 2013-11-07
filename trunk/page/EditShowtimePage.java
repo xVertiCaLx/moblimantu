@@ -35,34 +35,33 @@ public class EditShowtimePage {
     private Showtime getShowtimeToEdit() {
 
         /*
-         * get cinema Id
+         * get cinema
          */
         
         LinkedList<Cinema> cinemaList = CinemaController.getCinemaList();
         CinemaPrinter.getInstance().printList(cinemaList);
         
-        System.out.print("Enter Cinema Id to edit showtime, enter 0 to cancel: ");
-        int cinemaId = Integer.parseInt(sc.nextLine());
-        if (cinemaId == 0 || CinemaController.getCinemaById(cinemaId) == null) return null;
+        System.out.print("Enter Cinema (1 - " + cinemaList.size() + ") to edit showtime, enter 0 to cancel: ");
+        int index = Integer.parseInt(sc.nextLine());
+        if (!(1 <= index && index <= cinemaList.size())) return null;
+        Cinema cinema = cinemaList.get(index - 1);
         /*
          * get showtime list base on cinemaID
          */
-        LinkedList<Showtime> showtimeList = ShowtimeController.getShowtimesByCinema(cinemaId);
+        LinkedList<Showtime> showtimeList = ShowtimeController.getShowtimesByCinema(cinema.getId());
         do {
             ShowtimePrinter.getInstance().printList(showtimeList);
-            System.out.print("Enter showtime Id to edit showtime, enter 0 to cancel: ");            
+            System.out.print("Enter showtime (1 - " + showtimeList.size() + ") to edit showtime, enter 0 to cancel: ");            
+            index = Integer.parseInt(sc.nextLine());
+            if (!(1 <= index && index <= showtimeList.size())) break;
 
-            int showtimeId = Integer.parseInt(sc.nextLine());
-            if (showtimeId == 0) break;
+            Showtime showtime = showtimeList.get(index - 1);
 
-            Showtime showtime = ShowtimeController.getShowtimeById(showtimeId);
-            if (showtime == null) continue;
-
-            LinkedList bookings = BookingController.getBookingByShowtimeId(showtimeId);
+            LinkedList bookings = BookingController.getBookingByShowtimeId(showtime.getId());
             if (bookings.size() != 0) {
                 System.out.println("This showtime has some booking already. Can not be edited. Try edit another showtime");
                 continue;
-            }
+            } else return showtime;
         }   while (true);
         return null;
     }

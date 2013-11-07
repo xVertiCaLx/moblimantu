@@ -41,6 +41,7 @@ public class PrintSaleRevenueReportPage {
     
     private void reportByMovie() {
         System.out.println("Revenue report by Movie");
+        
     }
     private void reportByCineplex() {
         System.out.println("Revenue report by Cineplex");
