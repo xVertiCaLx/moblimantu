@@ -17,6 +17,7 @@ import java.util.Scanner;
 import printer.CinemaPrinter;
 import printer.MoviePrinter;
 import printer.ShowtimePrinter;
+import utils.Common;
 import utils.Constant;
 import utils.References;
 
@@ -118,5 +119,20 @@ public class EditShowtimePage {
         int index = Integer.parseInt(sc.nextLine());
         Movie movie = movieList.get(index - 1);
         return ShowtimeFactory.createNewInstance(showtime.getTime(), movie.getId(), showtime.getCinemaId());
+    }
+    
+    //Unit test 
+    public static void main(String[] args) {
+        Common.initDB();
+        int showtimeId = 1;
+        Showtime st = ShowtimeController.getShowtimeById(showtimeId);
+        ShowtimePrinter.getInstance().printInstance(st);
+        
+        //edit showtime
+        getInstance().launch();
+        
+        st = ShowtimeController.getShowtimeById(showtimeId);
+        ShowtimePrinter.getInstance().printInstance(st);
+        
     }
 }
