@@ -39,7 +39,7 @@ public class QueryMoviesPage {
                 choice = Integer.parseInt(sc.nextLine());
             } else {
                 MoviePrinter.getInstance().printList(result);
-                System.out.print("Choose a movie to book (1-" + result.size() + "), 0 to go back: ");
+                System.out.print("Choose a movie to book (1 - " + result.size() + "), 0 to go back: ");
                 choice = Integer.parseInt(sc.nextLine());
                 System.out.println();
                 if (1 <= choice && choice <= result.size()) {

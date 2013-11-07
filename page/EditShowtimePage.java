@@ -75,7 +75,8 @@ public class EditShowtimePage {
             Showtime showtime = getShowtimeToEdit();
             ShowtimePrinter.getInstance().printInstance(showtime);
             Showtime newShowtime = null;
-            System.out.print("Enter field (2 - 4) to edit, enter -1 to delete showtime, enter 0 to cancel: ");
+            System.out.print("Enter field (" + ShowtimePrinter.SHOWTIME_TIME + " - " + ShowtimePrinter.MOVIE
+                            + ") to edit, enter -1 to delete showtime, enter 0 to cancel: ");
             choice = Integer.parseInt(sc.nextLine());
             switch (choice) {
                 case-1: ShowtimeController.deleteShowtime(showtime.getId()); 
@@ -89,7 +90,7 @@ public class EditShowtimePage {
                 case ShowtimePrinter.MOVIE:
                         newShowtime = editMovie(showtime);
             }
-            if (2 <= choice && choice <= 4) {
+            if (ShowtimePrinter.SHOWTIME_TIME <= choice && choice <= ShowtimePrinter.MOVIE) {
                 ShowtimeController.editShowtime(showtime.getId(), newShowtime);
             }
         } while (choice != 0);        
@@ -104,7 +105,7 @@ public class EditShowtimePage {
     private Showtime editCinema(Showtime showtime) {
         LinkedList<Cinema> cinemaList = CinemaController.getCinemaList();
         CinemaPrinter.getInstance().printList(cinemaList);
-        System.out.print("Choose new cinema (1-" + cinemaList.size() + ") for this showtime: ");
+        System.out.print("Choose new cinema (1 - " + cinemaList.size() + ") for this showtime: ");
         int index = Integer.parseInt(sc.nextLine());
         Cinema cinema = cinemaList.get(index - 1);
         return ShowtimeFactory.createNewInstance(showtime.getTime(), showtime.getMovieId(), cinema.getId());        
@@ -113,7 +114,7 @@ public class EditShowtimePage {
     private Showtime editMovie(Showtime showtime) {
         LinkedList<Movie> movieList = MovieController.getMoviesByStatus(Constant.MOVIE_STATUS_NOW_SHOWING);
         MoviePrinter.getInstance().printList(movieList);
-        System.out.print("Choose new movie (1-" + movieList.size() + ") for this showtime: ");
+        System.out.print("Choose new movie (1 - " + movieList.size() + ") for this showtime: ");
         int index = Integer.parseInt(sc.nextLine());
         Movie movie = movieList.get(index - 1);
         return ShowtimeFactory.createNewInstance(showtime.getTime(), movie.getId(), showtime.getCinemaId());

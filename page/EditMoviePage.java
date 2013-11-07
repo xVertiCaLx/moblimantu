@@ -27,7 +27,7 @@ public class EditMoviePage {
         System.out.println("List of movie in the system: ");
         LinkedList<Movie> list = MovieController.getMovieList();        
         MoviePrinter.getInstance().printList(list);
-        System.out.print("Enter movie (1-" + list.size() + ") to edit, enter 0 to cancel: ");
+        System.out.print("Enter movie (1 - " + list.size() + ") to edit, enter 0 to cancel: ");
         int index = Integer.parseInt(sc.nextLine());
         if (1 <= index && index <= list.size()) {
             return list.get(index - 1);        
