@@ -4,6 +4,7 @@ import controller.MovieController;
 import entity.Movie;
 import java.util.LinkedList;
 import java.util.Scanner;
+import printer.MoviePrinter;
 import utils.Constant;
 import utils.References;
 
@@ -37,9 +38,7 @@ public class QueryMoviesPage {
                 System.out.print("No movie match. Enter 0 to go back to Movie Search Engine: ");
                 choice = Integer.parseInt(sc.nextLine());
             } else {
-                for (int index = 1; index <= result.size(); index++) {
-                    System.out.println(index + ". " + result.get(index - 1).getName());
-                }
+                MoviePrinter.getInstance().printList(result);
                 System.out.print("Choose a movie to book (1-" + result.size() + "), 0 to go back: ");
                 choice = Integer.parseInt(sc.nextLine());
                 System.out.println();
