@@ -6,6 +6,8 @@ package page;
 
 import controller.MovieController;
 import java.util.Scanner;
+import static page.AddMoviePage.getInstance;
+import utils.Common;
 import utils.References;
 
 /**
@@ -28,19 +30,22 @@ public class AddMoviePage {
             String name = sc.nextLine();
             System.out.print("Movie type (0 - Regular, 1 - BlockBuster, 2 - 3D Movie): ");
             int type = Integer.parseInt(sc.nextLine());
-            System.out.print("Movie status (0 - Coming Soon, 1 - Preview, 2 - Now Showing, 3 - End of Showing):");
+            System.out.print("Movie status (0 - Coming Soon, 1 - Preview, 2 - Now Showing, 3 - End of Showing): ");
             int status = Integer.parseInt(sc.nextLine());
             System.out.print("Movie rating: ");
             double rating = Double.parseDouble(sc.nextLine());
             MovieController.addMovie(type, name, status, rating);
             System.out.println();
-            System.out.println("Movie added successfully!\n");
+            System.out.println("Movie added successfully!");
             System.out.println();
             System.out.println("1. Add another movie");
             System.out.println("2. Go back to Staff Function page"); 
             System.out.print("Please choose your option: ");
             choice = Integer.parseInt(sc.nextLine());
         } while (choice == 1);
-        
+    }
+    public static void main(String[] args) {
+        Common.initDB();
+        getInstance().launch();
     }
 }
