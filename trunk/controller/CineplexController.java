@@ -28,4 +28,8 @@ public class CineplexController {
     public static LinkedList<Cineplex> getCineplexList() {
         return CineplexDB.getCineplexList();
     }
+    
+    public static LinkedList<Cineplex> getCineplexbyMovieId(int movieId) {
+        return null;
+    }
 }

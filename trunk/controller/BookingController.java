@@ -146,6 +146,33 @@ public class BookingController {
         return result;
     }
     
+    public static double getIncomeByMovieAndCinema(int movieId, int cinemaId) {
+        double totalIncome = 0;
+        LinkedList<Booking> list = BookingDB.getBookingList();
+        for(Booking b: list) {
+            int showtimeId = b.getShowtimeId();
+            Showtime st = ShowtimeController.getShowtimeById(showtimeId);
+            if (st.getMovieId() == movieId && st.getCinemaId() == cinemaId) {
+                totalIncome += b.getPrice();
+            }
+        }
+        return totalIncome;
+    }
+    public static double getIncomeByMovieAndCinemaAndYearAndMonth(int movieId, int cinemaId, int year, int month) {
+        double totalIncome = 0;
+        LinkedList<Booking> list = BookingDB.getBookingList();
+        for(Booking b: list) {
+            int showtimeId = b.getShowtimeId();
+            Showtime st = ShowtimeController.getShowtimeById(showtimeId);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(st.getTime());
+            if (st.getMovieId() == movieId && st.getCinemaId() == cinemaId &&
+                cal.get(Calendar.MONTH) == month && cal.get(Calendar.YEAR) == year) {
+                totalIncome += b.getPrice();
+            }
+        }
+        return totalIncome;
+    }
     //unit test for booking controller
     public static void main(String[] args) {
         Common.initDB();
