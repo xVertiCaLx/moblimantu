@@ -71,7 +71,7 @@ public class EditShowtimePage {
         sc = References.getInputStream();
         int choice = 0;
         do {
-            System.out.println("Edit/Update a showtime ...");            
+            System.out.println("===Edit/Update a showtime===");            
             Showtime showtime = getShowtimeToEdit();
             ShowtimePrinter.getInstance().printInstance(showtime);
             Showtime newShowtime = null;

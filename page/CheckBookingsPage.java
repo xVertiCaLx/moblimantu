@@ -5,6 +5,7 @@ import entity.Booking;
 import java.util.LinkedList;
 import java.util.Scanner;
 import printer.BookingPrinter;
+import utils.Common;
 import utils.References;
 
 public class CheckBookingsPage {
@@ -29,7 +30,7 @@ public class CheckBookingsPage {
         Scanner sc = References.getInputStream();
         int choice = 0;
         do {
-            System.out.println("Check your booking ...");                    
+            System.out.println("===CHECK YOUR BOOKING===");                    
             System.out.println("1. Check booking history");
             System.out.println("2. Check booking status");
             System.out.println("3. Back to main page");
@@ -46,16 +47,23 @@ public class CheckBookingsPage {
             }
             if (result == null || result.size() == 0) {
                 System.out.println("There is no result match with your information");
+                System.out.println();
                 continue;
             }
             BookingPrinter.getInstance().printList(result);
             System.out.print("Choose a booking to see booking invoice (1-" + result.size() + "), 0 to cancel: ");
             choice = Integer.parseInt(sc.nextLine());
+            System.out.println();
             if (1 <= choice && choice <= result.size()) {
                 BookingPrinter.getInstance().printInstance(result.get(choice - 1));
                 System.out.println("Enter anything to continue ...");
                 String s = sc.nextLine();
+                System.out.println();
             }
         } while (choice != 3);        
+    }
+    public static void main(String[] args) {
+        Common.initDB();
+        getInstance().launch();
     }
 }

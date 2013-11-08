@@ -38,7 +38,7 @@ public class ManagementPage {
     public void launch() {
         int choice = 0;
         do {
-            System.out.println("Staff Managerment ...");
+            System.out.println("===Staff Managerment===");
             System.out.println("1. Login to your account");
             System.out.println("2. Go back to main page");
             System.out.print("Please choose your option: ");            

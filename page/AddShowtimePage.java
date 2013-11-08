@@ -31,7 +31,7 @@ public class AddShowtimePage {
         Scanner sc = References.getInputStream();
         int choice = 0;
         do {
-            System.out.println("Add a showtime ...");
+            System.out.println("===Adding Showtime===");
             /*
              * get Movie Id
              */
