@@ -10,6 +10,7 @@ import factory.MovieFactory;
 import java.util.LinkedList;
 import java.util.Scanner;
 import printer.MoviePrinter;
+import utils.Common;
 import utils.References;
 
 /**
@@ -73,5 +74,11 @@ public class EditMoviePage {
                 System.out.println("Movie editted\n");
             }
         } while (true);
+    }
+    
+    // Unit Testing
+    public static void main (String[] args) {
+        Common.initDB();
+        getInstance().launch();
     }
 }

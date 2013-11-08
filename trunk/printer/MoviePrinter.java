@@ -2,6 +2,7 @@ package printer;
 
 import entity.Movie;
 import java.util.LinkedList;
+import utils.Constant;
 
 public class MoviePrinter implements Printer {
     private static final MoviePrinter INSTANCE = new MoviePrinter();
@@ -28,8 +29,8 @@ public class MoviePrinter implements Printer {
         Movie movie = (Movie)(o);
         System.out.println("MovieId: " + movie.getId());
         System.out.println(MOVIE_TITLE + ". Title: " + movie.getName());
-        System.out.println(MOVIE_TYPE + ". Type: " + movie.getType());
-        System.out.println(MOVIE_STATUS + ". Status: " + movie.getStatus());
+        System.out.println(MOVIE_TYPE + ". Type: " + Constant.MOVIE_TYPE[movie.getType()]);
+        System.out.println(MOVIE_STATUS + ". Status: " + Constant.MOVIE_STATUS[movie.getStatus()]);
         System.out.println(MOVIE_RATING + ". Rating: " + movie.getRating());
     } 
 }
