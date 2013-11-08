@@ -126,6 +126,12 @@ public class DateHelper {
         }
         return false;
     }
+    
+    public static String getDateStringFormat(Date date) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormatter.format(date.getTime());
+    }
+    
     /* Remove timing attribute */
     public static Date removeTime(Date date) {
         try {
