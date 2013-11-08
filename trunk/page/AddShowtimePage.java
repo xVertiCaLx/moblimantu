@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import printer.CinemaPrinter;
 import printer.MoviePrinter;
+import utils.Common;
 import utils.Constant;
 import utils.References;
 
@@ -65,5 +66,10 @@ public class AddShowtimePage {
             System.out.println("Please choose your option: ");
             choice = Integer.parseInt(sc.nextLine());
         } while (choice != 2);        
+    }
+    
+    public static void main(String[] args) {
+        Common.initDB();
+        getInstance().launch();
     }
 }
