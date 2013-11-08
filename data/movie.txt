@@ -1,3 +1,6 @@
-1|1|Thor|1|8.0
-2|2|Titanic|2|9.0
-3|3|The Wolverine|2|9.5
+1|0|Don Jon|2|6.5
+2|1|Thor - (Digital)|0|8.0
+3|1|Tom Yum Goong - (Digital)|1|9.0
+4|1|The Wolverine|1|9.5
+5|2|SpyKid - (3D)|2|9.8
+6|2|Avatar - (3D)|2|9.6
