@@ -6,6 +6,7 @@ import entity.SeatLayout;
 import entity.Showtime;
 import factory.BookingFactory;
 import helper.PaymentHelper;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import page.ConfirmBookingSubPage;
@@ -125,10 +126,26 @@ public class BookingController {
         return result;
     }
     
-    /*      return the list of booking in this month    */
+    /*      return the list of booking in this month        */
     public static LinkedList<Booking> getBookingInCurrentMonth() {
-        return null;
+        LinkedList<Booking> list = BookingDB.getBookingList();
+        Calendar curCal = Calendar.getInstance();
+        curCal.setTime(new Date());
+        return getBookingByMonth(curCal.get(Calendar.MONTH));
     }
+    
+    /*      return the list of booking for a specific month */
+    public static LinkedList<Booking> getBookingByMonth(int month) {
+        LinkedList<Booking> list = BookingDB.getBookingList();
+        LinkedList<Booking> result = new LinkedList<Booking>();
+        for(Booking b: list) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(b.getTime());
+            if (cal.get(Calendar.MONTH) == month) result.add(b);
+        }
+        return result;
+    }
+    
     //unit test for booking controller
     public static void main(String[] args) {
         Common.initDB();

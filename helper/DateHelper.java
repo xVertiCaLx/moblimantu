@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -12,6 +13,19 @@ import utils.Common;
 import utils.Constant;
 
 public class DateHelper {
+    public static int JANUARY = 0;
+    public static int FEBRUARY = 1;
+    public static int MARCH = 2;
+    public static int APRIL = 3;
+    public static int MAY = 4;
+    public static int JUNE = 5;
+    public static int JULY = 6;
+    public static int AUGUST = 7;
+    public static int SEPTEMBER = 8;
+    public static int OCTOBER = 9;
+    public static int NOVEMBER = 10;
+    public static int DECEMBER = 11;
+    
     private static LinkedList<Date> publicHolidays;
     
     public static void commit() {
