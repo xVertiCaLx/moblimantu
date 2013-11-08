@@ -8,6 +8,7 @@ import db.MovieDB;
 import db.SeatLayoutDB;
 import db.ShowtimeDB;
 import db.StaffDB;
+import helper.PriceHelper;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,6 +33,7 @@ public class Common {
         StaffDB.loadDB(Constant.DATABASE_PATH + Constant.STAFF_DATABASE);
         SeatLayoutDB.loadDB(Constant.DATABASE_PATH + Constant.SEAT_LAYOUT_DATABASE);
         DateHelper.initPublicHolidays();
+        PriceHelper.initPriceConfig();
         try {
             Scanner sc = new Scanner(new File(Constant.DATABASE_PATH + Constant.ID_DATABASE));
             maxMovieId = sc.nextInt();
