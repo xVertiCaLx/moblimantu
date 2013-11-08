@@ -38,7 +38,7 @@ public class AddShowtimePage {
              */
             LinkedList<Movie> movieList = MovieController.getMoviesByStatus(Constant.MOVIE_STATUS_NOW_SHOWING);
             MoviePrinter.getInstance().printList(movieList);
-            System.out.print("Enter movie (1-" + movieList.size() + ") to add showtime, enter 0 to cancel: ");
+            System.out.print("Enter the movie (1-" + movieList.size() + ") of your showtime, enter 0 to cancel: ");
             int mvIndex = Integer.parseInt(sc.nextLine());
             Movie movie;
             if (1 <= mvIndex && mvIndex <= movieList.size()) {
@@ -50,7 +50,7 @@ public class AddShowtimePage {
              */
             LinkedList<Cinema> cinemaList = CinemaController.getCinemaList();
             CinemaPrinter.getInstance().printList(cinemaList);
-            System.out.print("Enter cinema (1-" + cinemaList.size() + ") to add showtime, enter 0 to cancel: ");            
+            System.out.print("Enter the cinema (1-" + cinemaList.size() + ") of your showtime, enter 0 to cancel: ");            
             int cnIndex = Integer.parseInt(sc.nextLine());
             Cinema cinema;
             if (1 <= cnIndex && cnIndex <= cinemaList.size()) {
@@ -64,7 +64,7 @@ public class AddShowtimePage {
             System.out.println();
             System.out.println("1. Add another showtime");
             System.out.println("2. Go back to Staff Function page ...");
-            System.out.println("Please choose your option: ");
+            System.out.print("Please choose your option: ");
             choice = Integer.parseInt(sc.nextLine());
         } while (choice != 2);        
     }
