@@ -10,6 +10,7 @@ public class Constant {
     public static String STAFF_DATABASE = "staff.txt";
     public static String SEAT_LAYOUT_DATABASE = "seat_layout.txt";
     public static String PUBLIC_HOLIDAY_DATABASE = "public_holiday.txt";
+    public static String PRICE_CONFIG_DATABASE = "price_config.txt";
     public static String ID_DATABASE = "id.txt";
     
     public static String FIELD_SEPARATOR = "|";
