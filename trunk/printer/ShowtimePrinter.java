@@ -19,11 +19,11 @@ public class ShowtimePrinter implements Printer {
 
     @Override
     public void printList(LinkedList list) {
-        for (Object o: list) {
-            Showtime showtime = (Showtime)(o);
+        for (int index = 0; index < list.size(); index++) {
+            Showtime showtime = (Showtime)(list.get(index));
             Movie movie = MovieController.getMovieById(showtime.getMovieId());
             Cinema cinema = CinemaController.getCinemaById(showtime.getCinemaId());
-            System.out.println(showtime.getId() + ". " + showtime.getTimeStringFormat() + " - " + movie.getName() + " - " 
+            System.out.println((index + 1) + ". " + showtime.getTimeStringFormat() + " - " + movie.getName() + " - " 
                                 + cinema.getName());                    
         }
     }

@@ -125,6 +125,10 @@ public class BookingController {
         return result;
     }
     
+    /*      return the list of booking in this month    */
+    public static LinkedList<Booking> getBookingInCurrentMonth() {
+        return null;
+    }
     //unit test for booking controller
     public static void main(String[] args) {
         Common.initDB();
