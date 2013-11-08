@@ -1,8 +1,8 @@
-2
-2
-2
+6
+9
+3
 10
-67
+0
 10
 maximum id of all entities:
 movie
