@@ -73,6 +73,7 @@ public class EditShowtimePage {
         do {
             System.out.println("===Edit/Update a showtime===");            
             Showtime showtime = getShowtimeToEdit();
+            if (showtime == null) break;
             ShowtimePrinter.getInstance().printInstance(showtime);
             Showtime newShowtime = null;
             System.out.print("Enter field (" + ShowtimePrinter.SHOWTIME_TIME + " - " + ShowtimePrinter.MOVIE
