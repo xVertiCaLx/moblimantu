@@ -1,2 +1,9 @@
-1|0|Golden Villages - Room 5|1|GV|0
-2|1|Cathay Cineplex Cineleisure Orchard|1|CCCO|1
+1|0|Golden Village - Tampines|1|GVTS|0
+2|0|Golden Village - Jurong Point|1|GVJT|0
+3|1|Golden Village - Grand|1|GVGD|1
+4|0|Cathay Cineplex DowntownEast|2|CCDT|0
+5|0|Cathay Cineplex Jem|2|CCJM|0
+6|1|Cathay Cineplex AmkHub|2|CCAB|1
+7|0|Shaw Theatres Lido|3|STLO|0
+8|0|Shaw Theatres JCube|3|STJE|0
+9|1|Shaw Theatres Bugis|3|STBS|1
