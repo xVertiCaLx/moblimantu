@@ -22,7 +22,7 @@ public class PrintSaleRevenueReportPage {
         sc = References.getInputStream();
         int choice = 0;
         do {
-            System.out.println("Printe Sale Revenue Report page...");
+            System.out.println("===Printe Sale Revenue Report page===");
             System.out.println("1. Sale Revenue Report by movie");
             System.out.println("2. Sale Revenue Report by cineplex");            
             System.out.println("3. Sale Revenue Report by period");

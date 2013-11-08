@@ -23,7 +23,7 @@ public class AddMoviePage {
         Scanner sc = References.getInputStream();
         int choice = 0;
         do {
-            System.out.println("Adding movie ...");
+            System.out.println("===Adding movie===");
             System.out.print("Movie name: ");
             String name = sc.nextLine();
             System.out.print("Movie type (0 - Regular, 1 - BlockBuster, 2 - 3D Movie): ");
@@ -33,7 +33,9 @@ public class AddMoviePage {
             System.out.print("Movie rating: ");
             double rating = Double.parseDouble(sc.nextLine());
             MovieController.addMovie(type, name, status, rating);
-            System.out.println("Movie added\n");
+            System.out.println();
+            System.out.println("Movie added successfully!\n");
+            System.out.println();
             System.out.println("1. Add another movie");
             System.out.println("2. Go back to Staff Function page"); 
             System.out.print("Please choose your option: ");
