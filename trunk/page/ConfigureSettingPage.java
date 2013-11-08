@@ -4,7 +4,10 @@
  */
 package page;
 
+import helper.DateHelper;
 import helper.PriceHelper;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.Scanner;
 import utils.Common;
 import utils.References;
@@ -68,7 +71,36 @@ public class ConfigureSettingPage {
         }
     }
     private void configureHoliday() {
-        
+        int choice;
+        String curDate;
+        do {
+            System.out.println("===Configure public holiday===");
+            System.out.println("1. Add a public holiday");
+            System.out.println("2. Remove a public holiday");
+            System.out.print("Please choose your option (0 to go back): ");
+            choice = Integer.parseInt(sc.nextLine());
+            System.out.println();
+            if (1 <= choice && choice <= 2) {
+                LinkedList<Date> publicHolidays = DateHelper.getPublicHolidays();
+                System.out.println();
+                System.out.println("List of public holiday:");
+                for(Date d: publicHolidays) {
+                    System.out.println(DateHelper.getDateStringFormat(d));
+                }
+                switch (choice) {
+                    case 1: System.out.print("Add a new public holiday (YYYY-MM-DD): ");
+                            curDate = sc.nextLine();
+                            DateHelper.addPublicHoliday(curDate);
+                            break;
+                    case 2: System.out.print("Remove a public holiday (YYYY-MM-DD): ");
+                            curDate = sc.nextLine();
+                            DateHelper.removePublicHoliday(curDate);
+                            break;
+                }
+                System.out.println("Changes updated successfully!");
+                System.out.println();
+            }
+        } while (choice != 0);
     }
     public static void main(String[] args) {
         Common.initDB();
