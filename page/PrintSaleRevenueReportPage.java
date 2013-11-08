@@ -13,6 +13,7 @@ import entity.Showtime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
+import utils.Common;
 import utils.References;
 
 /**
@@ -90,5 +91,10 @@ public class PrintSaleRevenueReportPage {
     }
     private void reportByMonth() {
         System.out.println("Revenue report by Month");
+    }
+    
+    public static void main(String[] args) {
+        Common.initDB();
+        getInstance().launch();
     }
 }
