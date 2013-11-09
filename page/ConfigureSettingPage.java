@@ -33,6 +33,7 @@ public class ConfigureSettingPage {
             System.out.println("3. Go back to staff page");
             System.out.print("Please choose your option: ");
             choice = Integer.parseInt(sc.nextLine());
+            System.out.println();
             switch (choice) {
                 case 1: configureTicketPrice();
                         break;
@@ -74,7 +75,6 @@ public class ConfigureSettingPage {
         int choice;
         String curDate;
         do {            
-            System.out.println();
             System.out.println("===Configure public holiday===");
             System.out.println("1. See current public holiday");
             System.out.println("2. Add a public holiday");
@@ -89,6 +89,7 @@ public class ConfigureSettingPage {
                     Date d = publicHolidays.get(index);
                     System.out.println((index + 1) + ". " + DateHelper.getDateStringFormat(d));
                 }
+                System.out.println();
                 switch (choice) {
                     case 1: break;
                     case 2: System.out.print("Add a new public holiday (YYYY-MM-DD): ");
@@ -101,7 +102,10 @@ public class ConfigureSettingPage {
                             DateHelper.removePublicHoliday(DateHelper.getDateStringFormat(deletedDate));
                             break;
                 }
-                if (choice != 1) System.out.println("Changes updated successfully!");
+                if (choice != 1) {
+                    System.out.println("Changes updated successfully!");
+                    System.out.println();
+                }
             }
         } while (choice != 0);
     }
