@@ -9,6 +9,7 @@ import entity.Cinema;
 import entity.Cineplex;
 import entity.Movie;
 import entity.Showtime;
+import helper.DateHelper;
 import java.util.LinkedList;
 
 public class BookingPrinter implements Printer {
@@ -46,12 +47,13 @@ public class BookingPrinter implements Printer {
         if (b.isPaid()) {
             System.out.println("Transaction Id:\t" + b.getTransactionId());
         }        
+        System.out.println("Booking time: \t" + DateHelper.getDateStringFormat(b.getTime()));
         System.out.println("Customer: \t" + b.getCustomerName());
         System.out.println("Email: \t\t" + b.getCustomerEmail());
         System.out.println("Movie name: \t" + m.getName());
         System.out.println("Cineplex: \t" + cx.getName());
         System.out.println("Cinema: \t" + c.getName());
-        System.out.println("Time: \t\t" + st.getTimeStringFormat());
+        System.out.println("Showing time: \t" + st.getTimeStringFormat());
         System.out.print("Seat: \t\t");
         LinkedList<Integer> seats = b.getSeatNumbers();
         boolean firstSeat = true;

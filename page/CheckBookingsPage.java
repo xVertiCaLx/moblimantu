@@ -31,8 +31,8 @@ public class CheckBookingsPage {
         int choice = 0;
         do {
             System.out.println("===CHECK YOUR BOOKING===");                    
-            System.out.println("1. Check booking history");
-            System.out.println("2. Check booking status");
+            System.out.println("1. Check booking history (all of your booking)");
+            System.out.println("2. Check booking status (ongoing booking)");
             System.out.println("3. Back to main page");
             System.out.print("Please choose your options: ");
             choice = Integer.parseInt(sc.nextLine());
@@ -50,15 +50,17 @@ public class CheckBookingsPage {
                 System.out.println();
                 continue;
             }
-            BookingPrinter.getInstance().printList(result);
-            System.out.print("Choose a booking to see booking invoice (1-" + result.size() + "), 0 to cancel: ");
-            choice = Integer.parseInt(sc.nextLine());
-            System.out.println();
-            if (1 <= choice && choice <= result.size()) {
-                BookingPrinter.getInstance().printInstance(result.get(choice - 1));
+            do {
+                BookingPrinter.getInstance().printList(result);
+                System.out.print("Choose a booking to see booking invoice (1-" + result.size() + "), 0 to cancel: ");
+                choice = Integer.parseInt(sc.nextLine());
                 System.out.println();
-            }
-        } while (choice != 3);        
+                if (1 <= choice && choice <= result.size()) {
+                    BookingPrinter.getInstance().printInstance(result.get(choice - 1));
+                    System.out.println();
+                }
+            } while (choice != 0);
+        } while (true);        
     }
     public static void main(String[] args) {
         Common.initDB();
