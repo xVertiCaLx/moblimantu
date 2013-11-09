@@ -5,6 +5,7 @@ import entity.Booking;
 import entity.SeatLayout;
 import entity.Showtime;
 import factory.BookingFactory;
+import helper.DateHelper;
 import helper.PaymentHelper;
 import java.util.Calendar;
 import java.util.Date;
@@ -165,9 +166,25 @@ public class BookingController {
             int showtimeId = b.getShowtimeId();
             Showtime st = ShowtimeController.getShowtimeById(showtimeId);
             Calendar cal = Calendar.getInstance();
-            cal.setTime(st.getTime());
+            cal.setTime(b.getTime());
             if (st.getMovieId() == movieId && st.getCinemaId() == cinemaId &&
                 cal.get(Calendar.MONTH) == month && cal.get(Calendar.YEAR) == year) {
+                totalIncome += b.getPrice();
+            }
+        }
+        return totalIncome;
+    }
+    public static double getIncomeByMovieAndCinemaAndYearAndMonthAndDay(int movieId, int cinemaId, int year, int month, int day) {
+        double totalIncome = 0;
+        LinkedList<Booking> list = BookingDB.getBookingList();
+        for(Booking b: list) {
+            int showtimeId = b.getShowtimeId();
+            Showtime st = ShowtimeController.getShowtimeById(showtimeId);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(b.getTime());
+            if (st.getMovieId() == movieId && st.getCinemaId() == cinemaId &&
+                cal.get(Calendar.MONTH) == month && cal.get(Calendar.YEAR) == year && 
+                cal.get(Calendar.DATE) == day) {
                 totalIncome += b.getPrice();
             }
         }

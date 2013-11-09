@@ -13,6 +13,8 @@ import entity.Cinema;
 import entity.Cineplex;
 import entity.Movie;
 import helper.DateHelper;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.Scanner;
 import utils.Common;
@@ -60,7 +62,13 @@ public class PrintSaleRevenueReportPage {
     private void printTitle(int month, int year) {
         System.out.println(" =======================================================");
         System.out.println("|                 REVENUE REPORT\t\t\t|");
-        System.out.println("|             Month: " + DateHelper.month[month] + "     Year: " + year + "\t\t\t|" );
+        System.out.println("|             Month: " + DateHelper.MONTH[month] + "     Year: " + year + "\t\t\t|" );
+        System.out.println(" =======================================================");        
+    }
+    private void printTitle(int year) {
+        System.out.println(" =======================================================");
+        System.out.println("|                 REVENUE REPORT\t\t\t|");
+        System.out.println("|                   Year: " + year + "\t\t\t\t|" );
         System.out.println(" =======================================================");        
     }
     private int getMonth() {
@@ -82,6 +90,7 @@ public class PrintSaleRevenueReportPage {
         LinkedList<Movie> movieList = MovieController.getMovieList();
         /* get cineplex list */
         LinkedList<Cineplex> cineplexList = CineplexController.getCineplexList();
+        double totalRevenue = 0;
         for(Movie m : movieList) {
             System.out.println("Movie " + m.getName() + " statistics:");
             double totalIncome = 0;
@@ -98,29 +107,10 @@ public class PrintSaleRevenueReportPage {
             }
             System.out.println("\tTOTAL INCOME = " + totalIncome);
             System.out.println();
+            totalRevenue += totalIncome;
         }
-        /*
-        LinkedList<Booking> bookingList = getBookingInDefaultDateRange();
-        LinkedList<Movie> movieList = new LinkedList();
-        HashMap<Integer, Double> totalPrice = new HashMap();
-        double sum = 0;
-        for (Booking booking: bookingList) {
-            Showtime st = ShowtimeController.getShowtimeById(booking.getShowtimeId());
-            sum += booking.getPrice();
-            Movie mv = MovieController.getMovieById(st.getMovieId());
-            if (!totalPrice.containsKey(mv.getId())) {
-                totalPrice.put(mv.getId(), totalPrice.get(mv.getId()) + booking.getPrice());
-            }
-        }
-        int index = 0;
-        for (int movieId: totalPrice.keySet()) {
-            index++;
-            Movie mv = MovieController.getMovieById(movieId);
-            System.out.println(index + ". " + mv.getName() + " - ID: " + mv.getId());
-            System.out.println("Price taking in current month: SGD $" + totalPrice.get(movieId));
-        }
-        System.out.println("Total taking in current month: " + sum);
-        */
+        System.out.println("TOTAL REVENUE = " + totalRevenue);
+        System.out.println();
     }
     
     private void reportByCineplex() {
@@ -133,6 +123,8 @@ public class PrintSaleRevenueReportPage {
         LinkedList<Movie> movieList = MovieController.getMovieList();
         /* get cineplex list */
         LinkedList<Cineplex> cineplexList = CineplexController.getCineplexList();
+        
+        double totalRevenue = 0;
         for(Cineplex cpl : cineplexList) {
             System.out.println("Cineplex " + cpl.getName() + " statistics:");
             double totalIncome = 0;
@@ -143,20 +135,103 @@ public class PrintSaleRevenueReportPage {
                     movieIncome += BookingController.getIncomeByMovieAndCinemaAndYearAndMonth(mv.getId(), c.getId(), year, month);
                 }
                 if (movieIncome > 0) {
-                    System.out.println("\tCineplex: " + cpl.getName() + "\t\tINCOME = " + movieIncome);
+                    System.out.println("\tMovie: " + mv.getName() + "\t\tINCOME = " + movieIncome);
                     totalIncome += movieIncome;
                 }
             }
             System.out.println("\tTOTAL INCOME = " + totalIncome);
             System.out.println();
         }
+        System.out.println("TOTAL REVENUE = " + totalRevenue);
+        System.out.println();
     }
     private void reportByDay() {
-        System.out.println("Revenue report by Day");
+        int month, year;
+        month = getMonth();
+        year = getYear();
+        printTitle(month, year);
         
+        Calendar mycal = new GregorianCalendar(1999, Calendar.FEBRUARY, 1);
+        // Get the number of days in that month
+        int daysInMonth = mycal.getActualMaximum(Calendar.DAY_OF_MONTH); 
+        /* get movie list */
+        LinkedList<Movie> movieList = MovieController.getMovieList();
+        /* get cineplex list */
+        LinkedList<Cineplex> cineplexList = CineplexController.getCineplexList();
+        
+        double totalRevenue = 0;
+        for(int day = 1; day <= daysInMonth; day++) {
+            double totalIncome = 0;
+            System.out.println("Date: " + year + "-" + DateHelper.MONTH[month] + "-" + day);
+            for(Cineplex cpl : cineplexList) {
+                double totalIncomeCineplex = 0;
+                for(Movie mv : movieList) {
+                    double movieIncome = 0;
+                    LinkedList<Cinema> cinemaList = CinemaController.getCinemasByCineplexId(cpl.getId());
+                    for(Cinema c : cinemaList) {
+                        movieIncome += BookingController.getIncomeByMovieAndCinemaAndYearAndMonthAndDay(mv.getId(), c.getId(), year, month, day);
+                    }
+                    if (movieIncome > 0) {
+                        if (totalIncomeCineplex == 0)
+                        System.out.println("\tCineplex " + cpl.getName() + " statistics:");
+                        System.out.println("\t\tMovie: " + mv.getName() + "\t\tINCOME = " + movieIncome);
+                        totalIncomeCineplex += movieIncome;
+                    }
+                }
+                if (totalIncomeCineplex > 0) {
+                    System.out.println("\t\tCINEPLEX INCOME = " + totalIncomeCineplex);
+                    totalIncome += totalIncomeCineplex;
+                    System.out.println();
+                }
+            }
+            System.out.println("\tTOTAL INCOME = " + totalIncome);
+            totalRevenue += totalIncome;
+        }
+        System.out.println("TOTAL REVENUE = " + totalRevenue);
+        System.out.println();
     }
     private void reportByMonth() {
-        System.out.println("Revenue report by Month");
+        int year;
+        year = getYear();
+        printTitle(year);
+        /* get movie list */
+        LinkedList<Movie> movieList = MovieController.getMovieList();
+        /* get cineplex list */
+        LinkedList<Cineplex> cineplexList = CineplexController.getCineplexList();
+        
+        double totalRevenue = 0;
+        for(int month = 0; month <= 11; month++) {
+            double totalIncome = 0;
+            System.out.println("Month: " + year + "-" + DateHelper.MONTH[month]);
+            for(Cineplex cpl : cineplexList) {
+                double totalIncomeCineplex = 0;
+                for(Movie mv : movieList) {
+                    double movieIncome = 0;
+                    LinkedList<Cinema> cinemaList = CinemaController.getCinemasByCineplexId(cpl.getId());
+                    for(Cinema c : cinemaList) {
+                        movieIncome += BookingController.getIncomeByMovieAndCinemaAndYearAndMonth(mv.getId(), c.getId(), year, month);
+                    }
+                    if (movieIncome > 0) {
+                        if (totalIncomeCineplex == 0)
+                        System.out.println("\tCineplex " + cpl.getName() + " statistics:");
+                        System.out.println("\t\tMovie: " + mv.getName() + "\t\tINCOME = " + movieIncome);
+                        totalIncomeCineplex += movieIncome;
+                    }
+                }
+                if (totalIncomeCineplex > 0) {
+                    System.out.println("\t\tCINEPLEX INCOME = " + totalIncomeCineplex);
+                    totalIncome += totalIncomeCineplex;
+                    System.out.println();
+                }
+            }
+            System.out.println("\tTOTAL INCOME = " + totalIncome);
+            totalRevenue += totalIncome;
+        }
+        
+        System.out.println();
+        System.out.println("TOTAL REVENUE = " + totalRevenue);
+        System.out.println();
+        
     }
     
     public static void main(String[] args) {

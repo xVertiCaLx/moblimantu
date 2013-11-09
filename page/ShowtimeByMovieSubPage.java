@@ -54,6 +54,7 @@ public class ShowtimeByMovieSubPage {
             System.out.print("Choose a showtime to proceed on booking (0 to go back): ");
             int showtimeId = Integer.parseInt(sc.nextLine());
             System.out.println();
+            if (showtimeId == 0) return;
             launchSeatSelection(showtimeId);
         }
     }

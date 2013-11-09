@@ -13,9 +13,8 @@ import utils.Common;
 import utils.Constant;
 
 public class DateHelper {
-    public static String[] month = {"JAN","FEB","MAR","APR","MAY","JUN",
+    public static String[] MONTH = {"JAN","FEB","MAR","APR","MAY","JUN",
                                     "JUL","AUG","SEP","OCT","NOV","DEC"};
-    
     private static LinkedList<Date> publicHolidays;
     
     public static void commit() {
