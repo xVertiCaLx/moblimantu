@@ -58,7 +58,7 @@ public class Search extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 204, 0));
         jLabel1.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
         jLabel1.setForeground(java.awt.Color.white);
-        jLabel1.setText("Select movie name: ");
+        jLabel1.setText("Select movie name : ");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(20, 230, 190, 22);
 
