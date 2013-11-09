@@ -8,9 +8,9 @@ package main;
 import utils.Constant;
 import controller.MovieController;
 import entity.Movie;
+import java.awt.Color;
 import java.util.LinkedList;
 import utils.Common;
-import java.awt.Color;
 
 /**
  *
@@ -28,6 +28,7 @@ public class Search extends javax.swing.JFrame {
         for (Movie m : movies) {
             movieComboBox.addItem(m.getName());
         }
+         this.getContentPane().setBackground(Color.WHITE);
     }
 
     /**
@@ -42,57 +43,54 @@ public class Search extends javax.swing.JFrame {
         movieComboBox = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 204, 0));
+        setTitle("MOBLIMA App");
+        setBackground(java.awt.Color.orange);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMinimumSize(new java.awt.Dimension(630, 500));
+        getContentPane().setLayout(null);
+        getContentPane().add(movieComboBox);
+        movieComboBox.setBounds(20, 260, 594, 20);
 
         jLabel1.setBackground(new java.awt.Color(255, 204, 0));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        jLabel1.setForeground(java.awt.Color.white);
         jLabel1.setText("Select movie name: ");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(20, 230, 190, 22);
 
-        jButton1.setBackground(new java.awt.Color(51, 255, 204));
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("GO");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(560, 420, 49, 23);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(511, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(movieComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(69, 69, 69))
-            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(movieComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(75, 75, 75))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/moblima.png"))); // NOI18N
+        jLabel2.setToolTipText("");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(18, 11, 224, 130);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/bg.jpg"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 150, 630, 310);
 
         getAccessibleContext().setAccessibleName("Frame");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        jButton1.setBackground(Color.BLACK);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -127,6 +125,7 @@ public class Search extends javax.swing.JFrame {
                 Common.initDB();
                 new Search().setVisible(true);
                 
+                
                
             }
         });
@@ -135,7 +134,8 @@ public class Search extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JComboBox movieComboBox;
     // End of variables declaration//GEN-END:variables
 }
