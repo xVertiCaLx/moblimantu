@@ -97,16 +97,6 @@ public class BookingController {
     public static LinkedList<Booking> getBookingHistory(String customerEmail, String customerHP) {
         LinkedList<Booking> temp = getBookingByUser(customerEmail, customerHP);
         return temp;
-        /*
-        LinkedList<Booking> result = new LinkedList<Booking>();        
-        Date now = new Date();
-        for (Booking b: temp) {
-            Showtime st = ShowtimeController.getShowtimeById(b.getShowtimeId());            
-            if (st.getTime().before(now)) 
-                result.add(b);
-        }
-        return result;
-        */
     }
     
     public static LinkedList<Booking> getBookingStatus(String customerEmail, String customerHP) {
