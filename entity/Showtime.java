@@ -38,11 +38,6 @@ public class Showtime {
         this.time = time;
     }
     
-    public String getTimeStringFormat() {
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return dateFormatter.format(time);
-    }
-    
     public int getMovieId() {
         return movieId;
     }
