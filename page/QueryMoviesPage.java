@@ -43,8 +43,8 @@ public class QueryMoviesPage {
         do {
             System.out.println("Searching result:");
             if (result == null || result.size() == 0) {
-                System.out.print("No movie match. Enter 0 to go back to Movie Search Engine: ");
-                choice = Integer.parseInt(sc.nextLine());
+                System.out.print("No movie match. Redirect to Search movie engine page.");
+                break;
             } else {
                 MoviePrinter.getInstance().printList(result);
                 System.out.print("Choose a movie to book (1 - " + result.size() + "), 0 to go back: ");
@@ -55,7 +55,10 @@ public class QueryMoviesPage {
                 if (1 <= choice && choice <= result.size()) {
                     MoviePrinter.getInstance().printInstance(mv);                
                     if (mv.isNowShowing()) ShowtimeByMovieSubPage.getInstance().launch(result.get(choice-1).getId());
-                    else System.out.println("Can only book for now showing movie!");
+                    else {
+                        System.out.println("Can only book for now showing movie!");
+                        System.out.println();
+                    }
                 }
             }
         } while (choice != 0);
