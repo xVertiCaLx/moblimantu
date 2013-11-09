@@ -1,6 +1,7 @@
 package page;
 
 import java.util.Scanner;
+import utils.Common;
 import utils.References;
 
 public class FindMoviesPage {
@@ -27,5 +28,11 @@ public class FindMoviesPage {
             System.out.println();
             if (1 <= choice && choice <= 3) QueryMoviesPage.getInstance().launch(choice);
         } while (choice != 4);
+    }
+    
+    //unit test
+    public static void main(String[] args) {
+        Common.initDB();
+        getInstance().launch();
     }
 }
