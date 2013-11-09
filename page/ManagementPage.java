@@ -56,7 +56,7 @@ public class ManagementPage {
     private void startManagement() {
         int choice = 0;
         do {
-            System.out.println("Staff Function ...");
+            System.out.println("===Staff Function===");
             System.out.println("1. Add movie");
             System.out.println("2. Edit movie");
             System.out.println("3. Add showtime");
