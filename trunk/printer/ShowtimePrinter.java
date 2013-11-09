@@ -5,6 +5,7 @@ import controller.MovieController;
 import entity.Cinema;
 import entity.Movie;
 import entity.Showtime;
+import helper.DateHelper;
 import java.util.LinkedList;
 
 public class ShowtimePrinter implements Printer {
@@ -23,7 +24,7 @@ public class ShowtimePrinter implements Printer {
             Showtime showtime = (Showtime)(list.get(index));
             Movie movie = MovieController.getMovieById(showtime.getMovieId());
             Cinema cinema = CinemaController.getCinemaById(showtime.getCinemaId());
-            System.out.println((index + 1) + ". " + showtime.getTimeStringFormat() + " - " + movie.getName() + " - " 
+            System.out.println((index + 1) + ". " + DateHelper.getTimeStringFormat(showtime.getTime()) + " - " + movie.getName() + " - " 
                                 + cinema.getName());                    
         }
     }
@@ -34,7 +35,7 @@ public class ShowtimePrinter implements Printer {
         Movie movie = MovieController.getMovieById(showtime.getMovieId());
         Cinema cinema = CinemaController.getCinemaById(showtime.getCinemaId());
         System.out.println("ShowtimeID:\t\t" + showtime.getId());
-        System.out.println(SHOWTIME_TIME + ". Show time:\t\t" + showtime.getTimeStringFormat());
+        System.out.println(SHOWTIME_TIME + ". Show time:\t\t" + DateHelper.getTimeStringFormat(showtime.getTime()));
         System.out.println(CINEMA + ". Cinema:\t\t" + cinema.getName() + " - ID: " + cinema.getId());
         System.out.println(MOVIE + ". Movie:\t\t" + movie.getName() + " - ID: " + movie.getId());
     }

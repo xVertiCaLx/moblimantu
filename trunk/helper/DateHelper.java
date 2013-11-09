@@ -135,6 +135,12 @@ public class DateHelper {
         return dateFormatter.format(date.getTime());
     }
     
+    public static String getTimeStringFormat(Date time) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return dateFormatter.format(time);
+    }
+    
+    
     /* Remove timing attribute */
     public static Date removeTime(Date date) {
         try {

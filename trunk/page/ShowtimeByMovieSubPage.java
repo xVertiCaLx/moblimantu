@@ -13,6 +13,7 @@ import entity.Cinema;
 import entity.Movie;
 import entity.SeatLayout;
 import entity.Showtime;
+import helper.DateHelper;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -46,7 +47,7 @@ public class ShowtimeByMovieSubPage {
             System.out.println("Cinema: " + c.getName());
             LinkedList<Showtime> showtimeList = ShowtimeController.getShowtimesByMovieAndCinema(movieId, c.getId());
             for(Showtime st : showtimeList) {
-                System.out.println(st.getId() + ". Showing time: " + st.getTimeStringFormat());
+                System.out.println(st.getId() + ". Showing time: " + DateHelper.getTimeStringFormat(st.getTime()));
             }
             System.out.println();
         }
@@ -75,7 +76,7 @@ public class ShowtimeByMovieSubPage {
         System.out.println("================================");
         System.out.println("Movie: " + m.getName());
         System.out.println("Cinema: " + c.getName());
-        System.out.println("Time: " + st.getTimeStringFormat());
+        System.out.println("Time: " + DateHelper.getTimeStringFormat(st.getTime()));
         System.out.println("Seat Layout: ");
         sl.display();
         String customerName, customerEmail, customerHP;
