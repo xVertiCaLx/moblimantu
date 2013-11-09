@@ -66,6 +66,11 @@ public class ShowtimeByMovieSubPage {
         Cinema c = CinemaController.getCinemaById(st.getCinemaId());
         Movie m = MovieController.getMovieById(st.getMovieId());
         SeatLayout sl = SeatLayoutController.getSeatLayoutById(st.getSeatLayoutId());
+        if (sl.isFullyBooked()) {
+            System.out.println("ERROR: Sorry, there is no more seat available for this showtime.");
+            System.out.println();
+            return;
+        }
         System.out.println("\tBOOKING YOUR SEATS");
         System.out.println("================================");
         System.out.println("Movie: " + m.getName());

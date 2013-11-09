@@ -43,7 +43,7 @@ public class QueryMoviesPage {
         do {
             System.out.println("Searching result:");
             if (result == null || result.size() == 0) {
-                System.out.print("No movie match. Redirect to Search movie engine page.");
+                System.out.print("ERROR: No movie match. Redirect to Search movie engine page.");
                 break;
             } else {
                 MoviePrinter.getInstance().printList(result);
@@ -56,7 +56,7 @@ public class QueryMoviesPage {
                     MoviePrinter.getInstance().printInstance(mv);                
                     if (mv.isNowShowing()) ShowtimeByMovieSubPage.getInstance().launch(result.get(choice-1).getId());
                     else {
-                        System.out.println("Can only book for now showing movie!");
+                        System.out.println("ERROR: Can only book for now showing movie!");
                         System.out.println();
                     }
                 }

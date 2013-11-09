@@ -60,7 +60,7 @@ public class EditShowtimePage {
 
             LinkedList bookings = BookingController.getBookingByShowtimeId(showtime.getId());
             if (bookings.size() != 0) {
-                System.out.println("This showtime has some booking already. Can not be edited. Try edit another showtime");
+                System.out.println("ERROR: This showtime has some booking already. Can not be edited. Try edit another showtime");
                 continue;
             } else return showtime;
         }   while (true);
