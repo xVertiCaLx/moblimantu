@@ -5,6 +5,9 @@ import utils.References;
 
 public class FindMoviesPage {
     private static final FindMoviesPage INSTANCE = new FindMoviesPage();
+    public static final int SEARCH_NOW_SHOWING = 1;
+    public static final int SEARCH_COMING_SOON = 2;
+    public static final int SEARCH_TITLE = 3;
     private FindMoviesPage(){}
     public static FindMoviesPage getInstance() {
         return INSTANCE;
@@ -15,9 +18,9 @@ public class FindMoviesPage {
         int choice = 0;
         do {
             System.out.println("===Movies Search Engine===");                    
-            System.out.println("1. Search Now Showing movie");
-            System.out.println("2. Search Coming Soon and Preview movie");
-            System.out.println("3. Search movie by title");
+            System.out.println(SEARCH_NOW_SHOWING + ". Search Now Showing movie");
+            System.out.println(SEARCH_COMING_SOON + ". Search Coming Soon and Preview movie");
+            System.out.println(SEARCH_TITLE + ". Search movie by title");
             System.out.println("4. Back to main page");
             System.out.print("Please choose your options: ");
             choice = Integer.parseInt(sc.nextLine());

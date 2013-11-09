@@ -1,4 +1,7 @@
 package entity;
+
+import utils.Constant;
+
 public class Movie {
     private int id;
     private int type;
@@ -57,6 +60,10 @@ public class Movie {
 
     public void setRating(double rating) {
         this.rating = rating;
+    }
+
+    public boolean isNowShowing() {
+        return status == Constant.MOVIE_STATUS_NOW_SHOWING;
     }
     
 }
