@@ -46,7 +46,7 @@ public class CheckBookingsPage {
                         break;
             }
             if (result == null || result.size() == 0) {
-                System.out.println("There is no result match with your information");
+                System.out.println("ERROR: There is no result match with your information");
                 System.out.println();
                 continue;
             }
@@ -56,8 +56,6 @@ public class CheckBookingsPage {
             System.out.println();
             if (1 <= choice && choice <= result.size()) {
                 BookingPrinter.getInstance().printInstance(result.get(choice - 1));
-                System.out.println("Enter anything to continue ...");
-                String s = sc.nextLine();
                 System.out.println();
             }
         } while (choice != 3);        

@@ -48,7 +48,7 @@ public class ManagementPage {
                     System.out.println("Login successfully!");
                     startManagement();
                 } else {
-                    System.out.println("Login failed! Please try again.");
+                    System.out.println("ERROR: Login failed! Please try again.");
                 }
             }
         } while (choice != 2);
