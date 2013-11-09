@@ -9,6 +9,7 @@ public class FindMoviesPage {
     public static final int SEARCH_NOW_SHOWING = 1;
     public static final int SEARCH_COMING_SOON = 2;
     public static final int SEARCH_TITLE = 3;
+    public static int ENABLE_UI = 0;
     private FindMoviesPage(){}
     public static FindMoviesPage getInstance() {
         return INSTANCE;
