@@ -73,32 +73,35 @@ public class ConfigureSettingPage {
     private void configureHoliday() {
         int choice;
         String curDate;
-        do {
+        do {            
+            System.out.println();
             System.out.println("===Configure public holiday===");
-            System.out.println("1. Add a public holiday");
-            System.out.println("2. Remove a public holiday");
+            System.out.println("1. See current public holiday");
+            System.out.println("2. Add a public holiday");
+            System.out.println("3. Remove a public holiday");
             System.out.print("Please choose your option (0 to go back): ");
             choice = Integer.parseInt(sc.nextLine());
             System.out.println();
-            if (1 <= choice && choice <= 2) {
+            if (1 <= choice && choice <= 3) {
                 LinkedList<Date> publicHolidays = DateHelper.getPublicHolidays();
-                System.out.println();
                 System.out.println("List of public holiday:");
-                for(Date d: publicHolidays) {
-                    System.out.println(DateHelper.getDateStringFormat(d));
+                for(int index = 0; index < publicHolidays.size(); index++) {
+                    Date d = publicHolidays.get(index);
+                    System.out.println((index + 1) + ". " + DateHelper.getDateStringFormat(d));
                 }
                 switch (choice) {
-                    case 1: System.out.print("Add a new public holiday (YYYY-MM-DD): ");
+                    case 1: break;
+                    case 2: System.out.print("Add a new public holiday (YYYY-MM-DD): ");
                             curDate = sc.nextLine();
                             DateHelper.addPublicHoliday(curDate);
                             break;
-                    case 2: System.out.print("Remove a public holiday (YYYY-MM-DD): ");
-                            curDate = sc.nextLine();
-                            DateHelper.removePublicHoliday(curDate);
+                    case 3: System.out.print("Remove a public holiday (1 - "+ publicHolidays.size() + "): ");
+                            int index = Integer.parseInt(sc.nextLine());
+                            Date deletedDate = publicHolidays.get(index - 1);
+                            DateHelper.removePublicHoliday(DateHelper.getDateStringFormat(deletedDate));
                             break;
                 }
-                System.out.println("Changes updated successfully!");
-                System.out.println();
+                if (choice != 1) System.out.println("Changes updated successfully!");
             }
         } while (choice != 0);
     }
