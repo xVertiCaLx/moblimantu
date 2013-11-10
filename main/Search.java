@@ -5,11 +5,15 @@
  */
 
 package main;
-import utils.Constant;
+import controller.CinemaController;
+import controller.CineplexController;
 import controller.MovieController;
+import entity.Cinema;
+import entity.Cineplex;
 import entity.Movie;
-import java.awt.Color;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import utils.Common;
 
 /**
@@ -21,14 +25,17 @@ public class Search extends javax.swing.JFrame {
     /**
      * Creates new form Search
      */
+    Map<String, Integer> cineplexMap = new HashMap<>();
+    Map<String, Integer> cinemaMap;
+    Map<String, Integer> movieMap;
+    
     public Search() {
         initComponents();
-        LinkedList<Movie> movies = new LinkedList<Movie>();
-        movies = MovieController.getMoviesByStatus(Constant.MOVIE_STATUS_NOW_SHOWING);
-        for (Movie m : movies) {
-            movieComboBox.addItem(m.getName());
+        LinkedList<Cineplex> cineplexes = CineplexController.getCineplexList();
+        for (Cineplex c: cineplexes) {
+            cineplexMap.put(c.getName(), c.getId());
+            cineplexComboBox.addItem(c.getName());
         }
-         this.getContentPane().setBackground(Color.WHITE);
     }
 
     /**
@@ -40,57 +47,72 @@ public class Search extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        movieComboBox = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        cineplexComboBox = new javax.swing.JComboBox();
+        logoLbl = new javax.swing.JLabel();
+        cinemaComboBox = new javax.swing.JComboBox();
+        selectCineplexLbl = new javax.swing.JLabel();
+        selectCinemaLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MOBLIMA App");
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMinimumSize(new java.awt.Dimension(630, 500));
+        setMinimumSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
-        getContentPane().add(movieComboBox);
-        movieComboBox.setBounds(20, 260, 594, 20);
 
-        jLabel1.setBackground(new java.awt.Color(255, 204, 0));
-        jLabel1.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jLabel1.setForeground(java.awt.Color.white);
-        jLabel1.setText("Select movie name : ");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 230, 190, 22);
-
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("GO");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+        cineplexComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cineplexComboBoxActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(560, 420, 49, 23);
+        getContentPane().add(cineplexComboBox);
+        cineplexComboBox.setBounds(20, 160, 350, 20);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/moblima.png"))); // NOI18N
-        jLabel2.setToolTipText("");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(18, 11, 224, 130);
+        logoLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/moblima.png"))); // NOI18N
+        getContentPane().add(logoLbl);
+        logoLbl.setBounds(20, 0, 230, 130);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/bg.jpg"))); // NOI18N
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 150, 630, 310);
+        cinemaComboBox.setEnabled(false);
+        cinemaComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cinemaComboBoxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cinemaComboBox);
+        cinemaComboBox.setBounds(20, 210, 350, 20);
+
+        selectCineplexLbl.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        selectCineplexLbl.setText("Select a cineplex to continue");
+        getContentPane().add(selectCineplexLbl);
+        selectCineplexLbl.setBounds(20, 140, 350, 15);
+
+        selectCinemaLbl.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        selectCinemaLbl.setText("Select a cinema to continue");
+        selectCinemaLbl.setEnabled(false);
+        getContentPane().add(selectCinemaLbl);
+        selectCinemaLbl.setBounds(20, 190, 350, 15);
 
         getAccessibleContext().setAccessibleName("Frame");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void cineplexComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cineplexComboBoxActionPerformed
         // TODO add your handling code here:
-        jButton1.setBackground(Color.BLACK);
-    }//GEN-LAST:event_jButton1MouseClicked
+        LinkedList<Cinema> cinemas = CinemaController.getCinemasByCineplexId(cineplexMap.get(cineplexComboBox.getSelectedItem()));
+        cinemaComboBox.removeAllItems();
+        cinemaMap = new HashMap<>();
+        for (Cinema c: cinemas) {
+            cineplexMap.put(c.getName(), c.getId());
+            cinemaComboBox.addItem(c.getName());
+        }
+        cinemaComboBox.setEnabled(true);
+        selectCinemaLbl.setEnabled(true);
+    }//GEN-LAST:event_cineplexComboBoxActionPerformed
+
+    private void cinemaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cinemaComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cinemaComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,18 +146,15 @@ public class Search extends javax.swing.JFrame {
             public void run() {
                 Common.initDB();
                 new Search().setVisible(true);
-                
-                
-               
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JComboBox movieComboBox;
+    private javax.swing.JComboBox cinemaComboBox;
+    private javax.swing.JComboBox cineplexComboBox;
+    private javax.swing.JLabel logoLbl;
+    private javax.swing.JLabel selectCinemaLbl;
+    private javax.swing.JLabel selectCineplexLbl;
     // End of variables declaration//GEN-END:variables
 }
