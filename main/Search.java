@@ -13,6 +13,7 @@ import entity.Cinema;
 import entity.Cineplex;
 import entity.Movie;
 import entity.Showtime;
+import helper.DateHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -114,15 +115,15 @@ public class Search extends javax.swing.JFrame {
                     showtimes = ShowtimeController.getShowtimesByMovie(movieMap.get((String)movieComboBox.getSelectedItem()));
                     for(Showtime s: showtimes) {
                         Object[] objects = new Object[2];
-                        objects[0] = s.getTime();
-                        objects[1] = s.getTime().getTime();     
+                        objects[0] = DateHelper.getDateStringFormat(s.getTime());
+                        objects[1] = DateHelper.getTimeOnlyFormat(s.getTime());     
                         tableModel.addRow(objects);
                     }
                     showtimeTable.setModel(tableModel);
                     
                     movieTitleLbl.setVisible(true);
                     movieRatingLbl.setVisible(true);
-                    movieDescLbl.setVisible(true);
+                    //movieDescLbl.setVisible(true);
 
                     Movie movie = MovieController.getMovieById(movieMap.get((String)movieComboBox.getSelectedItem()));
                     movieTitleLbl.setText(movie.getName());
@@ -130,10 +131,9 @@ public class Search extends javax.swing.JFrame {
                     //movieDescLbl.setText();
                 } catch (NullPointerException exception) {
                     showtimeTable.setVisible(false);
-                    System.out.println(exception);
                     movieTitleLbl.setVisible(false);
                     movieRatingLbl.setVisible(false);
-                    movieDescLbl.setVisible(false);
+                    //movieDescLbl.setVisible(false);
                 }
             }
         });

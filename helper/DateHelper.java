@@ -140,6 +140,10 @@ public class DateHelper {
         return dateFormatter.format(time);
     }
     
+    public static String getTimeOnlyFormat(Date time) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("HH:mm:ss");
+        return dateFormatter.format(time);
+    }
     
     /* Remove timing attribute */
     public static Date removeTime(Date date) {
