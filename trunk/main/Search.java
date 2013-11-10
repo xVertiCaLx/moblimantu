@@ -35,9 +35,9 @@ public class Search extends javax.swing.JFrame {
     private Map<String, Integer> cinemaMap = new HashMap<>();
     private Map<String, Integer> movieMap = new HashMap<>();
     
-    private LinkedList<Cineplex> cineplexes;// = CineplexController.getCineplexList();
-    private LinkedList<Cinema> cinemas;// = CinemaController.getCinemaList();
-    private LinkedList<Movie> movies;// = MovieController.getMovieList();
+    private LinkedList<Cineplex> cineplexes;
+    private LinkedList<Cinema> cinemas;
+    private LinkedList<Movie> movies;
     private LinkedList<Showtime> showtimes;
     
     public Search() {
