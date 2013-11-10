@@ -8,14 +8,17 @@ package main;
 import controller.CinemaController;
 import controller.CineplexController;
 import controller.MovieController;
+import controller.ShowtimeController;
 import entity.Cinema;
 import entity.Cineplex;
 import entity.Movie;
+import entity.Showtime;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import javax.swing.table.DefaultTableModel;
 import utils.Common;
 
 /**
@@ -34,6 +37,7 @@ public class Search extends javax.swing.JFrame {
     private LinkedList<Cineplex> cineplexes;// = CineplexController.getCineplexList();
     private LinkedList<Cinema> cinemas;// = CinemaController.getCinemaList();
     private LinkedList<Movie> movies;// = MovieController.getMovieList();
+    private LinkedList<Showtime> showtimes;
     
     public Search() {
         initComponents();
@@ -46,12 +50,22 @@ public class Search extends javax.swing.JFrame {
         selectMovieLbl.setVisible(false);
         movieComboBox.setVisible(false);
         
+        showtimeTable.setVisible(false);
+        movieTitleLbl.setVisible(false);
+        movieRatingLbl.setVisible(false);
+        movieDescLbl.setVisible(false);
+        
         for (Cineplex c: cineplexes) {
             cineplexMap.put(c.getName(), c.getId());
             cineplexComboBox.addItem(c.getName());
         }
         
+        for (Cinema c: cinemas) {
+            cinemaMap.put(c.getName(), c.getId());
+        }
+        
         cineplexComboBox.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 cinemaComboBox.removeAllItems();
                 selectCinemaLbl.setVisible(true);
@@ -64,6 +78,7 @@ public class Search extends javax.swing.JFrame {
         });
         
         cinemaComboBox.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 movieComboBox.removeAllItems();
                 selectMovieLbl.setVisible(true);
@@ -71,20 +86,57 @@ public class Search extends javax.swing.JFrame {
                 try {
                     movies = MovieController.getMoviesByCinema(cinemaMap.get((String)cinemaComboBox.getSelectedItem()));
                     movieMap = new HashMap<>();
-                    for (Movie m: movies) {
-                        movieMap.put(m.getName(), m.getId());
-                        movieComboBox.addItem(m.getName());
+                    if (movies.size() > 0) {
+                        for (Movie m: movies) {
+                            movieMap.put(m.getName(), m.getId());
+                            movieComboBox.addItem(m.getName());
+                        }
+                        showtimeTable.setVisible(true);
+                    } else {
+                        movieComboBox.addItem("NO MOVIES AVAILABLE");
+                        showtimeTable.setVisible(false);
                     }
                 } catch (NullPointerException exception) {
-                    movieComboBox.addItem("NO MOVIES AVAILABLE");
-                    exception.printStackTrace();
+                    System.out.println(exception);
                 }
             }
         });
         
-        for (Cinema c: cinemas) {
-            cinemaMap.put(c.getName(), c.getId());
-        }
+        movieComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel tableModel = (DefaultTableModel) showtimeTable.getModel();
+                tableModel.setRowCount(0);
+                String[] colName = {"Date", "Time"};
+                tableModel.setColumnIdentifiers(colName);
+                
+                try {
+                    showtimes = ShowtimeController.getShowtimesByMovie(movieMap.get((String)movieComboBox.getSelectedItem()));
+                    for(Showtime s: showtimes) {
+                        Object[] objects = new Object[2];
+                        objects[0] = s.getTime();
+                        objects[1] = s.getTime().getTime();     
+                        tableModel.addRow(objects);
+                    }
+                    showtimeTable.setModel(tableModel);
+                    
+                    movieTitleLbl.setVisible(true);
+                    movieRatingLbl.setVisible(true);
+                    movieDescLbl.setVisible(true);
+
+                    Movie movie = MovieController.getMovieById(movieMap.get((String)movieComboBox.getSelectedItem()));
+                    movieTitleLbl.setText(movie.getName());
+                    movieRatingLbl.setText(movie.getRating() + " of 10");
+                    //movieDescLbl.setText();
+                } catch (NullPointerException exception) {
+                    showtimeTable.setVisible(false);
+                    System.out.println(exception);
+                    movieTitleLbl.setVisible(false);
+                    movieRatingLbl.setVisible(false);
+                    movieDescLbl.setVisible(false);
+                }
+            }
+        });
     }
 
     /**
@@ -103,6 +155,11 @@ public class Search extends javax.swing.JFrame {
         selectCinemaLbl = new javax.swing.JLabel();
         selectMovieLbl = new javax.swing.JLabel();
         movieComboBox = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        showtimeTable = new javax.swing.JTable();
+        movieTitleLbl = new javax.swing.JLabel();
+        movieDescLbl = new javax.swing.JLabel();
+        movieRatingLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MOBLIMA App");
@@ -153,6 +210,38 @@ public class Search extends javax.swing.JFrame {
         });
         getContentPane().add(movieComboBox);
         movieComboBox.setBounds(20, 260, 350, 20);
+
+        showtimeTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        showtimeTable.setToolTipText("");
+        jScrollPane1.setViewportView(showtimeTable);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(390, 10, 380, 480);
+
+        movieTitleLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        movieTitleLbl.setText("#movie.title");
+        getContentPane().add(movieTitleLbl);
+        movieTitleLbl.setBounds(20, 300, 350, 17);
+
+        movieDescLbl.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        movieDescLbl.setText("#movie.desc");
+        getContentPane().add(movieDescLbl);
+        movieDescLbl.setBounds(20, 340, 350, 15);
+
+        movieRatingLbl.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        movieRatingLbl.setText("#movie.rating");
+        getContentPane().add(movieRatingLbl);
+        movieRatingLbl.setBounds(20, 320, 350, 20);
 
         getAccessibleContext().setAccessibleName("Frame");
 
@@ -210,10 +299,15 @@ public class Search extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cinemaComboBox;
     private javax.swing.JComboBox cineplexComboBox;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logoLbl;
     private javax.swing.JComboBox movieComboBox;
+    private javax.swing.JLabel movieDescLbl;
+    private javax.swing.JLabel movieRatingLbl;
+    private javax.swing.JLabel movieTitleLbl;
     private javax.swing.JLabel selectCinemaLbl;
     private javax.swing.JLabel selectCineplexLbl;
     private javax.swing.JLabel selectMovieLbl;
+    private javax.swing.JTable showtimeTable;
     // End of variables declaration//GEN-END:variables
 }
