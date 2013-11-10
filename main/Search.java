@@ -11,6 +11,8 @@ import controller.MovieController;
 import entity.Cinema;
 import entity.Cineplex;
 import entity.Movie;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -25,16 +27,63 @@ public class Search extends javax.swing.JFrame {
     /**
      * Creates new form Search
      */
-    Map<String, Integer> cineplexMap = new HashMap<>();
-    Map<String, Integer> cinemaMap;
-    Map<String, Integer> movieMap;
+    private Map<String, Integer> cineplexMap = new HashMap<>();
+    private Map<String, Integer> cinemaMap = new HashMap<>();
+    private Map<String, Integer> movieMap = new HashMap<>();
+    
+    private LinkedList<Cineplex> cineplexes;// = CineplexController.getCineplexList();
+    private LinkedList<Cinema> cinemas;// = CinemaController.getCinemaList();
+    private LinkedList<Movie> movies;// = MovieController.getMovieList();
     
     public Search() {
         initComponents();
-        LinkedList<Cineplex> cineplexes = CineplexController.getCineplexList();
+        
+        cineplexes = CineplexController.getCineplexList();
+        cinemas = CinemaController.getCinemaList();
+        selectCinemaLbl.setVisible(false);
+        cinemaComboBox.setVisible(false);
+        
+        selectMovieLbl.setVisible(false);
+        movieComboBox.setVisible(false);
+        
         for (Cineplex c: cineplexes) {
             cineplexMap.put(c.getName(), c.getId());
             cineplexComboBox.addItem(c.getName());
+        }
+        
+        cineplexComboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cinemaComboBox.removeAllItems();
+                selectCinemaLbl.setVisible(true);
+                cinemaComboBox.setVisible(true);
+                for (Cinema c: cinemas) {
+                    if (c.getCineplexId() == cineplexMap.get((String)cineplexComboBox.getSelectedItem()))
+                        cinemaComboBox.addItem(c.getName());
+                }
+            }
+        });
+        
+        cinemaComboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                movieComboBox.removeAllItems();
+                selectMovieLbl.setVisible(true);
+                movieComboBox.setVisible(true);
+                try {
+                    movies = MovieController.getMoviesByCinema(cinemaMap.get((String)cinemaComboBox.getSelectedItem()));
+                    movieMap = new HashMap<>();
+                    for (Movie m: movies) {
+                        movieMap.put(m.getName(), m.getId());
+                        movieComboBox.addItem(m.getName());
+                    }
+                } catch (NullPointerException exception) {
+                    movieComboBox.addItem("NO MOVIES AVAILABLE");
+                    exception.printStackTrace();
+                }
+            }
+        });
+        
+        for (Cinema c: cinemas) {
+            cinemaMap.put(c.getName(), c.getId());
         }
     }
 
@@ -52,6 +101,8 @@ public class Search extends javax.swing.JFrame {
         cinemaComboBox = new javax.swing.JComboBox();
         selectCineplexLbl = new javax.swing.JLabel();
         selectCinemaLbl = new javax.swing.JLabel();
+        selectMovieLbl = new javax.swing.JLabel();
+        movieComboBox = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MOBLIMA App");
@@ -72,7 +123,6 @@ public class Search extends javax.swing.JFrame {
         getContentPane().add(logoLbl);
         logoLbl.setBounds(20, 0, 230, 130);
 
-        cinemaComboBox.setEnabled(false);
         cinemaComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cinemaComboBoxActionPerformed(evt);
@@ -82,15 +132,27 @@ public class Search extends javax.swing.JFrame {
         cinemaComboBox.setBounds(20, 210, 350, 20);
 
         selectCineplexLbl.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        selectCineplexLbl.setText("Select a cineplex to continue");
+        selectCineplexLbl.setText("Select a cineplex");
         getContentPane().add(selectCineplexLbl);
         selectCineplexLbl.setBounds(20, 140, 350, 15);
 
         selectCinemaLbl.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        selectCinemaLbl.setText("Select a cinema to continue");
-        selectCinemaLbl.setEnabled(false);
+        selectCinemaLbl.setText("Select a cinema");
         getContentPane().add(selectCinemaLbl);
         selectCinemaLbl.setBounds(20, 190, 350, 15);
+
+        selectMovieLbl.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        selectMovieLbl.setText("Select a movie");
+        getContentPane().add(selectMovieLbl);
+        selectMovieLbl.setBounds(20, 240, 350, 15);
+
+        movieComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                movieComboBoxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(movieComboBox);
+        movieComboBox.setBounds(20, 260, 350, 20);
 
         getAccessibleContext().setAccessibleName("Frame");
 
@@ -99,20 +161,15 @@ public class Search extends javax.swing.JFrame {
 
     private void cineplexComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cineplexComboBoxActionPerformed
         // TODO add your handling code here:
-        LinkedList<Cinema> cinemas = CinemaController.getCinemasByCineplexId(cineplexMap.get(cineplexComboBox.getSelectedItem()));
-        cinemaComboBox.removeAllItems();
-        cinemaMap = new HashMap<>();
-        for (Cinema c: cinemas) {
-            cineplexMap.put(c.getName(), c.getId());
-            cinemaComboBox.addItem(c.getName());
-        }
-        cinemaComboBox.setEnabled(true);
-        selectCinemaLbl.setEnabled(true);
     }//GEN-LAST:event_cineplexComboBoxActionPerformed
 
     private void cinemaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cinemaComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cinemaComboBoxActionPerformed
+
+    private void movieComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movieComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_movieComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,7 +211,9 @@ public class Search extends javax.swing.JFrame {
     private javax.swing.JComboBox cinemaComboBox;
     private javax.swing.JComboBox cineplexComboBox;
     private javax.swing.JLabel logoLbl;
+    private javax.swing.JComboBox movieComboBox;
     private javax.swing.JLabel selectCinemaLbl;
     private javax.swing.JLabel selectCineplexLbl;
+    private javax.swing.JLabel selectMovieLbl;
     // End of variables declaration//GEN-END:variables
 }
