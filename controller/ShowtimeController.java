@@ -91,7 +91,7 @@ public class ShowtimeController {
         if (st.getId() == showtimeId) {
             showtimeList.remove(st);
         }
-        commit();
+        ShowtimeDB.commit();
     }
     /* Unit Test part */
     public static void main(String[] args) {
