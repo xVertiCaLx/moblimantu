@@ -86,7 +86,12 @@ public class ShowtimeController {
     }
     
     public static void deleteShowtime(int showtimeId) {
-        
+        LinkedList<Showtime> showtimeList = ShowtimeDB.getShowtimeList();
+        for(Showtime st : showtimeList) 
+        if (st.getId() == showtimeId) {
+            showtimeList.remove(st);
+        }
+        commit();
     }
     /* Unit Test part */
     public static void main(String[] args) {
