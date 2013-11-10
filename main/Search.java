@@ -123,17 +123,17 @@ public class Search extends javax.swing.JFrame {
                     
                     movieTitleLbl.setVisible(true);
                     movieRatingLbl.setVisible(true);
-                    //movieDescLbl.setVisible(true);
+                    movieDescLbl.setVisible(true);
 
                     Movie movie = MovieController.getMovieById(movieMap.get((String)movieComboBox.getSelectedItem()));
                     movieTitleLbl.setText(movie.getName());
-                    movieRatingLbl.setText(movie.getRating() + " of 10");
-                    //movieDescLbl.setText();
+                    movieRatingLbl.setText("Rating: " + movie.getRating() + " of 10");
+                    movieDescLbl.setText("No description available for this movie.");
                 } catch (NullPointerException exception) {
                     showtimeTable.setVisible(false);
                     movieTitleLbl.setVisible(false);
                     movieRatingLbl.setVisible(false);
-                    //movieDescLbl.setVisible(false);
+                    movieDescLbl.setVisible(false);
                 }
             }
         });
