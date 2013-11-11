@@ -14,6 +14,7 @@ import entity.Cineplex;
 import entity.Movie;
 import entity.Showtime;
 import helper.DateHelper;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -55,7 +56,7 @@ public class Search extends javax.swing.JFrame {
         movieTitleLbl.setVisible(false);
         movieRatingLbl.setVisible(false);
         movieDescLbl.setVisible(false);
-        
+        this.getContentPane().setBackground(Color.WHITE);
         for (Cineplex c: cineplexes) {
             cineplexMap.put(c.getName(), c.getId());
             cineplexComboBox.addItem(c.getName());
@@ -160,12 +161,13 @@ public class Search extends javax.swing.JFrame {
         movieTitleLbl = new javax.swing.JLabel();
         movieDescLbl = new javax.swing.JLabel();
         movieRatingLbl = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MOBLIMA App");
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(700, 520));
         getContentPane().setLayout(null);
 
         cineplexComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -189,16 +191,19 @@ public class Search extends javax.swing.JFrame {
         cinemaComboBox.setBounds(20, 210, 350, 20);
 
         selectCineplexLbl.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        selectCineplexLbl.setForeground(new java.awt.Color(255, 255, 255));
         selectCineplexLbl.setText("Select a cineplex");
         getContentPane().add(selectCineplexLbl);
         selectCineplexLbl.setBounds(20, 140, 350, 15);
 
         selectCinemaLbl.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        selectCinemaLbl.setForeground(new java.awt.Color(255, 255, 255));
         selectCinemaLbl.setText("Select a cinema");
         getContentPane().add(selectCinemaLbl);
         selectCinemaLbl.setBounds(20, 190, 350, 15);
 
         selectMovieLbl.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        selectMovieLbl.setForeground(new java.awt.Color(255, 255, 255));
         selectMovieLbl.setText("Select a movie");
         getContentPane().add(selectMovieLbl);
         selectMovieLbl.setBounds(20, 240, 350, 15);
@@ -226,22 +231,30 @@ public class Search extends javax.swing.JFrame {
         jScrollPane1.setViewportView(showtimeTable);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(390, 10, 380, 480);
+        jScrollPane1.setBounds(400, 10, 330, 470);
 
         movieTitleLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        movieTitleLbl.setForeground(new java.awt.Color(255, 255, 255));
         movieTitleLbl.setText("#movie.title");
         getContentPane().add(movieTitleLbl);
         movieTitleLbl.setBounds(20, 300, 350, 17);
 
         movieDescLbl.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        movieDescLbl.setForeground(new java.awt.Color(255, 255, 255));
         movieDescLbl.setText("#movie.desc");
         getContentPane().add(movieDescLbl);
         movieDescLbl.setBounds(20, 340, 350, 15);
 
         movieRatingLbl.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        movieRatingLbl.setForeground(new java.awt.Color(255, 255, 255));
         movieRatingLbl.setText("#movie.rating");
         getContentPane().add(movieRatingLbl);
         movieRatingLbl.setBounds(20, 320, 350, 20);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bg.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 140, 730, 340);
 
         getAccessibleContext().setAccessibleName("Frame");
 
@@ -299,6 +312,7 @@ public class Search extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cinemaComboBox;
     private javax.swing.JComboBox cineplexComboBox;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logoLbl;
     private javax.swing.JComboBox movieComboBox;
