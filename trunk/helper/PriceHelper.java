@@ -34,6 +34,9 @@ public class PriceHelper {
     //additional charge for public holiday
     public static double priceHolidayAdd = 5.0;
     
+    //addtitional charge for weekend
+    public static double priceWeekendAdd = 3.0;
+    
     public static int SENIOR_THRESHOLD = 60;
     
     public static void commit() {
@@ -44,6 +47,7 @@ public class PriceHelper {
             pw.write(new Double(priceSeniorDiscount).toString());  pw.write("\r\n");
             pw.write(new Double(priceCinemaVIPAdd).toString());   pw.write("\r\n");
             pw.write(new Double(priceHolidayAdd).toString()); pw.write("\r\n");
+            pw.write(new Double(priceWeekendAdd).toString()); pw.write("\r\n");
             pw.close();
         } catch (IOException e) {
             System.out.println("IOException in commit public holiday");
@@ -58,6 +62,7 @@ public class PriceHelper {
             priceSeniorDiscount = sc.nextDouble();
             priceCinemaVIPAdd = sc.nextDouble();
             priceHolidayAdd = sc.nextDouble();
+            priceWeekendAdd = sc.nextDouble();
         } catch (IOException e) {
             System.out.println("IOException in initPrice" + e.getMessage());
         }
@@ -104,6 +109,9 @@ public class PriceHelper {
         
         //get cinema class
         if (c.getCinemaClass() == Constant.CINEMA_VIP) price += priceCinemaVIPAdd;
+        
+        //if weekend
+        if (DateHelper.isWeekend(st.getTime())) price += priceWeekendAdd;
         
         return price;
     }
