@@ -130,6 +130,15 @@ public class DateHelper {
         return false;
     }
     
+    public static boolean isWeekend(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || 
+            cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            return true;
+        } else return false;
+    }
+    
     public static String getDateStringFormat(Date date) {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormatter.format(date.getTime());

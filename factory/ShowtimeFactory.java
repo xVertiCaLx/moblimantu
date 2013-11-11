@@ -23,7 +23,6 @@ public class ShowtimeFactory {
         /* Create a seatLayout for corresponding showtime Id */
         SeatLayout newSeatLayout = SeatLayoutFactory.createNewInstance(templateLayoutId);
         SeatLayoutController.addSeatLayout(newSeatLayout);
-        SeatLayoutController.commit();
         
         return new Showtime(Common.genShowtimeId(),showtimeTime, showtimeMovieId, showtimeCinemaId, newSeatLayout.getSeatLayoutId());
     }
@@ -42,7 +41,6 @@ public class ShowtimeFactory {
             SeatLayout newSeatLayout = SeatLayoutFactory.createNewInstance(templateLayoutId);
             
             SeatLayoutController.addSeatLayout(newSeatLayout);
-            SeatLayoutController.commit();
             Date showtimeTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(showtimeTimeStringFormat);
             return new Showtime(Common.genShowtimeId(),showtimeTime, showtimeMovieId, showtimeCinemaId, newSeatLayout.getSeatLayoutId());
         } catch (Exception ex) {

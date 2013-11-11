@@ -35,7 +35,4 @@ public class SeatLayoutController {
         SeatLayoutDB.addSeatLayout(sl);
         SeatLayoutDB.commit();
     }
-    public static void commit() {
-        SeatLayoutDB.commit();
-    }
 }

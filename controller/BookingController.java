@@ -65,7 +65,6 @@ public class BookingController {
         }
         //sl.display();
         SeatLayoutController.updateSeatLayoutById(st.getSeatLayoutId(), sl);
-        SeatLayoutController.commit();
         /**********************************************************/
         System.out.println();
         System.out.println("Your booking is confirmed. Please keep the invoice for future reference");
