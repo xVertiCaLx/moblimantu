@@ -1,6 +1,8 @@
 package page;
 
 import java.util.Scanner;
+import main.MovieSearchGUI;
+import utils.Common;
 import utils.References;
 
 public class MainPage {
@@ -20,8 +22,9 @@ public class MainPage {
             System.out.println("1. Find movies");
             System.out.println("2. Check bookings");
             System.out.println("3. Management (for staff only)");
-            System.out.println("4. Exit");            
-            System.out.print("Please choose your option (1-4): ");
+            System.out.println("4. Search movies and showtimes with GUI");
+            System.out.println("5. Exit");            
+            System.out.print("Please choose your option (1-5): ");
             choice = Integer.parseInt(sc.nextLine());
             System.out.println();
             switch(choice) {
@@ -31,7 +34,19 @@ public class MainPage {
                         break; 
                 case 3: ManagementPage.getInstance().launch();
                         break;
+                case 4: showUpGUI();
+                        break;
             }
-        } while (choice != 4);
-    }        
+        } while (choice != 5);
+    }    
+    
+    private void showUpGUI() {
+        String[] tempArg = new String[0];
+        MovieSearchGUI.main(tempArg);
+    }
+    
+    public static void main(String[] args) {
+        Common.initDB();
+        getInstance().launch();
+    }
 }
