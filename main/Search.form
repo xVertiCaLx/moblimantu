@@ -11,7 +11,7 @@
       <Color id="Default Cursor"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[700, 520]"/>
+      <Dimension value="[760, 520]"/>
     </Property>
   </Properties>
   <AccessibilityProperties>

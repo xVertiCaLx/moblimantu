@@ -167,7 +167,7 @@ public class Search extends javax.swing.JFrame {
         setTitle("MOBLIMA App");
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMinimumSize(new java.awt.Dimension(700, 520));
+        setMinimumSize(new java.awt.Dimension(760, 520));
         getContentPane().setLayout(null);
 
         cineplexComboBox.addActionListener(new java.awt.event.ActionListener() {
