@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import utils.Common;
 
@@ -27,7 +28,7 @@ import utils.Common;
  *
  * @author Aloysius
  */
-public class Search extends javax.swing.JFrame {
+public class MovieSearchGUI extends javax.swing.JFrame {
     
     /**
      * Creates new form Search
@@ -41,7 +42,7 @@ public class Search extends javax.swing.JFrame {
     private LinkedList<Movie> movies;
     private LinkedList<Showtime> showtimes;
     
-    public Search() {
+    public MovieSearchGUI() {
         initComponents();
         
         cineplexes = CineplexController.getCineplexList();
@@ -99,7 +100,6 @@ public class Search extends javax.swing.JFrame {
                         showtimeTable.setVisible(false);
                     }
                 } catch (NullPointerException exception) {
-                    System.out.println(exception);
                 }
             }
         });
@@ -138,6 +138,8 @@ public class Search extends javax.swing.JFrame {
                 }
             }
         });
+        
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -290,23 +292,27 @@ public class Search extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MovieSearchGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MovieSearchGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MovieSearchGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MovieSearchGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
+        try {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Common.initDB();
-                new Search().setVisible(true);
+                new MovieSearchGUI().setVisible(true);
             }
         });
+        } catch (Exception e){
+            
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
