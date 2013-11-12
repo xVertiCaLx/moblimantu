@@ -101,7 +101,7 @@ public class EditShowtimePage {
     private Showtime editTime(Showtime showtime) {
         System.out.print("New time (format YYYY-MM-DD hh:mm:ss): ");
         String newTime = sc.nextLine();
-        return ShowtimeFactory.createNewInstance(newTime, showtime.getCinemaId(), showtime.getMovieId());        
+        return ShowtimeFactory.createNewInstance(newTime, showtime.getMovieId(), showtime.getCinemaId());        
     }
     
     private Showtime editCinema(Showtime showtime) {
