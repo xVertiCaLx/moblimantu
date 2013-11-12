@@ -1,9 +1,9 @@
 8
 9
 3
-12
-6
-12
+18
+13
+18
 maximum id of all entities:
 movie
 cinema
