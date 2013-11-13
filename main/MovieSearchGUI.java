@@ -113,7 +113,7 @@ public class MovieSearchGUI extends javax.swing.JFrame {
                 tableModel.setColumnIdentifiers(colName);
                 
                 try {
-                    showtimes = ShowtimeController.getShowtimesByMovie(movieMap.get((String)movieComboBox.getSelectedItem()));
+                    showtimes = ShowtimeController.getShowtimesByMovieAndCinema(movieMap.get((String)movieComboBox.getSelectedItem()),cinemaMap.get((String)cinemaComboBox.getSelectedItem()));
                     for(Showtime s: showtimes) {
                         Object[] objects = new Object[2];
                         objects[0] = DateHelper.getDateStringFormat(s.getTime());
